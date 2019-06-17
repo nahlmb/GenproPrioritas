@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">GenproPrioritas</string>
+    <string name="profile_anggota_text">Profile Anggota</string>
+    <string name="list_bisnis">List bisnis</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="email_form">Email : </string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="belum_punya_akun">belum punya akun?</string>
+    <string name="nama">Nama</string>
+    <string name="example_user_name">Fulan bin Fulan</string>
+    <string name="example_user_email">fulankeren@gmail.com</string>
+    <string name="profile_umum">Profile Umum</string>
+    <string name="profile_domisili">Profile Domisili</string>
+    <string name="profile_ktp">Profile KTP</string>
+    <string name="edit_profile">edit profile</string>
+    <string name="edit_profile_domisili">Edit Profile Domisili</string>
+    <string name="edit_profile_umum">Edit Profile Umum</string>
+    <string name="edit_profile_ktp">Edit Profile KTP</string>
+    <string name="simpan_perubahan">Simpan perubahan</string>
+    <string name="user_name">User name</string>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="kembali">kembali</string>
+    <string name="network_error">Network error</string>
+    <string name="cek_koneksi">cek koneksi internet anda dan ulang kembali..</string>
+    <string name="spinner_profile">Spinner Profile</string>
+</resources>
