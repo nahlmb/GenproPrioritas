@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         initToolbar();
 
-
         //Shared Preference
         sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
         editorUserInformation = getSharedPreferences("userInfo", MODE_PRIVATE).edit();
@@ -104,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         emailUser.setText("Email : " + sharedPreferences.getString("email", ""));
         statusUser.setText("Status : " + sharedPreferences.getString("aktifasi", ""));
         masaAktifUser.setText("Masa aktif : " + sharedPreferences.getString("masaAktif", ""));
-
 
     }
 

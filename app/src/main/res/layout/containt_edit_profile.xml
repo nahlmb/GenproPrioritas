@@ -29,7 +29,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -37,7 +37,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:background="@color/transparant"/>
@@ -52,7 +52,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama Depan"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -60,7 +60,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama Depan"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:background="@color/transparant"/>
@@ -75,7 +75,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama Belakang"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -83,7 +83,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama Belakang"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:background="@color/transparant"/>
@@ -98,7 +98,30 @@
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bank Yang Dimiliki"
+                android:text="@string/edit_profile"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <EditText
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_profile"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:background="@color/transparant"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:layout_marginTop="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/spinner_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -106,104 +129,12 @@
             <Spinner
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"></Spinner>
+                android:layout_height="36dp"
+                android:entries="@array/sample"></Spinner>
 
 
             <TextView
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nomor Handphone"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nomor Handphone"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:background="@color/transparant"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                android:layout_marginTop="6dp"/>
-
-            <TextView
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Facebook"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Facebook"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:background="@color/transparant"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                android:layout_marginTop="6dp"/>
-
-
-            <TextView
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Instagram"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Instagram"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:background="@color/transparant"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                android:layout_marginTop="6dp"/>
-
-            <TextView
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Twiter"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Twiter"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:background="@color/transparant"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                android:layout_marginTop="6dp"/>
-
-            <TextView
-                android:layout_marginTop="122dp"
+                android:layout_marginTop="74dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/edit_profile_domisili"
@@ -215,7 +146,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Alamat"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -223,7 +154,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Alamat"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:background="@color/transparant"/>
@@ -238,7 +169,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RT/RW"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -246,7 +177,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RT/RW"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:background="@color/transparant"/>
@@ -261,7 +192,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kelurahan"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -269,7 +200,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kelurahan"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:background="@color/transparant"/>
@@ -284,7 +215,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kecamatan"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -292,7 +223,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kecamatan"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:background="@color/transparant"/>
@@ -307,30 +238,19 @@
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kabupaten"
+                android:text="@string/spinner_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
+
 
             <Spinner
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"></Spinner>
+                android:layout_height="36dp"
+                android:entries="@array/sample"></Spinner>
 
             <TextView
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Provinsi"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <Spinner
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"></Spinner>
-
-            <TextView
-                android:layout_marginTop="122dp"
+                android:layout_marginTop="74dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/edit_profile_ktp"
@@ -342,7 +262,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="No KTP"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -350,7 +270,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="No KTP"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:background="@color/transparant"/>
@@ -365,7 +285,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tempat Lahir"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -373,7 +293,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tempat Lahir"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:background="@color/transparant"/>
@@ -388,7 +308,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tanggal Lahir"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -396,7 +316,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tanggal Lahir"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:background="@color/transparant"/>
@@ -411,171 +331,39 @@
                 android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Agama"
+                android:text="@string/edit_profile"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
+
+            <EditText
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_profile"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:background="@color/transparant"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:layout_marginTop="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/spinner_profile"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
 
             <Spinner
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"></Spinner>
-
-            <TextView
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Golongan Darah"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <Spinner
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"></Spinner>
-
-            <TextView
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Jenis Kelamin"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <Spinner
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"></Spinner>
-
-            <TextView
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Status Pernikahan"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <Spinner
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"></Spinner>
-
-            <TextView
-                android:layout_marginTop="32dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alamat"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alamat"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:background="@color/transparant"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                android:layout_marginTop="6dp"/>
-
-            <TextView
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RT/RW"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RT/RW"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:background="@color/transparant"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                android:layout_marginTop="6dp"/>
-
-            <TextView
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Kelurahan"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Kelurahan"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:background="@color/transparant"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                android:layout_marginTop="6dp"/>
-
-            <TextView
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Kecamatan"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <EditText
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Kecamatan"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:background="@color/transparant"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                android:layout_marginTop="6dp"/>
-
-            <TextView
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Kabupaten"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <Spinner
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"></Spinner>
-
-            <TextView
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Provinsi"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <Spinner
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"></Spinner>
+                android:layout_height="36dp"
+                android:entries="@array/sample"></Spinner>
             
             <Button
                 android:layout_marginTop="64dp"
@@ -586,6 +374,11 @@
                 android:textColor="@color/white"
                 android:text="@string/simpan_perubahan"/>
 
+
+
         </LinearLayout>
+        
     </android.support.constraint.ConstraintLayout>
+    
+
 </android.support.v4.widget.NestedScrollView>
