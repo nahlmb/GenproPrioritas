@@ -571,6 +571,11 @@
                 android:text="Provinsi"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
+
+            <Spinner
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"></Spinner>
             
             <Button
                 android:layout_marginTop="64dp"
