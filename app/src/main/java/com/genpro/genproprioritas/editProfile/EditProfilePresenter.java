@@ -1,4 +1,8 @@
 package com.genpro.genproprioritas.editProfile;
 
-public class EditProfilePresenter {
+public class EditProfilePresenter implements EditProfileContract.Presenter{
+    @Override
+    public void pushEditProfile() {
+
+    }
 }

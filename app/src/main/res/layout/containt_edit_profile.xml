@@ -34,6 +34,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_umum_email"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,6 +58,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_umum_nama_depan"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,6 +82,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_umum_nama_belakang"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -104,9 +107,11 @@
 
 
             <Spinner
+                android:id="@+id/spinner_umum_bank"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"></Spinner>
+                android:layout_height="36dp"
+                android:entries="@array/bank"></Spinner>
 
 
             <TextView
@@ -118,6 +123,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_umum_no_hp"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -141,6 +147,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_umum_fb"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -165,6 +172,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_umum_ig"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -188,6 +196,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_umum_twitter"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -220,6 +229,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_domisili_alamat"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -243,6 +253,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_domisili_rt_rw_"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -266,6 +277,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_domisili_kelurahan"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -289,6 +301,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_domisili_kecamatan"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -312,6 +325,7 @@
                 android:textSize="12sp" />
 
             <Spinner
+                android:id="@+id/spinner_domisili_provinsi"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"></Spinner>
@@ -325,6 +339,7 @@
                 android:textSize="12sp" />
 
             <Spinner
+                android:id="@+id/spinner_domisili_kabupaten"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"></Spinner>
@@ -347,6 +362,31 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_ktp_no_ktp"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No KTP"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:background="@color/transparant"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:layout_marginTop="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama di KTP"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/edt_ktp_nama"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -370,6 +410,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_ktp_tempat_lahir"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -393,6 +434,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_ktp_tanggal_lahir"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -416,6 +458,7 @@
                 android:textSize="12sp" />
 
             <Spinner
+                android:id="@+id/spinner_ktp_agama"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"></Spinner>
@@ -429,6 +472,7 @@
                 android:textSize="12sp" />
 
             <Spinner
+                android:id="@+id/spinner_ktp_golongan_darah"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"></Spinner>
@@ -442,6 +486,7 @@
                 android:textSize="12sp" />
 
             <Spinner
+                android:id="@+id/spinner_ktp_jenis_kelamin"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"></Spinner>
@@ -455,6 +500,7 @@
                 android:textSize="12sp" />
 
             <Spinner
+                android:id="@+id/spinner_ktp_status_pernikahan"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"></Spinner>
@@ -468,6 +514,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_ktp_alamat"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -491,6 +538,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_ktp_rt_rw"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -514,6 +562,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_ktp_kelurahan"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -537,6 +586,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/edt_ktp_kecamatan"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -560,10 +610,11 @@
                 android:textSize="12sp" />
 
             <Spinner
+                android:id="@+id/spinner_ktp_provinsi"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:entries="@array/Provinsi"></Spinner>
+                android:entries="@array/provinsi"></Spinner>
 
             <TextView
                 android:layout_marginTop="24dp"
@@ -574,6 +625,7 @@
                 android:textSize="12sp" />
 
             <Spinner
+                android:id="@+id/spinner_ktp_kabupaten"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"

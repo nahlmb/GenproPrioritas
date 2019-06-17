@@ -30,7 +30,7 @@
 
 
     <!-- String for Spinner Edit profile -->
-    <string-array name="Provinsi">
+    <string-array name="provinsi">
         <item>Aceh</item>
         <item>Sumatera Utara</item>
         <item>Sumatera Barat</item>
@@ -672,4 +672,47 @@
         <item>	KAB. PEGUNUNGAN ARFAK	</item>
         <item>	KOTA SORONG	</item>
     </string-array>
+
+    <!--Lain lain-->
+
+    <string-array name="agama">
+        <item>Islam</item>
+        <item>Protestan</item>
+        <item>Katholik</item>
+        <item>Hindu</item>
+        <item>Buddha</item>
+        <item>Lain-lain</item>
+    </string-array>
+
+    <string-array name="golongan_darah">
+        <item>A</item>
+        <item>B</item>
+        <item>AB</item>
+        <item>O</item>
+    </string-array>
+
+    <string-array name="jenis_kelamin">
+        <item>Laki-Laki</item>
+        <item>Perempuan</item>
+    </string-array>
+
+    <string-array name="status_nikah">
+        <item>Kawin</item>
+        <item>Belum Kawin</item>
+    </string-array>
+
+    <string-array name="bank">
+        <item>Bank Syariah Mandiri</item>
+        <item>BNI Syariah</item>
+        <item>BRI Syariah</item>
+        <item>BCA Syariah</item>
+        <item>BTN Syariah</item>
+        <item>Mandiri</item>
+        <item>BCA</item>
+        <item>BTN</item>
+        <item>BRI</item>
+        <item>BNI</item>
+        <item>OTHER</item>
+    </string-array>
+
 </resources>
