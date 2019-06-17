@@ -104,7 +104,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         statusUser.setText("Status : " + sharedPreferences.getString("aktifasi", ""));
         masaAktifUser.setText("Masa aktif : " + sharedPreferences.getString("masaAktif", ""));
 
-    }
+        if (sharedPreferences.getString("namaDepan","").equals("null")) {
+            namaUser.setText("Nama : -");
+        }
+
+        if (sharedPreferences.getString("aktifasi", "").equals("false")){
+            statusUser.setText("Status : Tidak Aktif");
+        } else {
+            statusUser.setText("Status : Aktif");
+        }
+
+        if (sharedPreferences.getString("masaAktif", "").equals("null")){
+            masaAktifUser.setText("Masa aktif : Tidak Aktif");
+        }
+
+        }
 
     @Override
     public void saveUserInfo(String[] dataUmum, String[] dataDomisili, String[] dataKtp) {
