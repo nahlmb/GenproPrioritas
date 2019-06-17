@@ -129,8 +129,7 @@
             <Spinner
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:entries="@array/sample"></Spinner>
+                android:layout_height="36dp"/>
 
 
             <TextView
@@ -246,8 +245,7 @@
             <Spinner
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:entries="@array/sample"></Spinner>
+                android:layout_height="36dp"/>
 
             <TextView
                 android:layout_marginTop="74dp"
@@ -362,8 +360,7 @@
             <Spinner
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:entries="@array/sample"></Spinner>
+                android:layout_height="36dp"/>
             
             <Button
                 android:layout_marginTop="64dp"
