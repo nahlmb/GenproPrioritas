@@ -12,7 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Other.ErrorActivity"></activity>
+        <activity android:name=".sejarah.SejarahActivity"></activity>
+        <activity android:name=".visimisi.VisimisiActivity" />
+        <activity android:name=".kegiatan.KegiatanActivity" />
+        <activity android:name=".membership.MembershipActivity" />
+        <activity android:name=".gmbgenpro.GMBActivity" />
+        <activity android:name=".Business.BusinessActivity" />
+        <activity android:name=".search.SearchActivity" />
         <activity android:name=".editProfile.EditProfileActivity" />
         <activity android:name=".register.RegisterActivity" />
         <activity android:name=".login.LoginActivity">

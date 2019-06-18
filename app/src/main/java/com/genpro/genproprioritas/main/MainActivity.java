@@ -22,9 +22,16 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.genpro.genproprioritas.Business.BusinessActivity;
 import com.genpro.genproprioritas.R;
+import com.genpro.genproprioritas.gmbgenpro.GMBActivity;
+import com.genpro.genproprioritas.kegiatan.KegiatanActivity;
 import com.genpro.genproprioritas.login.LoginActivity;
+import com.genpro.genproprioritas.membership.MembershipActivity;
 import com.genpro.genproprioritas.profile.ProfileActivity;
+import com.genpro.genproprioritas.search.SearchActivity;
+import com.genpro.genproprioritas.sejarah.SejarahActivity;
+import com.genpro.genproprioritas.visimisi.VisimisiActivity;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View, PopupMenu.OnMenuItemClickListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editorUserInformation;
     SharedPreferences.Editor editorLogin;
+    NavigationView navigationView;
 
     //Dialog
     Dialog loading, error;
@@ -85,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         emailUser = findViewById(R.id.txt_main_email);
         statusUser = findViewById(R.id.txt_main_status);
         masaAktifUser = findViewById(R.id.txt_main_masa_aktif);
+        navigationView = findViewById(R.id.nav_view_main);
 
         iconMore = findViewById(R.id.icon_more_main);
         iconMore.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 showPopUpMore(v);
             }
         });
+
+        //Transparent Background
+        navigationView.getBackground().setAlpha(210);
 
     }
 
@@ -291,11 +303,61 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.nav_search :
+                search(menuItem);
+            case R.id.nav_business :
+                business(menuItem);
+            case  R.id.nav_profile :
+                Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(goToProfile);
+            case R.id.nav_gmb_genpro :
+                Intent goToGMB = new Intent(MainActivity.this, GMBActivity.class);
+                startActivity(goToGMB);
+            case R.id.nav_membership :
+                Intent goToMembership = new Intent(MainActivity.this, MembershipActivity.class);
+                startActivity(goToMembership);
+            case R.id.nav_kegiatan :
+                Intent goToKegiatan = new Intent(MainActivity.this, KegiatanActivity.class);
+                startActivity(goToKegiatan);
+            case R.id.nav_visi_misi :
+                Intent goToVisimisi = new Intent(MainActivity.this, VisimisiActivity.class);
+                startActivity(goToVisimisi);
+            case  R.id.nav_sejarah :
+                Intent goToSejarah = new Intent(MainActivity.this, SejarahActivity.class);
+                startActivity(goToSejarah);
+        }
+
         return false;
     }
 
     @Override
     public void recreate() {
         super.recreate();
+    }
+
+    public void search(MenuItem item) {
+        Intent goToSearch = new Intent(MainActivity.this, SearchActivity.class);
+        startActivity(goToSearch);
+    }
+
+    public void business(MenuItem item) {
+        Intent goToBusiness = new Intent(MainActivity.this, BusinessActivity.class);
+        startActivity(goToBusiness);
+    }
+
+    public void profile(MenuItem item) {
+        Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
+        startActivity(goToProfile);
+    }
+
+    public void gmb(MenuItem item) {
+        Intent goToGMB = new Intent(MainActivity.this, GMBActivity.class);
+        startActivity(goToGMB);
+    }
+
+    public void membership(MenuItem item) {
+        Intent goToMembership = new Intent(MainActivity.this, MembershipActivity.class);
+        startActivity(goToMembership);
     }
 }
