@@ -8,18 +8,26 @@
     android:background="@color/abu_muda"
     android:id="@+id/drawer_main">
 
-    <include layout="@layout/activity_main_layout"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swlayout"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+        android:orientation="vertical">
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view_main"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:layout_gravity="start"
-        app:menu="@menu/activity_home_drawer">
+        <include layout="@layout/activity_main_layout"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
-    </android.support.design.widget.NavigationView>
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view_main"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:layout_gravity="start"
+            app:menu="@menu/activity_home_drawer">
+
+        </android.support.design.widget.NavigationView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </android.support.v4.widget.DrawerLayout>
