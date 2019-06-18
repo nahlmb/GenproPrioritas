@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +30,10 @@ import com.genpro.genproprioritas.login.LoginActivity;
 import com.genpro.genproprioritas.profile.ProfileActivity;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View, PopupMenu.OnMenuItemClickListener, NavigationView.OnNavigationItemSelectedListener {
+
+    // Swipe
+    SwipeRefreshLayout swLayout;
+    DrawerLayout dLayout;
 
     //SharedPrefrences
     SharedPreferences sharedPreferences;
@@ -51,7 +58,30 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initToolbar();
+        // Inisialisasi SwipeRefreshLayout
+        swLayout = (SwipeRefreshLayout) findViewById(R.id.swlayout);
+
+        // Mengeset properti warna yang berputar pada SwipeRefreshLayout
+        swLayout.setColorSchemeResources(R.color.colorAccent,R.color.colorPrimary);
+
+        // Mengeset listener yang akan dijalankan saat layar di refresh/swipe
+        swLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                // Jeda 5 Detik
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        // Berhenti Muternya
+                        swLayout.setRefreshing(false);
+                    }
+                }, 5000);
+            }
+        });
+
+                        initToolbar();
 
         //Shared Preference
         sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
