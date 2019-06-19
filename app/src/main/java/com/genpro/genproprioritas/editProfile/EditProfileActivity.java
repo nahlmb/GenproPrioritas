@@ -1,21 +1,26 @@
 package com.genpro.genproprioritas.editProfile;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.genpro.genproprioritas.R;
-
-import java.util.ArrayList;
+import com.genpro.genproprioritas.profile.ProfileActivity;
 
 public class EditProfileActivity extends AppCompatActivity implements EditProfileContract.View {
+    EditProfilePresenter presenter;
     SharedPreferences userInformation;
 
     //Data umum
@@ -23,22 +28,28 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     Spinner spinnerBank;
 
     //Data domisili
-    EditText EditAlamatDomisili, EditRtRwDomisili, EditKelurahanDomisili, EditKecamatanDomisili;
+    EditText editAlamatDomisili, editRtRwDomisili, editKelurahanDomisili, editKecamatanDomisili;
     Spinner provinsiDomisili, kabupatenDomisili;
 
     //Data ktp
     EditText noKtp, namaKtp, tempatLahirKtp, tanggalLahirKtp, alamatKtp, rtRwKtp, kelurahanKtp, kecamatanKtp;
-    Spinner agama, golonganDarah, status, jenisKelamin, provinsiKtp, kabupatenKtp;
+    Spinner spinnerAgamaDiKtp, golonganDarah, status, jenisKelamin, provinsiKtp, kabupatenKtp;
 
-    ArrayAdapter<CharSequence> adapterSpinnerKabupaten;
+    ArrayAdapter<CharSequence> adapterSpinnerKabupatenDomisili, adapterSpinnerKabupatenKtp;
+
+    //button
+    Button btnUpdateProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        //setup
+        presenter = new EditProfilePresenter(this);
         userInformation = getSharedPreferences("userInfo", MODE_PRIVATE);
 
+        //setupdata
         //data umum
         umumEmail = findViewById(R.id.edt_umum_email);
         umumnamaDepan= findViewById(R.id.edt_umum_nama_depan);
@@ -48,21 +59,19 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         umumIg = findViewById(R.id.edt_umum_ig);
         umumTwitter = findViewById(R.id.edt_umum_twitter);
         spinnerBank = findViewById(R.id.spinner_umum_bank);
-
         //data domisili
-        EditAlamatDomisili = findViewById(R.id.edt_domisili_alamat);
-        EditRtRwDomisili = findViewById(R.id.edt_domisili_rt_rw_);
-        EditKelurahanDomisili = findViewById(R.id.edt_domisili_kelurahan);
-        EditKecamatanDomisili = findViewById(R.id.edt_domisili_kecamatan);
+        editAlamatDomisili = findViewById(R.id.edt_domisili_alamat);
+        editRtRwDomisili = findViewById(R.id.edt_domisili_rt_rw_);
+        editKelurahanDomisili = findViewById(R.id.edt_domisili_kelurahan);
+        editKecamatanDomisili = findViewById(R.id.edt_domisili_kecamatan);
         provinsiDomisili = findViewById(R.id.spinner_domisili_provinsi);
         kabupatenDomisili = findViewById(R.id.spinner_domisili_kabupaten);
-
         //data ktp
         noKtp = findViewById(R.id.edt_ktp_no_ktp);
         namaKtp = findViewById(R.id.edt_ktp_nama);
         tempatLahirKtp = findViewById(R.id.edt_ktp_tempat_lahir);
         tanggalLahirKtp = findViewById(R.id.edt_ktp_tanggal_lahir);
-        agama = findViewById(R.id.spinner_ktp_agama);
+        spinnerAgamaDiKtp = findViewById(R.id.spinner_ktp_agama);
         golonganDarah = findViewById(R.id.spinner_ktp_golongan_darah);
         status = findViewById(R.id.spinner_ktp_status_pernikahan);
         jenisKelamin = findViewById(R.id.spinner_ktp_jenis_kelamin);
@@ -72,13 +81,26 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         kecamatanKtp = findViewById(R.id.edt_ktp_kecamatan);
         provinsiKtp = findViewById(R.id.spinner_ktp_provinsi);
         kabupatenKtp = findViewById(R.id.spinner_ktp_kabupaten);
-
         setTextDataUmum();
         setTextDataKtp();
         setTextDataDomisili();
 
+        btnUpdateProfile = findViewById(R.id.btn_edit_profile);
+        btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pushEditProfile();
+            }
+        });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent backToProfile = new Intent(EditProfileActivity.this, ProfileActivity.class);
+        startActivity(backToProfile);
+        finish();
     }
 
     @Override
@@ -151,22 +173,22 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
         if(strAlamatDomisili.equals(null) || strAlamatDomisili.equals("")){
         }else {
-            EditAlamatDomisili.setText(strAlamatDomisili);
+            editAlamatDomisili.setText(strAlamatDomisili);
         }
 
         if (strRtRwDomisili.equals(null)||strRtRwDomisili.equals("")){
         }else {
-            EditRtRwDomisili.setText(strRtRwDomisili);
+            editRtRwDomisili.setText(strRtRwDomisili);
         }
 
         if (strKelurahanDomisili.equals(null)||strKelurahanDomisili.equals("")){
         }else {
-            EditKelurahanDomisili.setText(strKelurahanDomisili);
+            editKelurahanDomisili.setText(strKelurahanDomisili);
         }
 
         if (strKecamatanDomisili.equals(null)||strKecamatanDomisili.equals("")){
         }else {
-            EditKecamatanDomisili.setText(strKecamatanDomisili);
+            editKecamatanDomisili.setText(strKecamatanDomisili);
 
 
         }
@@ -176,8 +198,9 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         provinsiDomisili.setAdapter(adapterSpinnerProvinsiDomisili);
 
         if (strProvinsiDomisili != null) {
-            int spinnerPosition = adapterSpinnerProvinsiDomisili.getPosition(strProvinsiDomisili);
-            provinsiDomisili.setSelection(spinnerPosition);
+            int spinnerPositionDomisili = adapterSpinnerProvinsiDomisili.getPosition(strProvinsiDomisili);
+            provinsiDomisili.setSelection(spinnerPositionDomisili);
+            Log.d("kabupaten", strProvinsiDomisili);
 
         }
 
@@ -217,7 +240,7 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         strStatusKtp = userInformation.getString("status", "");
         strKelurahanKtp = userInformation.getString("kelurahanKtp", "");
         strProvinsiKtp = userInformation.getString("provinsiKtp", "");
-        strKecamatanKtp = userInformation.getString("provinsiKtp", "");
+        strKecamatanKtp = userInformation.getString("kecamatanKtp", "");
         strKabupatenKtp = userInformation.getString("kabupatenKtp", "");
 
         if(strNoKtp.equals(null) || strNoKtp.equals("") || strNoKtp.equals("null")){
@@ -261,6 +284,71 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
             kecamatanKtp.setText(strKecamatanKtp);
         }
 
+        ArrayAdapter<CharSequence> adapterSpinnerAgama= ArrayAdapter.createFromResource(this, R.array.agama_di_ktp, android.R.layout.simple_spinner_item);
+        adapterSpinnerAgama.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAgamaDiKtp.setAdapter(adapterSpinnerAgama);
+
+        if (strAgamaDiKtp != null) {
+            int spinnerPositionAgamaDiKtp = adapterSpinnerAgama.getPosition(strAgamaDiKtp);
+            spinnerAgamaDiKtp.setSelection(spinnerPositionAgamaDiKtp);
+        }
+
+        ArrayAdapter<CharSequence> adapterSpinnerGoldar= ArrayAdapter.createFromResource(this, R.array.golongan_darah, android.R.layout.simple_spinner_item);
+        adapterSpinnerAgama.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        golonganDarah.setAdapter(adapterSpinnerGoldar);
+
+        if (strGolonganDarah != null) {
+            int spinnerPositionGolonganDarah = adapterSpinnerAgama.getPosition(strGolonganDarah);
+            golonganDarah.setSelection(spinnerPositionGolonganDarah);
+        }
+
+        ArrayAdapter<CharSequence> adapterSpinnerJenisKelamin = ArrayAdapter.createFromResource(this, R.array.jenis_kelamin, android.R.layout.simple_spinner_item);
+        adapterSpinnerAgama.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        jenisKelamin.setAdapter(adapterSpinnerJenisKelamin);
+
+        if (strJenisKelamin != null) {
+            int spinnerPositionJenisKelamin = adapterSpinnerAgama.getPosition(strJenisKelamin);
+            jenisKelamin.setSelection(spinnerPositionJenisKelamin);
+        }
+
+        ArrayAdapter<CharSequence> adapterSpinnerStatusNikah = ArrayAdapter.createFromResource(this, R.array.status_nikah, android.R.layout.simple_spinner_item);
+        adapterSpinnerAgama.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        status.setAdapter(adapterSpinnerStatusNikah);
+
+        if (strStatusKtp != null) {
+            int spinnerPositionStatus = adapterSpinnerAgama.getPosition(strStatusKtp);
+            status.setSelection(spinnerPositionStatus);
+        }
+
+        ArrayAdapter<CharSequence> adapterSpinnerKtp = ArrayAdapter.createFromResource(this, R.array.provinsi, android.R.layout.simple_spinner_item);
+        adapterSpinnerKtp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        provinsiKtp.setAdapter(adapterSpinnerKtp);
+
+        if (strProvinsiKtp != null) {
+            int spinnerPositionKtp = adapterSpinnerKtp.getPosition(strProvinsiKtp);
+            provinsiKtp.setSelection(spinnerPositionKtp);
+            Log.d("kabupaten", strProvinsiKtp);
+
+        }
+
+
+        provinsiKtp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Context context = getApplicationContext();
+                String strKabupatenDariProvinsiKtp = provinsiKtp.getSelectedItem().toString();
+                setKabupaten(strKabupatenDariProvinsiKtp, false, true);
+                Log.d("kabupaten", strKabupatenDariProvinsiKtp);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
     }
 
     @Override
@@ -270,115 +358,227 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         String cek = namaProvinsi;
         Log.d("kabupaten", cek);
 
-        if (namaProvinsi.equals("Aceh")) {
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.ACEH, android.R.layout.simple_spinner_item);
-        } else if (namaProvinsi.equals("Sumatera Utara")) {
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.SUMATERA_UTARA, android.R.layout.simple_spinner_item);
+        if(domisili && ktp == false){
+            if (namaProvinsi.equals("Aceh")) {
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.ACEH, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Sumatera Utara")) {
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.SUMATERA_UTARA, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Sumatera Barat")) {
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.SULAWESI_BARAT, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Sumatera Barat")) {
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.SULAWESI_BARAT, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Riau")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.RIAU, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Riau")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.RIAU, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Jambi")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.JAMBI, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Jambi")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.JAMBI, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Sumatera Selatan")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.SUMATERA_SELATAN, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Sumatera Selatan")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.SUMATERA_SELATAN, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Bengkulu")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.BENGKULU, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Bengkulu")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.BENGKULU, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Lampung")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.LAMPUNG, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Lampung")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.LAMPUNG, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Kepulauan Bangka Belitung")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.KEPULAUAN_BANGKA_BELITUNG, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Kepulauan Bangka Belitung")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.KEPULAUAN_BANGKA_BELITUNG, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Kepulauan Riau")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.KEPULAUAN_RIAU, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Kepulauan Riau")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.KEPULAUAN_RIAU, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("DKI Jakarta")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.DKI_JAKARTA, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("DKI Jakarta")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.DKI_JAKARTA, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Jawa Barat")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.JAWA_BARAT, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Jawa Barat")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.JAWA_BARAT, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Jawa Tengah")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.JAWA_TENGAH, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Jawa Tengah")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.JAWA_TENGAH, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Jawa Timur")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.JAWA_TIMUR, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Jawa Timur")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.JAWA_TIMUR, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Daerah Istimewa")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.DAERAH_ISTIMEWA, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Daerah Istimewa")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.DAERAH_ISTIMEWA, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Banten")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.BANTEN, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Banten")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.BANTEN, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Bali")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.BALI, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Bali")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.BALI, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Nusa Tenggara Barat")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.NUSA_TENGGARA_BARAT, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Nusa Tenggara Barat")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.NUSA_TENGGARA_BARAT, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Nusa Tenggara Timur")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.NUSA_TENGGARA_TIMUR, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Nusa Tenggara Timur")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.NUSA_TENGGARA_TIMUR, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Kalimantan Barat")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_BARAT, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Kalimantan Barat")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_BARAT, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Kalimantan Tengah")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_TENGAH, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Kalimantan Tengah")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_TENGAH, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Kalimantan Selatan")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_SELATAN, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Kalimantan Selatan")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_SELATAN, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Kalimantan Timur")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_TIMUR, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Kalimantan Timur")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_TIMUR, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Kalimantan Utara")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_UTARA, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Kalimantan Utara")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_UTARA, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Sulawesi Utara")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.SULAWESI_UTARA, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Sulawesi Utara")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.SULAWESI_UTARA, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Sulawesi Tengah")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.SULAWESI_TENGAH, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Sulawesi Tengah")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.SULAWESI_TENGAH, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Sulawesi Selatan")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.SULAWESI_SELATAN, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Sulawesi Selatan")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.SULAWESI_SELATAN, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Sulawesi Tenggara")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.SULAWESI_TENGGARA, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Sulawesi Tenggara")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.SULAWESI_TENGGARA, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Gorontalo")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.GORONTALO, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Gorontalo")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.GORONTALO, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Sulawesi Barat")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.SULAWESI_BARAT, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Sulawesi Barat")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.SULAWESI_BARAT, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Maluku")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.MALUKU, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Maluku")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.MALUKU, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Maluku Utara")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.MALUKU_UTARA, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Maluku Utara")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.MALUKU_UTARA, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Papua")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.PAPUA, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Papua")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.PAPUA, android.R.layout.simple_spinner_item);
 
-        } else if (namaProvinsi.equals("Papua Barat")){
-            adapterSpinnerKabupaten = ArrayAdapter.createFromResource(context, R.array.PAPUA_BARAT, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Papua Barat")){
+                adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.PAPUA_BARAT, android.R.layout.simple_spinner_item);
+
+            }
+
+            adapterSpinnerKabupatenDomisili.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            kabupatenDomisili.setAdapter(adapterSpinnerKabupatenDomisili);
+
+        }else if(ktp && domisili == false){
+            if (namaProvinsi.equals("Aceh")) {
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.ACEH, android.R.layout.simple_spinner_item);
+            } else if (namaProvinsi.equals("Sumatera Utara")) {
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.SUMATERA_UTARA, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Sumatera Barat")) {
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.SULAWESI_BARAT, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Riau")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.RIAU, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Jambi")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.JAMBI, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Sumatera Selatan")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.SUMATERA_SELATAN, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Bengkulu")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.BENGKULU, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Lampung")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.LAMPUNG, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Kepulauan Bangka Belitung")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.KEPULAUAN_BANGKA_BELITUNG, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Kepulauan Riau")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.KEPULAUAN_RIAU, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("DKI Jakarta")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.DKI_JAKARTA, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Jawa Barat")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.JAWA_BARAT, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Jawa Tengah")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.JAWA_TENGAH, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Jawa Timur")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.JAWA_TIMUR, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Daerah Istimewa")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.DAERAH_ISTIMEWA, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Banten")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.BANTEN, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Bali")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.BALI, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Nusa Tenggara Barat")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.NUSA_TENGGARA_BARAT, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Nusa Tenggara Timur")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.NUSA_TENGGARA_TIMUR, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Kalimantan Barat")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_BARAT, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Kalimantan Tengah")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_TENGAH, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Kalimantan Selatan")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_SELATAN, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Kalimantan Timur")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_TIMUR, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Kalimantan Utara")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.KALIMANTAN_UTARA, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Sulawesi Utara")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.SULAWESI_UTARA, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Sulawesi Tengah")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.SULAWESI_TENGAH, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Sulawesi Selatan")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.SULAWESI_SELATAN, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Sulawesi Tenggara")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.SULAWESI_TENGGARA, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Gorontalo")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.GORONTALO, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Sulawesi Barat")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.SULAWESI_BARAT, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Maluku")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.MALUKU, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Maluku Utara")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.MALUKU_UTARA, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Papua")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.PAPUA, android.R.layout.simple_spinner_item);
+
+            } else if (namaProvinsi.equals("Papua Barat")){
+                adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.PAPUA_BARAT, android.R.layout.simple_spinner_item);
+
+            }
+
+            adapterSpinnerKabupatenKtp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            kabupatenKtp.setAdapter(adapterSpinnerKabupatenKtp);
 
         }
 
+        if (userInformation.getString("kabupatenKtp", "") != null) {
+            int spinnerPositionDomisili = adapterSpinnerKabupatenDomisili.getPosition(userInformation.getString("kabupatenKtp", ""));
+            kabupatenDomisili.setSelection(spinnerPositionDomisili);
 
-        adapterSpinnerKabupaten.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        kabupatenDomisili.setAdapter(adapterSpinnerKabupaten);
-        kabupatenKtp.setAdapter(adapterSpinnerKabupaten);
-
-
+        }
 
     }
 
@@ -394,14 +594,67 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
     @Override
     public void updateSucces() {
-
+        onBackPressed();
     }
 
     @Override
     public void updateFailed(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
     }
 
+    @Override
+    public void pushEditProfile() {
+        String userId = userInformation.getString("userId", "");
+
+        String pushUmumEmail = umumEmail.getText().toString();
+        String pushUmumNamaDepan = umumnamaDepan.getText().toString();
+        String pushUmumNamaBelakang = umumnamaBelakang.getText().toString();
+        String pushUmumNoHp = umumNoHp.getText().toString();
+        String pushUmumFb = umumFb.getText().toString();
+        String pushUmumIg = umumIg.getText().toString();
+        String pushUmumTwitter = umumTwitter.getText().toString();
+        String pushUmumBank = spinnerBank.getSelectedItem().toString();
+
+        String pushDomisiliAlamat = editAlamatDomisili.getText().toString();
+        String pushDomisiliRtRw = editRtRwDomisili.getText().toString();
+        String pushDomisiliKelurahan = editKelurahanDomisili.getText().toString();
+        String pushDomisiliKecamatan = editKecamatanDomisili.getText().toString();
+        String pushDomisiliProvinsi = provinsiDomisili.getSelectedItem().toString();
+        String pushDomisiliKabupaten = kabupatenDomisili.getSelectedItem().toString();
+
+        String pushKtpNo = noKtp.getText().toString();
+        String pushKtpNama = namaKtp.getText().toString();
+        String pushKtpTanggalLahir = tanggalLahirKtp.getText().toString();
+        String pushKtpTempatLahir = tempatLahirKtp.getText().toString();
+        String pushKtpAlamat = alamatKtp.getText().toString();
+        String pushKtpRtRw = rtRwKtp.getText().toString();
+        String pushKtpKelurahan = kelurahanKtp.getText().toString();
+        String pushKtpKecamatan = kecamatanKtp.getText().toString();
+        String pushKtpAgamaDiKtp = spinnerAgamaDiKtp.getSelectedItem().toString();
+        String pushKtpGolonganDarah = golonganDarah.getSelectedItem().toString();
+        String pushKtpStatus = status.getSelectedItem().toString();
+        String pushKtpJenisKelamin = jenisKelamin.getSelectedItem().toString();
+        String pushKtpProvinsiKtp = provinsiKtp.getSelectedItem().toString();
+        String pushKabupatenKtp = kabupatenKtp.getSelectedItem().toString();
 
 
+        String[] dataUmum = {userId,pushUmumEmail, pushUmumNamaDepan, pushUmumNamaBelakang, pushUmumBank, pushUmumNoHp,
+                pushUmumFb, pushUmumIg, pushUmumTwitter};
+
+        String[] dataDomisili = {userId, pushDomisiliAlamat, pushDomisiliRtRw, pushDomisiliKelurahan,
+                pushDomisiliKecamatan, pushDomisiliProvinsi, pushDomisiliKabupaten};
+
+        String[] dataKtp = {userId, pushKtpNo, pushKtpNama, pushKtpTempatLahir, pushKtpTanggalLahir,
+                pushKtpAgamaDiKtp, pushKtpGolonganDarah, pushKtpJenisKelamin, pushKtpStatus, pushKtpAlamat, pushKtpRtRw,
+                pushKtpKelurahan, pushKtpKecamatan, pushKtpProvinsiKtp, pushKabupatenKtp};
+
+        presenter.pushEditProfile(dataUmum, dataDomisili, dataKtp);
+
+    }
+
+    @Override
+    public void recreate() {
+        super.recreate();
+    }
 }

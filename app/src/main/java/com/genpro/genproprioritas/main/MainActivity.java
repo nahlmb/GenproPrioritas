@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editorUserInformation;
     SharedPreferences.Editor editorLogin;
-    NavigationView navigationView;
 
     //Dialog
     Dialog loading, error;
@@ -66,30 +65,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inisialisasi SwipeRefreshLayout
-        swLayout = (SwipeRefreshLayout) findViewById(R.id.swlayout);
-
-        // Mengeset properti warna yang berputar pada SwipeRefreshLayout
-        swLayout.setColorSchemeResources(R.color.colorAccent,R.color.colorPrimary);
-
-        // Mengeset listener yang akan dijalankan saat layar di refresh/swipe
-        swLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-
-                // Jeda 5 Detik
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        // Berhenti Muternya
-                        swLayout.setRefreshing(false);
-                    }
-                }, 5000);
-            }
-        });
-
-                        initToolbar();
+        initToolbar();
 
         //Shared Preference
         sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
@@ -123,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         emailUser = findViewById(R.id.txt_main_email);
         statusUser = findViewById(R.id.txt_main_status);
         masaAktifUser = findViewById(R.id.txt_main_masa_aktif);
-        navigationView = findViewById(R.id.nav_view_main);
 
         iconMore = findViewById(R.id.icon_more_main);
         iconMore.setOnClickListener(new View.OnClickListener() {
@@ -133,8 +108,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             }
         });
 
-        //Transparent Background
-        navigationView.getBackground().setAlpha(210);
+        //swipe refresh
+        swLayout = findViewById(R.id.swlayout);
+        refreshData();
 
     }
 
@@ -321,6 +297,24 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
+    public void refreshData() {
+        swLayout.setColorSchemeResources(R.color.colorAccent,R.color.colorPrimary);
+        swLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recreate();
+                        swLayout.setRefreshing(false);
+                    }
+                }, 3000);
+            }
+        });
+
+    }
+
+    @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()){
             case R.id.log_out :
@@ -361,6 +355,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         return false;
     }
 
+
     @Override
     public void recreate() {
         super.recreate();
@@ -390,4 +385,5 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Intent goToMembership = new Intent(MainActivity.this, MembershipActivity.class);
         startActivity(goToMembership);
     }
+
 }

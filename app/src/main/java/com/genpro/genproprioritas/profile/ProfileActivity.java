@@ -1,7 +1,12 @@
 package com.genpro.genproprioritas.profile;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,12 +14,23 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.editProfile.EditProfileActivity;
+import com.genpro.genproprioritas.main.MainActivity;
 
 public class ProfileActivity extends AppCompatActivity implements ProfileContract.View, PopupMenu.OnMenuItemClickListener {
+
+    //tools
+    ProfilePresenter presenter;
+    SharedPreferences.Editor editorUserInformation;
+    SharedPreferences userInformation;
+    Dialog loading;
+    SwipeRefreshLayout swLayout;
+
+
     //profile Utama
     ImageView profilPic;
     TextView namaUser, emailUser;
@@ -30,6 +46,18 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        presenter = new ProfilePresenter(this);
+
+        //Shared pref
+        editorUserInformation = getSharedPreferences("userInfo", MODE_PRIVATE).edit();
+        userInformation = getSharedPreferences("userInfo", MODE_PRIVATE);
+
+        //Dialog
+        loading = new Dialog(this);
+        loading.setContentView(R.layout.loading_layout);
+        loading.setCancelable(false);
+        loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         //back and more
         backIcon = findViewById(R.id.back_profile);
@@ -53,7 +81,6 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         profilPic = findViewById(R.id.img_profile_pic);
         namaUser = findViewById(R.id.txt_profile_nama_user);
         emailUser = findViewById(R.id.txt_profile_email_user);
-        showProfileUtamaUser();
 
         //profile umum
         txtProfileUmum1 = findViewById(R.id.txt_profile_umum_1);
@@ -62,25 +89,29 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         txtProfileUmum4 = findViewById(R.id.txt_profile_umum_4);
         txtProfileUmum5 = findViewById(R.id.txt_profile_umum_5);
 
-        showAllUserInfo();
+        //SwipeRefreshLayout
+        swLayout = findViewById(R.id.swlayout_profile);
+        refreshData();
+
+        presenter.getUserInfo(userInformation.getString("userId", ""));
 
     }
 
     @Override
     public void showLoading() {
-
+        loading.show();
     }
 
     @Override
     public void hideLoading() {
-
+        loading.dismiss();
     }
 
     @Override
     public void showProfileUtamaUser() {
         SharedPreferences userInformation = getSharedPreferences("userInfo", MODE_PRIVATE);
 
-        namaUser.setText(userInformation.getString("namaDepan", "") + userInformation.getString("namaBelakang", ""));
+        namaUser.setText(userInformation.getString("namaDepan", "") + " " + userInformation.getString("namaBelakang", ""));
         emailUser.setText(userInformation.getString("email", ""));
 
         if(userInformation.getString("userInfo","") != null){
@@ -90,6 +121,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
     @Override
     public void showAllUserInfo() {
+        showProfileUtamaUser();
         setProfileUmum();
         setProfileDomisili();
         setProfileKtp();
@@ -168,6 +200,76 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     }
 
     @Override
+    public void saveUserInfo(String[] dataUmum, String[] dataDomisili, String[] dataKtp) {
+        //save data umum
+        editorUserInformation.putString("noAnggota", dataUmum[0]);
+        editorUserInformation.putString("email", dataUmum[1]);
+        editorUserInformation.putString("userName", dataUmum[2]);
+        editorUserInformation.putString("namaDepan", dataUmum[3]);
+        editorUserInformation.putString("namaBelakang", dataUmum[4]);
+        editorUserInformation.putString("phone", dataUmum[5]);
+        editorUserInformation.putString("bank", dataUmum[6]);
+        editorUserInformation.putString("facebook", dataUmum[7]);
+        editorUserInformation.putString("twitter", dataUmum[8]);
+        editorUserInformation.putString("instagram", dataUmum[9]);
+        editorUserInformation.putString("aktifasi", dataUmum[10]);
+        editorUserInformation.putString("masaAktif", dataUmum[11]);
+        editorUserInformation.putString("picture", dataUmum[12]);
+
+        //save data domisili
+        editorUserInformation.putString("alamatDomisili", dataDomisili[0]);
+        editorUserInformation.putString("rtRwDomisili", dataDomisili[1]);
+        editorUserInformation.putString("kelurahanDomisili", dataDomisili[2]);
+        editorUserInformation.putString("kecamatanDomisili", dataDomisili[3]);
+        editorUserInformation.putString("provinsiDomisili", dataDomisili[4]);
+        editorUserInformation.putString("kabupatenDomisili", dataDomisili[5]);
+
+        //save data ktp
+        editorUserInformation.putString("noKtp", dataKtp[0]);
+        editorUserInformation.putString("namaKtp", dataKtp[1]);
+        editorUserInformation.putString("tanggalLahir", dataKtp[2]);
+        editorUserInformation.putString("tempatLahir", dataKtp[3]);
+        editorUserInformation.putString("agama", dataKtp[4]);
+        editorUserInformation.putString("golonganDarah", dataKtp[5]);
+        editorUserInformation.putString("jenisKelamin", dataKtp[6]);
+        editorUserInformation.putString("status", dataKtp[7]);
+        editorUserInformation.putString("alamat", dataKtp[8]);
+        editorUserInformation.putString("rtRwKtp", dataKtp[9]);
+        editorUserInformation.putString("kelurahanKtp", dataKtp[10]);
+        editorUserInformation.putString("kecamatanKtp", dataKtp[11]);
+        editorUserInformation.putString("provinsiKtp", dataKtp[12]);
+        editorUserInformation.putString("kabupatenKtp", dataKtp[13]);
+
+        editorUserInformation.commit();
+        showAllUserInfo();
+
+    }
+
+    @Override
+    public void someThingFailed(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void refreshData() {
+        swLayout.setColorSchemeResources(R.color.colorAccent,R.color.colorPrimary);
+        swLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recreate();
+                        swLayout.setRefreshing(false);
+                    }
+                }, 3000);
+            }
+        });
+
+    }
+
+    @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()){
             case R.id.change_profile_pic :
@@ -179,5 +281,19 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
         }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent goToMain = new Intent(ProfileActivity.this, MainActivity.class);
+        goToMain.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        goToMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(goToMain);
+        finish();
+    }
+
+    @Override
+    public void recreate() {
+        super.recreate();
     }
 }

@@ -13,10 +13,14 @@ public interface ProfileContract {
         void setProfileKtp();
         void showPopUpMore(android.view.View view);
         void goToEditProfile();
+        void saveUserInfo(String[] dataUmum, String[] dataDomisili, String[] dataKtp);
+        void someThingFailed(String message);
+        void refreshData();
     }
 
     interface Presenter{
         void pushProfilePic();
+        void getUserInfo(String userId);
     }
 
 }
