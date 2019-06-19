@@ -59,35 +59,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     DrawerLayout drawerLayout;
     ImageView iconProfile, iconMore;
     ActionBarDrawerToggle drawerToggle;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initToolbar();
-
-        //Shared Preference
-        sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
-        editorUserInformation = getSharedPreferences("userInfo", MODE_PRIVATE).edit();
-        editorLogin = getSharedPreferences("login", MODE_PRIVATE).edit();
-
-        //Dialog
-        loading = new Dialog(this);
-        loading.setContentView(R.layout.loading_layout);
-        loading.setCancelable(false);
-        loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        error  = new Dialog(this);
-        error.setContentView(R.layout.error_layout);
-        error.setCancelable(false);
-        error.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        presenter = new MainPresenter(this);
-        presenter.getUserInfo(sharedPreferences.getString("userId", ""));
-
-
         //Toolbars
+        navigationView = findViewById(R.id.nav_view_main);
         iconProfile = findViewById(R.id.icon_person_main);
         iconProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,9 +88,30 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             }
         });
 
+
         //swipe refresh
         swLayout = findViewById(R.id.swlayout);
         refreshData();
+        initToolbar();
+
+        //Shared Preference
+        sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        editorUserInformation = getSharedPreferences("userInfo", MODE_PRIVATE).edit();
+        editorLogin = getSharedPreferences("login", MODE_PRIVATE).edit();
+
+        //Dialog
+        loading = new Dialog(this);
+        loading.setContentView(R.layout.loading_layout);
+        loading.setCancelable(false);
+        loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        error  = new Dialog(this);
+        error.setContentView(R.layout.error_layout);
+        error.setCancelable(false);
+        error.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        presenter = new MainPresenter(this);
+        presenter.getUserInfo(sharedPreferences.getString("userId", ""));
 
     }
 
@@ -218,7 +219,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
         drawerToggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view_main);
         navigationView.setNavigationItemSelectedListener(this);
 
     }
@@ -227,13 +227,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         drawerToggle.syncState();
         super.onPostCreate(savedInstanceState);
-    }
-
-    private ActionBarDrawerToggle setupDrawerToggle(){
-        return new ActionBarDrawerToggle(
-                this,
-                drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
-
     }
 
     @Override
@@ -330,26 +323,35 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         switch (menuItem.getItemId()){
             case R.id.nav_search :
                 search(menuItem);
+                break;
             case R.id.nav_business :
-                business(menuItem);
+                Intent goToBusiness = new Intent(MainActivity.this, BusinessActivity.class);
+                startActivity(goToBusiness);
+                break;
             case  R.id.nav_profile :
                 Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(goToProfile);
+                break;
             case R.id.nav_gmb_genpro :
                 Intent goToGMB = new Intent(MainActivity.this, GMBActivity.class);
                 startActivity(goToGMB);
+                break;
             case R.id.nav_membership :
                 Intent goToMembership = new Intent(MainActivity.this, MembershipActivity.class);
                 startActivity(goToMembership);
+                break;
             case R.id.nav_kegiatan :
                 Intent goToKegiatan = new Intent(MainActivity.this, KegiatanActivity.class);
                 startActivity(goToKegiatan);
+                break;
             case R.id.nav_visi_misi :
                 Intent goToVisimisi = new Intent(MainActivity.this, VisimisiActivity.class);
                 startActivity(goToVisimisi);
+                break;
             case  R.id.nav_sejarah :
                 Intent goToSejarah = new Intent(MainActivity.this, SejarahActivity.class);
                 startActivity(goToSejarah);
+                break;
         }
 
         return false;

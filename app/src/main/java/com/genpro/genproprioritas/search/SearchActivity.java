@@ -27,7 +27,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new SearchActivity.MyBrowser1());
         //ini manggil url web dari webview-nya
-        view.loadUrl("http://192.168.0.140/genpro/bisnis_info/");
+        view.loadUrl("http://genprodev.lavenderprograms.com/apigw/bisnis_info/");
 
         if (view.equals("Not Found")) {
             view.setVisibility(View.GONE);

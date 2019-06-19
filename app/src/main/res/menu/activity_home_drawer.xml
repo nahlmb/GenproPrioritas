@@ -6,34 +6,37 @@
         <item
             android:id="@+id/nav_search"
             android:title="Search"
-            android:onClick="search"/>
+            android:icon="@drawable/ic_search_black_24dp" />
         <item
             android:id="@+id/nav_profile"
             android:title="Profile"
-            android:onClick="profile"/>
+            android:icon="@drawable/ic_account" />
         <item
             android:id="@+id/nav_business"
             android:title="Business"
-            android:onClick="business"/>
+            android:icon="@drawable/ic_currency_usd" />
         <item
             android:id="@+id/nav_gmb_genpro"
-            android:title="GMB Genpro"
-            android:onClick="gmb"/>
+            android:title="GMB Genpro" />
         <item
             android:id="@+id/nav_membership"
             android:title="Membership"
-            android:onClick="membership"/>
+            android:icon="@drawable/ic_wallet_membership" />
         <item
             android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_image"
             android:title="Galeri"/>
         <item
             android:id="@+id/nav_kegiatan"
+            android:icon="@drawable/ic_calendar_check_outline"
             android:title="Kegiatan" />
         <item
             android:id="@+id/nav_visi_misi"
+            android:icon="@drawable/ic_bullseye_arrow"
             android:title="Visi Misi dan Nilai" />
         <item
             android:id="@+id/nav_sejarah"
+            android:icon="@drawable/ic_domain"
             android:title="Sejarah dan Profile Pendiri"/>
     </group>
 
