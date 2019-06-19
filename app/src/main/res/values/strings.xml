@@ -27,6 +27,7 @@
     <string name="network_error">Network error</string>
     <string name="cek_koneksi">cek koneksi internet anda dan ulang kembali..</string>
     <string name="spinner_profile">Spinner Profile</string>
+    <string name="lorem_ipsum_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
 
 
     <!-- String for Spinner Edit profile -->
@@ -69,16 +70,16 @@
     </string-array>
 
     <string-array name="ACEH">
-        <item>	KAB. ACEH BARAT	</item>
-        <item>	KAB. ACEH BESAR	</item>
-        <item>	KAB. ACEH SELATAN	</item>
-        <item>	KAB. ACEH TIMUR	</item>
-        <item>	KAB. ACEH TENGAH	</item>
-        <item>	KAB. ACEH UTARA	</item>
-        <item>	KAB. PIDIE	</item>
-        <item>	KAB. ACEH TENGGARA	</item>
-        <item>	KAB. ACEH SINGKIL	</item>
-        <item>	KAB. BIREUEN	</item>
+        <item>KAB. ACEH BARAT</item>
+        <item>KAB. ACEH BESAR</item>
+        <item>KAB. ACEH SELATAN</item>
+        <item>KAB. ACEH TIMUR</item>
+        <item>KAB. ACEH TENGAH</item>
+        <item>KAB. ACEH UTARA</item>
+        <item>KAB. PIDIE</item>
+        <item>KAB. ACEH TENGGARA</item>
+        <item>KAB. ACEH SINGKIL</item>
+        <item>KAB. BIREUEN</item>
         <item>	KAB. SIMEULUE	</item>
         <item>	KAB. ACEH BARAT DAYA	</item>
         <item>	KAB. ACEH TAMIANG	</item>

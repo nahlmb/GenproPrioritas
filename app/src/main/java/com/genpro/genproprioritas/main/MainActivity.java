@@ -16,6 +16,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,10 +33,13 @@ import com.genpro.genproprioritas.gmbgenpro.GMBActivity;
 import com.genpro.genproprioritas.kegiatan.KegiatanActivity;
 import com.genpro.genproprioritas.login.LoginActivity;
 import com.genpro.genproprioritas.membership.MembershipActivity;
+import com.genpro.genproprioritas.model.Bisnis;
 import com.genpro.genproprioritas.profile.ProfileActivity;
 import com.genpro.genproprioritas.search.SearchActivity;
 import com.genpro.genproprioritas.sejarah.SejarahActivity;
 import com.genpro.genproprioritas.visimisi.VisimisiActivity;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View, PopupMenu.OnMenuItemClickListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -59,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     DrawerLayout drawerLayout;
     ImageView iconProfile, iconMore;
     ActionBarDrawerToggle drawerToggle;
+
+    //Bisnis
+    RecyclerView recyclerViewBisnis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         presenter = new MainPresenter(this);
         presenter.getUserInfo(sharedPreferences.getString("userId", ""));
+        presenter.getBusinnes(sharedPreferences.getString("userId", ""));
 
 
         //Toolbars
@@ -185,8 +194,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void showUserBusinnes() {
+    public void showUserBusinnes(List<Bisnis.BisnisData> bisnisData) {
 
+        if(bisnisData != null && bisnisData.size()>0){
+            AdapterListBisnis adapterListBisnis = new AdapterListBisnis(this, bisnisData, this);
+            recyclerViewBisnis = findViewById(R.id.rv_list_bisnis_main);
+            recyclerViewBisnis.setAdapter(adapterListBisnis);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            recyclerViewBisnis.setLayoutManager(linearLayoutManager);
+            recyclerViewBisnis.setNestedScrollingEnabled(true);
+            adapterListBisnis.notifyDataSetChanged();
+            Toast.makeText(this, "show show", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, bisnisData.get(0).getNmUsaha(), Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "tidak ada data bisnis", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -259,6 +281,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void goToProfile() {
         Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
         startActivity(goToProfile);
+
+    }
+
+    @Override
+    public void goToDetailBisnis(Bisnis.BisnisData bisnisData) {
 
     }
 
