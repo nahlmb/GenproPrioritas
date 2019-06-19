@@ -56,6 +56,13 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        presenter = new ProfilePresenter(this);
+
+        //Shared pref
+        editorUserInformation = getSharedPreferences("userInfo", MODE_PRIVATE).edit();
+        userInformation = getSharedPreferences("userInfo", MODE_PRIVATE);
+
+
         //back and more
         backIcon = findViewById(R.id.back_profile);
         moreIcon = findViewById(R.id.icon_more_profile);
