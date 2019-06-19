@@ -23,6 +23,15 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     //profile umum
     TextView txtProfileUmum1, txtProfileUmum2,
             txtProfileUmum3, txtProfileUmum4, txtProfileUmum5;
+
+    //profile domisili
+    TextView txtProfileDomisili1, txtProfileDomisili2,
+            txtProfileDomisili3, txtProfileDomisili4, txtProfileDomisili5, txtProfileDomisili6;
+
+    //profile ktp
+    TextView txtProfileKtp1, txtProfileKtp2,
+            txtProfileKtp3, txtProfileKtp4, txtProfileKtp5, txtProfileKtp6, txtProfileKtp7, txtProfileKtp8,
+            txtProfileKtp9, txtProfileKtp10, txtProfileKtp11, txtProfileKtp12, txtProfileKtp13, txtProfileKtp14;
     //toolbar
     ImageView backIcon, moreIcon;
 
@@ -61,6 +70,30 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         txtProfileUmum3 = findViewById(R.id.txt_profile_umum_3);
         txtProfileUmum4 = findViewById(R.id.txt_profile_umum_4);
         txtProfileUmum5 = findViewById(R.id.txt_profile_umum_5);
+
+        //profile domisili
+        txtProfileDomisili1 = findViewById(R.id.txt_profile_domisili_1);
+        txtProfileDomisili2 = findViewById(R.id.txt_profile_domisili_2);
+        txtProfileDomisili3 = findViewById(R.id.txt_profile_domisili_3);
+        txtProfileDomisili4 = findViewById(R.id.txt_profile_domisili_4);
+        txtProfileDomisili5 = findViewById(R.id.txt_profile_domisili_5);
+        txtProfileDomisili6 = findViewById(R.id.txt_profile_domisili_6);
+
+        //profile ktp
+        txtProfileKtp1 = findViewById(R.id.txt_profile_ktp_1);
+        txtProfileKtp2 = findViewById(R.id.txt_profile_ktp_2);
+        txtProfileKtp3 = findViewById(R.id.txt_profile_ktp_3);
+        txtProfileKtp4 = findViewById(R.id.txt_profile_ktp_4);
+        txtProfileKtp5 = findViewById(R.id.txt_profile_ktp_5);
+        txtProfileKtp6 = findViewById(R.id.txt_profile_ktp_6);
+        txtProfileKtp7 = findViewById(R.id.txt_profile_ktp_7);
+        txtProfileKtp8 = findViewById(R.id.txt_profile_ktp_8);
+        txtProfileKtp9 = findViewById(R.id.txt_profile_ktp_9);
+        txtProfileKtp10 = findViewById(R.id.txt_profile_ktp_10);
+        txtProfileKtp11 = findViewById(R.id.txt_profile_ktp_11);
+        txtProfileKtp12 = findViewById(R.id.txt_profile_ktp_12);
+        txtProfileKtp13 = findViewById(R.id.txt_profile_ktp_13);
+        txtProfileKtp14 = findViewById(R.id.txt_profile_ktp_14);
 
         showAllUserInfo();
 
@@ -142,12 +175,167 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
     @Override
     public void setProfileDomisili() {
+        SharedPreferences userDomisili = getSharedPreferences("userInfo", MODE_PRIVATE);
 
+        //set TextView profile domisisli
+        String strAlamat, strRtRw, strKelurahan, strKecamatan, strProvinsi, strKabupaten;
+
+        strAlamat = userDomisili.getString("alamatDomisili", "");
+        strRtRw = userDomisili.getString("rtRwDomisili", "");
+        strKelurahan = userDomisili.getString("kelurahanDomisili", "");
+        strKecamatan = userDomisili.getString("kecamatanDomisili", "");
+        strProvinsi = userDomisili.getString("provinsiDomisili", "");
+        strKabupaten = userDomisili.getString("kabupatenDomisili", "");
+
+        String noData = " - ";
+
+        //set TextView
+        if (strAlamat.equals("")) {
+            txtProfileDomisili1.setText("Alamat : " + noData);
+        } else {
+            txtProfileDomisili1.setText("Alamat : " + strAlamat);
+        }
+
+        if (strRtRw.equals("")) {
+            txtProfileDomisili2.setText("RT/RW : " + noData);
+        } else {
+            txtProfileDomisili2.setText("RT/RW : " + strRtRw);
+        }
+
+        if (strKelurahan.equals("")) {
+            txtProfileDomisili3.setText("Kelurahan : " + noData);
+        } else {
+            txtProfileDomisili3.setText("Kelurahan : " + strKelurahan);
+        }
+
+        if (strKecamatan.equals("")) {
+            txtProfileDomisili4.setText("Kecamatan : " + noData);
+        } else {
+            txtProfileDomisili4.setText("Kecamatan : " + strKecamatan);
+        }
+
+        if (strProvinsi.equals("")) {
+            txtProfileDomisili5.setText("Provinsi : " + noData);
+        } else {
+            txtProfileDomisili5.setText("Provinsi : " + strProvinsi);
+        }
+
+        if (strKabupaten.equals("")) {
+            txtProfileDomisili6.setText("Kabupaten : " + noData);
+        } else {
+            txtProfileDomisili6.setText("Kabupaten : " + strKabupaten);
+        }
     }
 
     @Override
     public void setProfileKtp() {
+        SharedPreferences userKtp = getSharedPreferences("userInfo", MODE_PRIVATE);
 
+        //set TextView profile ktp
+        String strNoKtp, strNama, strTempatLahir, strTanggalLahir, strAgama, strGolonganDarah, strStatus,
+                strJenisKelamin, strAlamat, strRtRw, strKelurahan, strKecamatan, strProvinsi, strKabupaten;
+
+        strNoKtp = userKtp.getString("noKtp", "");
+        strNama = userKtp.getString("namaKtp", "");
+        strTempatLahir = userKtp.getString("tempatLahir", "");
+        strTanggalLahir = userKtp.getString("tanggalLahir", "");
+        strAgama = userKtp.getString("agama", "");
+        strGolonganDarah = userKtp.getString("golonganDarah", "");
+        strStatus = userKtp.getString("status", "");
+        strJenisKelamin = userKtp.getString("jenisKelamin", "");
+        strAlamat = userKtp.getString("alamat", "");
+        strRtRw = userKtp.getString("rtRwKtp", "");
+        strKelurahan = userKtp.getString("kelurahanKtp", "");
+        strKecamatan = userKtp.getString("kecamatanKtp", "");
+        strProvinsi = userKtp.getString("provinsiKtp", "");
+        strKabupaten = userKtp.getString("kabupatenKtp", "");
+
+        String noData = " - ";
+
+        //set TextView
+        if (strNoKtp.equals("")) {
+            txtProfileKtp1.setText("No KTP : " + noData);
+        } else {
+            txtProfileKtp1.setText("No KTP : " + strNoKtp);
+        }
+
+        if (strNama.equals("")) {
+            txtProfileKtp2.setText("Nama di KTP : " + noData);
+        } else {
+            txtProfileKtp2.setText("Nama di KTP : " + strNama);
+        }
+
+        if (strTempatLahir.equals("")) {
+            txtProfileKtp3.setText("Tempat Lahir : " + noData);
+        } else {
+            txtProfileKtp3.setText("Tempat Lahir : " + strTempatLahir);
+        }
+
+        if (strTanggalLahir.equals("")) {
+            txtProfileKtp4.setText("Tanggal Lahir : " + noData);
+        } else {
+            txtProfileKtp4.setText("Tanggal Lahir : " + strTanggalLahir);
+        }
+
+        if (strAgama.equals("")) {
+            txtProfileKtp5.setText("Agama : " + noData);
+        } else {
+            txtProfileKtp5.setText("Agama : " + strAgama);
+        }
+
+        if (strGolonganDarah.equals("")) {
+            txtProfileKtp6.setText("Golongan Darah : " + noData);
+        } else {
+            txtProfileKtp6.setText("Golongan Darah : " + strGolonganDarah);
+        }
+
+        if (strStatus.equals("")) {
+            txtProfileKtp7.setText("Status : " + noData);
+        } else {
+            txtProfileKtp7.setText("Status : " + strStatus);
+        }
+
+        if (strJenisKelamin.equals("")) {
+            txtProfileKtp8.setText("Jenis Kelamin : " + noData);
+        } else {
+            txtProfileKtp8.setText("Jenis Kelamin : " + strJenisKelamin);
+        }
+
+        if (strAlamat.equals("")) {
+            txtProfileKtp9.setText("Alamat : " + noData);
+        } else {
+            txtProfileKtp9.setText("Alamat : " + strAlamat);
+        }
+
+        if (strRtRw.equals("")) {
+            txtProfileKtp10.setText("RT/RW di KTP : " + noData);
+        } else {
+            txtProfileKtp10.setText("RT/RW di KTP : " + strRtRw);
+        }
+
+        if (strKelurahan.equals("")) {
+            txtProfileKtp11.setText("Kelurahan di KTP : " + noData);
+        } else {
+            txtProfileKtp11.setText("Kelurahan di KTP : " + strKelurahan);
+        }
+
+        if (strKecamatan.equals("")) {
+            txtProfileKtp12.setText("Kecamatan di KTP : " + noData);
+        } else {
+            txtProfileKtp12.setText("Kecamatan di KTP : " + strKecamatan);
+        }
+
+        if (strProvinsi.equals("")) {
+            txtProfileKtp13.setText("Provinsi di KTP : " + noData);
+        } else {
+            txtProfileKtp13.setText("Provinsi di KTP : " + strProvinsi);
+        }
+
+        if (strKabupaten.equals("")) {
+            txtProfileKtp14.setText("Kabupaten di KTP : " + noData);
+        } else {
+            txtProfileKtp14.setText("Kabupaten di KTP : " + strKabupaten);
+        }
     }
 
     @Override
