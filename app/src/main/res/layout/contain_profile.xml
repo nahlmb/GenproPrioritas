@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swlayout_profile"
@@ -13,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.widget.NestedScrollView
+        <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
+            xmlns:app="http://schemas.android.com/apk/res-auto">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -24,7 +22,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="280dp"
+                    android:layout_height="240dp"
                     android:background="@color/black"
                     app:layout_constraintTop_toTopOf="parent"/>
 
@@ -78,8 +76,6 @@
                         android:layout_height="wrap_content"
                         android:text="@string/example_user_name"
                         android:textSize="24dp"
-                        android:maxLines="1"
-                        android:ellipsize="end"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:layout_marginStart="24dp"
@@ -92,8 +88,6 @@
                         android:layout_height="wrap_content"
                         android:text="@string/example_user_email"
                         android:textSize="14dp"
-                        android:maxLines="1"
-                        android:ellipsize="end"
                         android:textColor="@color/black"
                         android:layout_marginStart="24dp"
                         android:layout_marginEnd="24dp"
@@ -196,20 +190,16 @@
                                 android:textStyle="bold"/>
 
                             <TextView
+                                android:id="@+id/txt_profile_domisili_1"
                                 android:layout_marginTop="18dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/profile_anggota_text"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"/>
+
                             <TextView
-                                android:layout_marginTop="12dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/profile_anggota_text"
-                                android:textColor="@color/white"
-                                android:textSize="14sp"/>
-                            <TextView
+                                android:id="@+id/txt_profile_domisili_2"
                                 android:layout_marginTop="12dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -218,6 +208,34 @@
                                 android:textSize="14sp"/>
 
                             <TextView
+                                android:id="@+id/txt_profile_domisili_3"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/txt_profile_domisili_4"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/txt_profile_domisili_5"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/txt_profile_domisili_6"
                                 android:layout_marginTop="12dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -252,20 +270,16 @@
                                 android:textStyle="bold"/>
 
                             <TextView
+                                android:id="@+id/txt_profile_ktp_1"
                                 android:layout_marginTop="18dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/profile_anggota_text"
                                 android:textColor="@color/white"
                                 android:textSize="14sp"/>
+
                             <TextView
-                                android:layout_marginTop="12dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/profile_anggota_text"
-                                android:textColor="@color/white"
-                                android:textSize="14sp"/>
-                            <TextView
+                                android:id="@+id/txt_profile_ktp_2"
                                 android:layout_marginTop="12dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -274,12 +288,114 @@
                                 android:textSize="14sp"/>
 
                             <TextView
+                                android:id="@+id/txt_profile_ktp_3"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/txt_profile_ktp_4"
                                 android:layout_marginTop="12dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/profile_anggota_text"
                                 android:textColor="@color/white"
                                 android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/txt_profile_ktp_5"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/txt_profile_ktp_6"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/txt_profile_ktp_7"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/txt_profile_ktp_8"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/txt_profile_ktp_9"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/txt_profile_ktp_10"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/txt_profile_ktp_11"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/txt_profile_ktp_12"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/txt_profile_ktp_13"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/txt_profile_ktp_14"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_anggota_text"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+
 
                         </LinearLayout>
 
@@ -296,8 +412,8 @@
 
         </android.support.v4.widget.NestedScrollView>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
 
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
 

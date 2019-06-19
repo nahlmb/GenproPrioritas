@@ -16,6 +16,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,10 +33,13 @@ import com.genpro.genproprioritas.gmbgenpro.GMBActivity;
 import com.genpro.genproprioritas.kegiatan.KegiatanActivity;
 import com.genpro.genproprioritas.login.LoginActivity;
 import com.genpro.genproprioritas.membership.MembershipActivity;
+import com.genpro.genproprioritas.model.Bisnis;
 import com.genpro.genproprioritas.profile.ProfileActivity;
 import com.genpro.genproprioritas.search.SearchActivity;
 import com.genpro.genproprioritas.sejarah.SejarahActivity;
 import com.genpro.genproprioritas.visimisi.VisimisiActivity;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View, PopupMenu.OnMenuItemClickListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -59,39 +64,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     DrawerLayout drawerLayout;
     ImageView iconProfile, iconMore;
     ActionBarDrawerToggle drawerToggle;
-    NavigationView navigationView;
+
+    //Bisnis
+    RecyclerView recyclerViewBisnis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Toolbars
-        navigationView = findViewById(R.id.nav_view_main);
-        iconProfile = findViewById(R.id.icon_person_main);
-        iconProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToProfile();
-            }
-        });
-        namaUser = findViewById(R.id.txt_main_nama);
-        emailUser = findViewById(R.id.txt_main_email);
-        statusUser = findViewById(R.id.txt_main_status);
-        masaAktifUser = findViewById(R.id.txt_main_masa_aktif);
-
-        iconMore = findViewById(R.id.icon_more_main);
-        iconMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopUpMore(v);
-            }
-        });
-
-
-        //swipe refresh
-        swLayout = findViewById(R.id.swlayout);
-        refreshData();
         initToolbar();
 
         //Shared Preference
@@ -112,6 +93,33 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         presenter = new MainPresenter(this);
         presenter.getUserInfo(sharedPreferences.getString("userId", ""));
+        presenter.getBusinnes(sharedPreferences.getString("userId", ""));
+
+
+        //Toolbars
+        iconProfile = findViewById(R.id.icon_person_main);
+        iconProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToProfile();
+            }
+        });
+        namaUser = findViewById(R.id.txt_main_nama);
+        emailUser = findViewById(R.id.txt_main_email);
+        statusUser = findViewById(R.id.txt_main_status);
+        masaAktifUser = findViewById(R.id.txt_main_masa_aktif);
+
+        iconMore = findViewById(R.id.icon_more_main);
+        iconMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopUpMore(v);
+            }
+        });
+
+        //swipe refresh
+        swLayout = findViewById(R.id.swlayout);
+        refreshData();
 
     }
 
@@ -186,8 +194,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void showUserBusinnes() {
+    public void showUserBusinnes(List<Bisnis.BisnisData> bisnisData) {
 
+        if(bisnisData != null && bisnisData.size()>0){
+            AdapterListBisnis adapterListBisnis = new AdapterListBisnis(this, bisnisData, this);
+            recyclerViewBisnis = findViewById(R.id.rv_list_bisnis_main);
+            recyclerViewBisnis.setAdapter(adapterListBisnis);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            recyclerViewBisnis.setLayoutManager(linearLayoutManager);
+            recyclerViewBisnis.setNestedScrollingEnabled(true);
+            adapterListBisnis.notifyDataSetChanged();
+            Toast.makeText(this, "show show", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, bisnisData.get(0).getNmUsaha(), Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "tidak ada data bisnis", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -219,6 +240,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
         drawerToggle.syncState();
 
+        NavigationView navigationView = findViewById(R.id.nav_view_main);
         navigationView.setNavigationItemSelectedListener(this);
 
     }
@@ -227,6 +249,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         drawerToggle.syncState();
         super.onPostCreate(savedInstanceState);
+    }
+
+    private ActionBarDrawerToggle setupDrawerToggle(){
+        return new ActionBarDrawerToggle(
+                this,
+                drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
+
     }
 
     @Override
@@ -252,6 +281,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void goToProfile() {
         Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
         startActivity(goToProfile);
+
+    }
+
+    @Override
+    public void goToDetailBisnis(Bisnis.BisnisData bisnisData) {
 
     }
 
@@ -323,35 +357,26 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         switch (menuItem.getItemId()){
             case R.id.nav_search :
                 search(menuItem);
-                break;
             case R.id.nav_business :
-                Intent goToBusiness = new Intent(MainActivity.this, BusinessActivity.class);
-                startActivity(goToBusiness);
-                break;
+                business(menuItem);
             case  R.id.nav_profile :
                 Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(goToProfile);
-                break;
             case R.id.nav_gmb_genpro :
                 Intent goToGMB = new Intent(MainActivity.this, GMBActivity.class);
                 startActivity(goToGMB);
-                break;
             case R.id.nav_membership :
                 Intent goToMembership = new Intent(MainActivity.this, MembershipActivity.class);
                 startActivity(goToMembership);
-                break;
             case R.id.nav_kegiatan :
                 Intent goToKegiatan = new Intent(MainActivity.this, KegiatanActivity.class);
                 startActivity(goToKegiatan);
-                break;
             case R.id.nav_visi_misi :
                 Intent goToVisimisi = new Intent(MainActivity.this, VisimisiActivity.class);
                 startActivity(goToVisimisi);
-                break;
             case  R.id.nav_sejarah :
                 Intent goToSejarah = new Intent(MainActivity.this, SejarahActivity.class);
                 startActivity(goToSejarah);
-                break;
         }
 
         return false;
