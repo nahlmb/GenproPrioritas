@@ -27,6 +27,7 @@
     <string name="network_error">Network error</string>
     <string name="cek_koneksi">cek koneksi internet anda dan ulang kembali..</string>
     <string name="spinner_profile">Spinner Profile</string>
+    <string name="lorem_ipsum_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
 
 
     <!-- String for Spinner Edit profile -->

@@ -6,6 +6,8 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.genpro.genproprioritas.model.Bisnis;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -119,7 +121,28 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void getBusinnes() {
+    public void getBusinnes(String userId) {
+        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/bisnis_info/getbisnis_info")
+                .setPriority(Priority.HIGH)
+                .addBodyParameter("user_id", userId)
+                .build()
+                .getAsObject(Bisnis.class, new ParsedRequestListener<Bisnis>() {
+
+                    @Override
+                    public void onResponse(Bisnis response) {
+                        if(response != null){
+                            view.showUserBusinnes(response.getData());
+                            Log.d("biodata", "data : " + response.toString());
+                            Log.d("biodata", "data : " + response.getData().toString());
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
 
     }
 }

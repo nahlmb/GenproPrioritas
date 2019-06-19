@@ -193,7 +193,7 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
         }
 
-        ArrayAdapter<CharSequence> adapterSpinnerProvinsiDomisili = ArrayAdapter.createFromResource(this, R.array.provinsi, android.R.layout.simple_spinner_item);
+        final ArrayAdapter<CharSequence> adapterSpinnerProvinsiDomisili = ArrayAdapter.createFromResource(this, R.array.provinsi, android.R.layout.simple_spinner_item);
         adapterSpinnerProvinsiDomisili.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         provinsiDomisili.setAdapter(adapterSpinnerProvinsiDomisili);
 
@@ -220,6 +220,8 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
             }
         });
 
+        adapterSpinnerProvinsiDomisili.notifyDataSetChanged();
+
     }
 
     @Override
@@ -243,37 +245,37 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         strKecamatanKtp = userInformation.getString("kecamatanKtp", "");
         strKabupatenKtp = userInformation.getString("kabupatenKtp", "");
 
-        if(strNoKtp.equals(null) || strNoKtp.equals("") || strNoKtp.equals("null")){
+        if(strNoKtp.equals("") || strNoKtp.equals("null")){
         }else {
             noKtp.setText(strNoKtp);
         }
 
-        if(strNamaKtp.equals(null) || strNamaKtp.equals("") || strNamaKtp.equals("null")){
+        if(strNamaKtp.equals("") || strNamaKtp.equals("null")){
         }else {
             namaKtp.setText(strNamaKtp);
         }
 
-        if(strTanggalLahirKtp.equals(null) || strTanggalLahirKtp.equals("") || strTanggalLahirKtp.equals("null")){
+        if(strTanggalLahirKtp.equals("") || strTanggalLahirKtp.equals("null")){
         }else {
             tanggalLahirKtp.setText(strTanggalLahirKtp);
         }
 
-        if(strTempatLahirKtp.equals(null) || strTempatLahirKtp.equals("") || strTempatLahirKtp.equals("null")){
+        if(strTempatLahirKtp.equals("") || strTempatLahirKtp.equals("null")){
         }else {
             tempatLahirKtp.setText(strTempatLahirKtp);
         }
 
-        if(strAlamatKtp.equals(null) || strAlamatKtp.equals("") || strAlamatKtp.equals("null")){
+        if(strAlamatKtp.equals("") || strAlamatKtp.equals("null")){
         }else {
             alamatKtp.setText(strAlamatKtp);
         }
 
-        if(strRtRwKtp.equals(null) || strRtRwKtp.equals("") || strRtRwKtp.equals("null")){
+        if(strRtRwKtp.equals("") || strRtRwKtp.equals("null")){
         }else {
             rtRwKtp.setText(strRtRwKtp);
         }
 
-        if(strKelurahanKtp.equals(null) || strKelurahanKtp.equals("") || strKelurahanKtp.equals("null")){
+        if(strKelurahanKtp.equals("") || strKelurahanKtp.equals("null")){
         }else {
             kelurahanKtp.setText(strKelurahanKtp);
         }
@@ -347,6 +349,8 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
             }
         });
 
+        adapterSpinnerKtp.notifyDataSetChanged();
+
 
 
     }
@@ -358,7 +362,8 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         String cek = namaProvinsi;
         Log.d("kabupaten", cek);
 
-        if(domisili && ktp == false){
+
+        if(domisili && !ktp){
             if (namaProvinsi.equals("Aceh")) {
                 adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.ACEH, android.R.layout.simple_spinner_item);
             } else if (namaProvinsi.equals("Sumatera Utara")) {
@@ -461,11 +466,18 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
                 adapterSpinnerKabupatenDomisili = ArrayAdapter.createFromResource(context, R.array.PAPUA_BARAT, android.R.layout.simple_spinner_item);
 
             }
-
             adapterSpinnerKabupatenDomisili.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             kabupatenDomisili.setAdapter(adapterSpinnerKabupatenDomisili);
+            adapterSpinnerKabupatenDomisili.notifyDataSetChanged();
 
-        }else if(ktp && domisili == false){
+            if (userInformation.getString("kabupatenDomisili", "") != null || !userInformation.getString("kabupatenDomisili", "").equals("0")) {
+                int spinnerPositionDomisili = adapterSpinnerKabupatenDomisili.getPosition(userInformation.getString("kabupatenDomisili", ""));
+                kabupatenDomisili.setSelection(spinnerPositionDomisili);
+
+            }
+
+
+        }else if(ktp && !domisili){
             if (namaProvinsi.equals("Aceh")) {
                 adapterSpinnerKabupatenKtp = ArrayAdapter.createFromResource(context, R.array.ACEH, android.R.layout.simple_spinner_item);
             } else if (namaProvinsi.equals("Sumatera Utara")) {
@@ -571,14 +583,16 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
             adapterSpinnerKabupatenKtp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             kabupatenKtp.setAdapter(adapterSpinnerKabupatenKtp);
+            adapterSpinnerKabupatenKtp.notifyDataSetChanged();
+
+            if (userInformation.getString("kabupatenKtp", "") != null || !userInformation.getString("kabupatenDomisili", "").equals("0"))  {
+                int spinnerPositionKtp = adapterSpinnerKabupatenKtp.getPosition(userInformation.getString("kabupatenKtp", ""));
+                kabupatenKtp.setSelection(spinnerPositionKtp);
+
+            }
 
         }
 
-        if (userInformation.getString("kabupatenKtp", "") != null) {
-            int spinnerPositionDomisili = adapterSpinnerKabupatenDomisili.getPosition(userInformation.getString("kabupatenKtp", ""));
-            kabupatenDomisili.setSelection(spinnerPositionDomisili);
-
-        }
 
     }
 
