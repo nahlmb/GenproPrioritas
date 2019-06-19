@@ -13,9 +13,13 @@ public interface EditProfileContract {
         void hideLogin();
         void updateSucces();
         void updateFailed(String message);
+        void pushEditProfile();
     }
 
     interface Presenter{
-        void pushEditProfile();
+        void pushEditProfile(String[] dataUmum, String[] dataDomisili, String[] dataKtp);
+        void pushDataUmum(String[] dataUmum);
+        void pushDataDomisili(String[] dataDomisili);
+        void pushDataKtp(String[] dataKtp);
     }
 }

@@ -15,6 +15,7 @@ public interface MainContract {
         void logOut();
         void showNetworkError();
         void showPopUpMore(android.view.View view);
+        void refreshData();
     }
 
     interface Presenter {

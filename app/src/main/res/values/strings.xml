@@ -676,7 +676,7 @@
 
     <!--Lain lain-->
 
-    <string-array name="agama">
+    <string-array name="agama_di_ktp">
         <item>Islam</item>
         <item>Protestan</item>
         <item>Katholik</item>
