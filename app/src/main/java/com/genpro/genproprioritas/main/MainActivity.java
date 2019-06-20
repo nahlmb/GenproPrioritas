@@ -117,6 +117,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             }
         });
 
+        //List Bisnis
+        recyclerViewBisnis = findViewById(R.id.rv_list_bisnis_main);
+
+
         //swipe refresh
         swLayout = findViewById(R.id.swlayout);
         refreshData();
@@ -198,16 +202,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         if(bisnisData != null && bisnisData.size()>0){
             AdapterListBisnis adapterListBisnis = new AdapterListBisnis(this, bisnisData, this);
-            recyclerViewBisnis = findViewById(R.id.rv_list_bisnis_main);
             recyclerViewBisnis.setAdapter(adapterListBisnis);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             recyclerViewBisnis.setLayoutManager(linearLayoutManager);
             recyclerViewBisnis.setNestedScrollingEnabled(true);
             adapterListBisnis.notifyDataSetChanged();
-            Toast.makeText(this, "show show", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, bisnisData.get(0).getNmUsaha(), Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(this, "tidak ada data bisnis", Toast.LENGTH_SHORT).show();
+            recyclerViewBisnis.setAdapter(null);
         }
     }
 

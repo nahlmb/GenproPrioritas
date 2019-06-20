@@ -132,9 +132,6 @@ public class MainPresenter implements MainContract.Presenter {
                     public void onResponse(Bisnis response) {
                         if(response != null){
                             view.showUserBusinnes(response.getData());
-                            Log.d("biodata", "data : " + response.toString());
-                            Log.d("biodata", "data : " + response.getData().toString());
-
                         }
                     }
 
