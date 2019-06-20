@@ -13,24 +13,33 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sejarah.SejarahActivity"></activity>
-        <activity android:name=".visimisi.VisimisiActivity" />
-        <activity android:name=".kegiatan.KegiatanActivity" />
-        <activity android:name=".membership.MembershipActivity" />
-        <activity android:name=".gmbgenpro.GMBActivity" />
-        <activity android:name=".Business.BusinessActivity" />
-        <activity android:name=".search.SearchActivity" />
-        <activity android:name=".editProfile.EditProfileActivity" />
+        <activity android:name=".sejarah.SejarahActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".visimisi.VisimisiActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".kegiatan.KegiatanActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".membership.MembershipActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".gmbgenpro.GMBActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".Business.BusinessActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".search.SearchActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".editProfile.EditProfileActivity"
+            android:parentActivityName=".main.MainActivity"/>
         <activity android:name=".register.RegisterActivity" />
-        <activity android:name=".login.LoginActivity">
+        <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".profile.ProfileActivity"
+            android:parentActivityName=".main.MainActivity"/>
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".profile.ProfileActivity" />
-        <activity android:name=".main.MainActivity" />
     </application>
 
 </manifest>

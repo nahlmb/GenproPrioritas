@@ -36,13 +36,14 @@
 
                     <android.support.constraint.ConstraintLayout
                         android:layout_width="match_parent"
+                        android:background="@drawable/profile_bg"
                         android:layout_height="wrap_content">
 
                         <ImageView
                             app:layout_constraintTop_toTopOf="parent"
                             android:layout_width="match_parent"
                             android:layout_height="304dp"
-                            android:background="@color/abu_muda"
+                            android:background="@drawable/profile_bg2"
                             android:scaleType="centerCrop"
                             android:layout_marginTop="12dp"/>
 
@@ -62,49 +63,59 @@
                             app:layout_constraintTop_toTopOf="parent"
                             android:layout_width="match_parent"
                             android:layout_height="304dp"
-                            android:background="@color/transparant"
+                            android:background="@drawable/profile_bg"
                             android:scaleType="centerCrop"
                             android:layout_marginTop="12dp"/>
 
-
-
                     </android.support.constraint.ConstraintLayout>
 
-                    <TextView
-                        android:id="@+id/txt_profile_nama_user"
+                    <RelativeLayout
+                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/example_user_name"
-                        android:textSize="24dp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginEnd="24dp"
-                        android:layout_marginTop="24dp"/>
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/txt_profile_email_user"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/example_user_email"
-                        android:textSize="14dp"
-                        android:textColor="@color/black"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginEnd="24dp"
-                        android:background="@color/gold"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:paddingTop="6dp"
-                        android:paddingBottom="6dp"
-                        android:layout_marginTop="8dp"/>
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:background="@drawable/my_background"/>
+
+                        <TextView
+                            android:id="@+id/txt_profile_nama_user"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="24dp"
+                            android:text="@string/example_user_name"
+                            android:textColor="@color/black"
+                            android:textSize="24dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txt_profile_email_user"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/example_user_email"
+                            android:textSize="14dp"
+                            android:layout_below="@+id/txt_profile_nama_user"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="24dp"
+                            android:background="@color/gold"
+                            android:paddingStart="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingTop="6dp"
+                            android:paddingBottom="6dp"
+                            android:layout_marginTop="6dp"/>
+
+                    </RelativeLayout>
 
                     <android.support.v7.widget.CardView
                         android:layout_marginTop="32dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="@color/black"
-                        app:cardCornerRadius="5dp"
-                        >
+                        app:cardCornerRadius="5dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
