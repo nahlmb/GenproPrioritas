@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.genpro.genproprioritas.Business.BusinessActivity;
 import com.genpro.genproprioritas.R;
+import com.genpro.genproprioritas.gallery.GalleryActivity;
 import com.genpro.genproprioritas.gmbgenpro.GMBActivity;
 import com.genpro.genproprioritas.kegiatan.KegiatanActivity;
 import com.genpro.genproprioritas.login.LoginActivity;
@@ -379,6 +380,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             case R.id.nav_kegiatan :
                 Intent goToKegiatan = new Intent(MainActivity.this, KegiatanActivity.class);
                 startActivity(goToKegiatan);
+                break;
+            case R.id.nav_gallery :
+                Intent goToGallery = new Intent(MainActivity.this, GalleryActivity.class);
+                startActivity(goToGallery);
                 break;
             case R.id.nav_visi_misi :
                 Intent goToVisimisi = new Intent(MainActivity.this, VisimisiActivity.class);
