@@ -21,16 +21,43 @@
                 android:layout_height="196dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:background="@drawable/pak_agus" />
+                android:background="@drawable/kegiatan1" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="Ini adalah Judul Kegiatan"
-                android:textColor="@color/white"/>
+                android:layout_height="27dp">
+
+                <TextView
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:text="Kerja bakti di kali Cliwung"
+                    android:textColor="@color/white"
+                    android:textSize="19dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:background="@drawable/bg_tanggal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="17/01/2019"
+                        android:gravity="center"
+                        android:textColor="@color/white"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -43,7 +70,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ini adalah isi dari kegiatan"/>
+                android:lines="7"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id tortor luctus, faucibus diam eu, malesuada felis. Nam tempus, metus in tincidunt ullamcorper, nisi metus porttitor nibh, a mollis ligula sapien ut libero. Nunc efficitur tristique turpis a blandit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec sit amet dictum metus. Cras cursus, est quis blandit varius, nulla dui gravida velit, eu malesuada mauris felis ac dui. Praesent sit amet mauris vel libero accumsan feugiat. Proin pulvinar efficitur lorem. Proin tellus metus, ultrices id ipsum id, aliquam laoreet ligula. Integer lobortis sem a ante porttitor, in finibus eros porttitor. Etiam mattis turpis sit amet vestibulum sagittis. Curabitur nisi augue, bibendum id turpis a, mollis faucibus arcu. Mauris mattis commodo sem, sit amet venenatis lacus hendrerit sed. Vivamus lacinia mollis orci ac rhoncus."/>
 
         </LinearLayout>
 
@@ -59,16 +87,43 @@
                 android:layout_height="196dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:background="@drawable/pak_agus" />
+                android:background="@drawable/kegiatan2" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="Ini adalah Judul Kegiatan"
-                android:textColor="@color/white"/>
+                android:layout_height="27dp">
+
+                <TextView
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="Kerja bakti bersama warga cilodong"
+                    android:textColor="@color/white"
+                    android:textSize="19dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:background="@drawable/bg_tanggal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="11/04/2019"
+                        android:gravity="center"
+                        android:textColor="@color/white"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -81,7 +136,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ini adalah isi dari kegiatan"/>
+                android:lines="7"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id tortor luctus, faucibus diam eu, malesuada felis. Nam tempus, metus in tincidunt ullamcorper, nisi metus porttitor nibh, a mollis ligula sapien ut libero. Nunc efficitur tristique turpis a blandit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec sit amet dictum metus. Cras cursus, est quis blandit varius, nulla dui gravida velit, eu malesuada mauris felis ac dui. Praesent sit amet mauris vel libero accumsan feugiat. Proin pulvinar efficitur lorem. Proin tellus metus, ultrices id ipsum id, aliquam laoreet ligula. Integer lobortis sem a ante porttitor, in finibus eros porttitor. Etiam mattis turpis sit amet vestibulum sagittis. Curabitur nisi augue, bibendum id turpis a, mollis faucibus arcu. Mauris mattis commodo sem, sit amet venenatis lacus hendrerit sed. Vivamus lacinia mollis orci ac rhoncus."/>
 
         </LinearLayout>
 
@@ -97,16 +153,43 @@
                 android:layout_height="196dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
-                android:background="@drawable/pak_agus" />
+                android:background="@drawable/kegiatan3" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="Ini adalah Judul Kegiatan"
-                android:textColor="@color/white"/>
+                android:layout_height="27dp">
+
+                <TextView
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="Meeting dengan Gubernur DKI"
+                    android:textColor="@color/white"
+                    android:textSize="19dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:background="@drawable/bg_tanggal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="27/05/2019"
+                        android:gravity="center"
+                        android:textColor="@color/white"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -119,7 +202,8 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ini adalah isi dari kegiatan"/>
+                android:lines="7"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id tortor luctus, faucibus diam eu, malesuada felis. Nam tempus, metus in tincidunt ullamcorper, nisi metus porttitor nibh, a mollis ligula sapien ut libero. Nunc efficitur tristique turpis a blandit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec sit amet dictum metus. Cras cursus, est quis blandit varius, nulla dui gravida velit, eu malesuada mauris felis ac dui. Praesent sit amet mauris vel libero accumsan feugiat. Proin pulvinar efficitur lorem. Proin tellus metus, ultrices id ipsum id, aliquam laoreet ligula. Integer lobortis sem a ante porttitor, in finibus eros porttitor. Etiam mattis turpis sit amet vestibulum sagittis. Curabitur nisi augue, bibendum id turpis a, mollis faucibus arcu. Mauris mattis commodo sem, sit amet venenatis lacus hendrerit sed. Vivamus lacinia mollis orci ac rhoncus."/>
 
         </LinearLayout>
 
