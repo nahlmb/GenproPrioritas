@@ -39,7 +39,7 @@
             android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".editProfile.EditProfileActivity"
-            android:parentActivityName=".main.MainActivity" />
+            android:parentActivityName=".editProfile.EditProfileActivity" />
         <activity android:name=".register.RegisterActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity
