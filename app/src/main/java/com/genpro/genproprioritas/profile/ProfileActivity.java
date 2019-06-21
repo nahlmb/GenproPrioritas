@@ -1,14 +1,20 @@
 package com.genpro.genproprioritas.profile;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,7 +27,15 @@ import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.editProfile.EditProfileActivity;
 import com.genpro.genproprioritas.main.MainActivity;
 
-public class ProfileActivity extends AppCompatActivity implements ProfileContract.View, PopupMenu.OnMenuItemClickListener {
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.List;
+
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
+
+public class ProfileActivity extends AppCompatActivity implements ProfileContract.View, PopupMenu.OnMenuItemClickListener, EasyPermissions.PermissionCallbacks {
 
     //tools
     ProfilePresenter presenter;
@@ -50,6 +64,13 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
             txtProfileKtp9, txtProfileKtp10, txtProfileKtp11, txtProfileKtp12, txtProfileKtp13, txtProfileKtp14;
     //toolbar
     ImageView backIcon, moreIcon;
+
+    //take photo
+    private static final int RC_CAMERA = 1;
+    static final int REQUEST_TAKE_PHOTO = 1;
+    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
+    public static final String ALLOW_KEY = "ALLOWED";
+    public static final String CAMERA_PREF = "camera_pref";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +145,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         refreshData();
 
         presenter.getUserInfo(userInformation.getString("userId", ""));
+
+        //camera premission
+        checkCameraPermission();
 
     }
 
@@ -454,14 +478,29 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     }
 
     @Override
+    public void getPicFromCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+        }
+    }
+
+    @Override
+    public void pushPhoto(File imageFile) {
+        presenter.pushPhoto(imageFile);
+
+    }
+
+    @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()){
             case R.id.change_profile_pic :
-                return true;
+                getPicFromCamera();
+                break;
 
             case R.id.change_profile :
                 goToEditProfile();
-                return true;
+                break;
 
         }
         return true;
@@ -479,5 +518,63 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     @Override
     public void recreate() {
         super.recreate();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK){
+            Bundle extras = data.getExtras();
+            final Bitmap bitmap = (Bitmap) extras.get("data");
+            //ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            //bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+
+            File filesDir = getApplicationContext().getFilesDir();
+            File imageFile = new File(filesDir, "image" + ".jpg");
+
+            OutputStream os;
+            try {
+                os = new FileOutputStream(imageFile);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                os.flush();
+                os.close();
+
+            } catch (Exception e) {
+                Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+            }
+
+            pushPhoto(imageFile);
+
+        }
+    }
+
+    @AfterPermissionGranted(RC_CAMERA)
+    private void checkCameraPermission() {
+        String perm = Manifest.permission.CAMERA;
+        if (EasyPermissions.hasPermissions(this, perm)) {
+        } else {
+            EasyPermissions.requestPermissions(this, "Butuh permission camera", RC_CAMERA, perm);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        for (String permission : perms) {
+            if (permission.equals(Manifest.permission.CAMERA)) {
+            }
+        }
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+
+
     }
 }

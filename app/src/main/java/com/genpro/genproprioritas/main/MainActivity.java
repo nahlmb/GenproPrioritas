@@ -349,7 +349,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         switch (item.getItemId()){
             case R.id.log_out :
                 logOut();
-                return true;
+                break;
         }
 
         return true;

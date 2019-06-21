@@ -4,9 +4,12 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.UploadProgressListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
 
 public class EditProfilePresenter implements EditProfileContract.Presenter{
     EditProfileContract.View view;
@@ -112,5 +115,29 @@ public class EditProfilePresenter implements EditProfileContract.Presenter{
                     }
                 });
 
+    }
+
+    @Override
+    public void pushPhoto(File file) {
+        AndroidNetworking.upload("http://genprodev.lavenderprograms.com/apigw/users/update_profile_umum/")
+                .setPriority(Priority.HIGH)
+                .addMultipartFile("pic", file)
+                .build()
+                .setUploadProgressListener(new UploadProgressListener() {
+                    @Override
+                    public void onProgress(long bytesUploaded, long totalBytes) {
+
+                    }
+                }).getAsJSONObject(new JSONObjectRequestListener() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+            }
+
+            @Override
+            public void onError(ANError anError) {
+
+            }
+        });
     }
 }

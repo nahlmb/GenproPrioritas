@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +24,11 @@ import android.widget.Toast;
 
 import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.profile.ProfileActivity;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 public class EditProfileActivity extends AppCompatActivity implements EditProfileContract.View {
     EditProfilePresenter presenter;
@@ -42,6 +50,9 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
     //button
     Button btnUpdateProfile;
+
+    //take photo
+    static final int REQUEST_TAKE_PHOTO = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -677,6 +688,47 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
                 pushKtpKelurahan, pushKtpKecamatan, pushKtpProvinsiKtp, pushKabupatenKtp};
 
         presenter.pushEditProfile(dataUmum, dataDomisili, dataKtp);
+
+    }
+
+    @Override
+    public void pushPhoto(File imageFile) {
+        presenter.pushPhoto(imageFile);
+    }
+
+    @Override
+    public void getPicFromCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK){
+            Bundle extras = data.getExtras();
+            final Bitmap bitmap = (Bitmap) extras.get("data");
+            //ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            //bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+
+            File filesDir = getApplicationContext().getFilesDir();
+            File imageFile = new File(filesDir, "image" + ".jpg");
+
+            OutputStream os;
+            try {
+                os = new FileOutputStream(imageFile);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                os.flush();
+                os.close();
+                pushPhoto(imageFile);
+
+            } catch (Exception e) {
+                Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+            }
+        }
+
 
     }
 

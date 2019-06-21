@@ -3,6 +3,8 @@ package com.genpro.genproprioritas.editProfile;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.io.File;
+
 public interface EditProfileContract {
     interface View{
         void setTextDataUmum();
@@ -14,6 +16,8 @@ public interface EditProfileContract {
         void updateSucces();
         void updateFailed(String message);
         void pushEditProfile();
+        void pushPhoto(File imageFile);
+        void getPicFromCamera();
     }
 
     interface Presenter{
@@ -21,5 +25,6 @@ public interface EditProfileContract {
         void pushDataUmum(String[] dataUmum);
         void pushDataDomisili(String[] dataDomisili);
         void pushDataKtp(String[] dataKtp);
+        void pushPhoto(File file);
     }
 }

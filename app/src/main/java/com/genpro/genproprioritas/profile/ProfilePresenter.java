@@ -1,16 +1,23 @@
 package com.genpro.genproprioritas.profile;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.UploadProgressListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ProfilePresenter implements ProfileContract.Presenter{
+import java.io.File;
+import java.util.List;
+
+import pub.devrel.easypermissions.EasyPermissions;
+
+public class ProfilePresenter implements ProfileContract.Presenter {
     ProfileContract.View view;
 
     public ProfilePresenter(ProfileContract.View view) {
@@ -118,6 +125,31 @@ public class ProfilePresenter implements ProfileContract.Presenter{
 
                     }
                 });
+
+    }
+
+    @Override
+    public void pushPhoto(File file) {
+        AndroidNetworking.upload("http://genprodev.lavenderprograms.com/apigw/users/update_profile_umum/")
+                .setPriority(Priority.HIGH)
+                .addMultipartFile("pic", file)
+                .build()
+                .setUploadProgressListener(new UploadProgressListener() {
+                    @Override
+                    public void onProgress(long bytesUploaded, long totalBytes) {
+
+                    }
+                }).getAsJSONObject(new JSONObjectRequestListener() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+            }
+
+            @Override
+            public void onError(ANError anError) {
+
+            }
+        });
 
     }
 }

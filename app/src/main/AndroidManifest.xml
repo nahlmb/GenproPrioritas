@@ -3,6 +3,9 @@
     package="com.genpro.genproprioritas">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".BaseApp"
@@ -13,8 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".editBisnis.EditBisnisActivity"></activity>
-        <activity android:name=".detailBisnis.DetailBisnisActivity" />
         <activity
             android:name=".sejarah.SejarahActivity"
             android:parentActivityName=".main.MainActivity" />
@@ -39,6 +40,8 @@
         <activity
             android:name=".editProfile.EditProfileActivity"
             android:parentActivityName=".main.MainActivity" />
+        <activity android:name=".editBisnis.EditBisnisActivity"></activity>
+        <activity android:name=".detailBisnis.DetailBisnisActivity" />
         <activity android:name=".register.RegisterActivity" />
         <activity android:name=".login.LoginActivity" >
             <intent-filter>
@@ -51,6 +54,7 @@
             android:name=".profile.ProfileActivity"
             android:parentActivityName=".main.MainActivity" />
         <activity android:name=".main.MainActivity">
+
         </activity>
     </application>
 
