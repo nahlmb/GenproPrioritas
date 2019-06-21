@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".gallery.GalleryActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/Theme.AppCompat.Light">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/p1"
+                android:scaleType="fitCenter"
+                android:layout_height="200dp" />
+
+            <ImageView
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/p2"
+                android:scaleType="fitCenter"
+                android:layout_height="200dp" />
+
+            <ImageView
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/p3"
+                android:scaleType="fitCenter"
+                android:layout_height="200dp" />
+
+            <ImageView
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/p4"
+                android:scaleType="fitCenter"
+                android:layout_height="200dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

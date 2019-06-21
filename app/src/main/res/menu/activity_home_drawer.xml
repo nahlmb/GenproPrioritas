@@ -17,7 +17,8 @@
             android:icon="@drawable/ic_currency_usd" />
         <item
             android:id="@+id/nav_gmb_genpro"
-            android:title="GMB Genpro" />
+            android:title="GMB Genpro"
+            android:icon="@drawable/ic_genpro_hitam"/>
         <item
             android:id="@+id/nav_membership"
             android:title="Membership"

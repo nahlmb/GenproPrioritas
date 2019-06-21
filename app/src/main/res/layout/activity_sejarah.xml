@@ -22,16 +22,50 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <TextView
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id tortor luctus, faucibus diam eu, malesuada felis. Nam tempus, metus in tincidunt ullamcorper, nisi metus porttitor nibh, a mollis ligula sapien ut libero. Nunc efficitur tristique turpis a blandit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec sit amet dictum metus. Cras cursus, est quis blandit varius, nulla dui gravida velit, eu malesuada mauris felis ac dui. Praesent sit amet mauris vel libero accumsan feugiat. Proin pulvinar efficitur lorem. Proin tellus metus, ultrices id ipsum id, aliquam laoreet ligula. Integer lobortis sem a ante porttitor, in finibus eros porttitor. Etiam mattis turpis sit amet vestibulum sagittis. Curabitur nisi augue, bibendum id turpis a, mollis faucibus arcu. Mauris mattis commodo sem, sit amet venenatis lacus hendrerit sed. Vivamus lacinia mollis orci ac rhoncus."
-            android:textSize="30sp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:text="Sejarah Berdirinya Perusahaan"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-    </ScrollView>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/logo_dfi"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="2dp"
+        android:background="@color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="25dp"
+        android:text="Dengan semangat dan potensi anak muda yang mempunyai cita-cita akan mengembangkan Technology Information yang dapat di jangkau oleh masyarakat di semua kalangan, kami memulainya dengan membuat beberapa produk berbasis Online Technology, seperti Online Shop, Market Place, Corporate Website, dll."
+        android:textSize="17sp"
+        android:textAlignment="center" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="1dp"
+        android:background="@color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="10dp"
+        android:text="Hingga pada akhirnya kami resmi menggunakan bendera PT Digital Fatih Indonesia (DFI) pada bulan Desember 2015. Sesuai dengan Perijinan dan Legalisasi yang dibuat, DFI bergerak dalam bidang usaha IT Development baik Software maupun Hardware."
+        android:textSize="17sp"
+        android:textAlignment="center" />
 
 </LinearLayout>

@@ -29,7 +29,6 @@ import android.widget.Toast;
 
 import com.genpro.genproprioritas.Business.BusinessActivity;
 import com.genpro.genproprioritas.R;
-import com.genpro.genproprioritas.detailBisnis.DetailBisnisActivity;
 import com.genpro.genproprioritas.gmbgenpro.GMBActivity;
 import com.genpro.genproprioritas.kegiatan.KegiatanActivity;
 import com.genpro.genproprioritas.login.LoginActivity;
@@ -80,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
         editorUserInformation = getSharedPreferences("userInfo", MODE_PRIVATE).edit();
         editorLogin = getSharedPreferences("login", MODE_PRIVATE).edit();
-
 
         //Dialog
         loading = new Dialog(this);
@@ -361,24 +359,37 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_search :
-                search(menuItem);
+                Intent goToSearch = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(goToSearch);
+                break;
             case R.id.nav_business :
-                business(menuItem);
+                Intent goToBusiness = new Intent(MainActivity.this, BusinessActivity.class);
+                startActivity(goToBusiness);
+                break;
             case  R.id.nav_profile :
                 Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(goToProfile);
+                break;
             case R.id.nav_gmb_genpro :
                 Intent goToGMB = new Intent(MainActivity.this, GMBActivity.class);
                 startActivity(goToGMB);
+                break;
             case R.id.nav_membership :
                 Intent goToMembership = new Intent(MainActivity.this, MembershipActivity.class);
                 startActivity(goToMembership);
+                break;
             case R.id.nav_kegiatan :
                 Intent goToKegiatan = new Intent(MainActivity.this, KegiatanActivity.class);
                 startActivity(goToKegiatan);
+                break;
+            case R.id.nav_gallery :
+                Intent goToGallery = new Intent(MainActivity.this, GalleryActivity.class);
+                startActivity(goToGallery);
+                break;
             case R.id.nav_visi_misi :
                 Intent goToVisimisi = new Intent(MainActivity.this, VisimisiActivity.class);
                 startActivity(goToVisimisi);
+                break;
             case  R.id.nav_sejarah :
                 Intent goToSejarah = new Intent(MainActivity.this, SejarahActivity.class);
                 startActivity(goToSejarah);
@@ -393,29 +404,29 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.recreate();
     }
 
-    public void search(MenuItem item) {
-        Intent goToSearch = new Intent(MainActivity.this, SearchActivity.class);
-        startActivity(goToSearch);
-    }
-
-    public void business(MenuItem item) {
-        Intent goToBusiness = new Intent(MainActivity.this, BusinessActivity.class);
-        startActivity(goToBusiness);
-    }
-
-    public void profile(MenuItem item) {
-        Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
-        startActivity(goToProfile);
-    }
-
-    public void gmb(MenuItem item) {
-        Intent goToGMB = new Intent(MainActivity.this, GMBActivity.class);
-        startActivity(goToGMB);
-    }
-
-    public void membership(MenuItem item) {
-        Intent goToMembership = new Intent(MainActivity.this, MembershipActivity.class);
-        startActivity(goToMembership);
-    }
+//    public void search(MenuItem item) {
+//        Intent goToSearch = new Intent(MainActivity.this, SearchActivity.class);
+//        startActivity(goToSearch);
+//    }
+//
+//    public void business(MenuItem item) {
+//        Intent goToBusiness = new Intent(MainActivity.this, BusinessActivity.class);
+//        startActivity(goToBusiness);
+//    }
+//
+//    public void profile(MenuItem item) {
+//        Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
+//        startActivity(goToProfile);
+//    }
+//
+//    public void gmb(MenuItem item) {
+//        Intent goToGMB = new Intent(MainActivity.this, GMBActivity.class);
+//        startActivity(goToGMB);
+//    }
+//
+//    public void membership(MenuItem item) {
+//        Intent goToMembership = new Intent(MainActivity.this, MembershipActivity.class);
+//        startActivity(goToMembership);
+//    }
 
 }

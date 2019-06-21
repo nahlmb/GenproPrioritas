@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:gravity="center"
     android:layout_height="match_parent"
     tools:context=".kegiatan.KegiatanActivity"
     android:orientation="vertical">
@@ -23,16 +22,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id tortor luctus, faucibus diam eu, malesuada felis. Nam tempus, metus in tincidunt ullamcorper, nisi metus porttitor nibh, a mollis ligula sapien ut libero. Nunc efficitur tristique turpis a blandit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec sit amet dictum metus. Cras cursus, est quis blandit varius, nulla dui gravida velit, eu malesuada mauris felis ac dui. Praesent sit amet mauris vel libero accumsan feugiat. Proin pulvinar efficitur lorem. Proin tellus metus, ultrices id ipsum id, aliquam laoreet ligula. Integer lobortis sem a ante porttitor, in finibus eros porttitor. Etiam mattis turpis sit amet vestibulum sagittis. Curabitur nisi augue, bibendum id turpis a, mollis faucibus arcu. Mauris mattis commodo sem, sit amet venenatis lacus hendrerit sed. Vivamus lacinia mollis orci ac rhoncus."
-            android:textSize="30sp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </ScrollView>
+    <include layout="@layout/contain_kegiatan"/>
 
 </LinearLayout>
