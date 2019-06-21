@@ -29,6 +29,8 @@ import android.widget.Toast;
 
 import com.genpro.genproprioritas.Business.BusinessActivity;
 import com.genpro.genproprioritas.R;
+import com.genpro.genproprioritas.detailBisnis.DetailBisnisActivity;
+import com.genpro.genproprioritas.gallery.GalleryActivity;
 import com.genpro.genproprioritas.gmbgenpro.GMBActivity;
 import com.genpro.genproprioritas.kegiatan.KegiatanActivity;
 import com.genpro.genproprioritas.login.LoginActivity;
