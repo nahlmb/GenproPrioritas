@@ -34,7 +34,7 @@
                 android:maxLines="1"
                 android:text="Usaha User"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/guide_line_1"
                 app:layout_constraintStart_toStartOf="parent"

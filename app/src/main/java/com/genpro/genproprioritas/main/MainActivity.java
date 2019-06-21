@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.genpro.genproprioritas.Business.BusinessActivity;
 import com.genpro.genproprioritas.R;
+import com.genpro.genproprioritas.detailBisnis.DetailBisnisActivity;
 import com.genpro.genproprioritas.gmbgenpro.GMBActivity;
 import com.genpro.genproprioritas.kegiatan.KegiatanActivity;
 import com.genpro.genproprioritas.login.LoginActivity;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
         editorUserInformation = getSharedPreferences("userInfo", MODE_PRIVATE).edit();
         editorLogin = getSharedPreferences("login", MODE_PRIVATE).edit();
+
 
         //Dialog
         loading = new Dialog(this);
@@ -287,7 +289,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void goToDetailBisnis(Bisnis.BisnisData bisnisData) {
-
+        Intent goToDetailBisnis = new Intent(MainActivity.this, DetailBisnisActivity.class);
+        goToDetailBisnis.putExtra("BISNIS_DATA", bisnisData);
+        startActivity(goToDetailBisnis);
     }
 
     @Override
