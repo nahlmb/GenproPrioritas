@@ -88,11 +88,21 @@ public class EditBisnisActivity extends AppCompatActivity implements EditBisnisC
     @Override
     public void updateBisnisDataClick() {
         //todo tugas yazid
-        //String pushTentangBisnis = edtbisnis1.getText.toString;
-        //Sting pushSpinnerJenisBisnis = spnEditBisnis1.getSelectedItem().toString();
+
+        String pushNamaUsaha = edtEditBisnis1.getText().toString();
+        String pushTentangUsaha = edtEditBisnis2.getText().toString();
+        String pushJumlahKaryawan = edtEditBisnis3.getText().toString();
+        String pushJumlahCabang = edtEditBisnis4.getText().toString();
+        String pushNomorTelepon = edtEditBisnis5.getText().toString();
+        String pushMerk = edtEditBisnis6.getText().toString();
+        String pushFacebook = edtEditBisnis7.getText().toString();
+        String pushInstagram = edtEditBisnis8.getText().toString();
+
+        String pushSpinnerJenisBisnis = spnEditBisnis1.getSelectedItem().toString();
+        String pushSpinnerOmsetTahunan = spnEditBisnis2.getSelectedItem().toString();
 
         //todo gabung kan semua string kedalam satu array disini
-        String[] arrayDataBisnis = {/*string1, string2, string3*/};
+        String[] arrayDataBisnis = { };
 
         //todo suruh presenter mem-push
         presenter.updateBisnisData(arrayDataBisnis);
