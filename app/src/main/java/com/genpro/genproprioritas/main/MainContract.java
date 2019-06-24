@@ -22,6 +22,7 @@ public interface MainContract {
         void showNetworkError();
         void showPopUpMore(android.view.View view);
         void refreshData();
+        void showBottomSheet();
     }
 
     interface Presenter {

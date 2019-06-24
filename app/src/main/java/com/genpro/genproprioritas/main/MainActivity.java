@@ -3,11 +3,13 @@ package com.genpro.genproprioritas.main;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,9 +17,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +30,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.genpro.genproprioritas.business.BusinessActivity;
 import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.detailBisnis.DetailBisnisActivity;
@@ -39,6 +44,11 @@ import com.genpro.genproprioritas.profile.ProfileActivity;
 import com.genpro.genproprioritas.search.SearchActivity;
 import com.genpro.genproprioritas.sejarah.SejarahActivity;
 import com.genpro.genproprioritas.visimisi.VisimisiActivity;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.util.List;
 
@@ -58,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     Button btnBackError;
 
     TextView namaUser, emailUser, statusUser, masaAktifUser;
+    CardView cardProfileUser;
     MainPresenter presenter;
 
     //Toolbars
@@ -125,6 +136,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         //swipe refresh
         swLayout = findViewById(R.id.swlayout);
         refreshData();
+
+        //buttomSheet
+        cardProfileUser = findViewById(R.id.card_profile_anggota_main);
+        cardProfileUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showBottomSheet();
+            }
+        });
 
     }
 
@@ -342,6 +362,40 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 }, 3000);
             }
         });
+
+    }
+
+    @Override
+    public void showBottomSheet() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        View sheetView = this.getLayoutInflater().inflate(R.layout.buttom_qrcode_layout, null);
+        bottomSheetDialog.setContentView(sheetView);
+
+        //set image and barcode
+        ImageView profilePicBs = sheetView.findViewById(R.id.img_profile_in_bs);
+        ImageView qrCode = sheetView.findViewById(R.id.img_barcode);
+        if(sharedPreferences.getString("picture", "") != null){
+            Glide.with(this).load(sharedPreferences.getString("picture", "")).into(profilePicBs);
+        }
+
+        String qrCodeString = sharedPreferences.getString("noAnggota", "");
+
+        if(qrCodeString != null){
+            MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+            try {
+                BitMatrix bitMatrix = multiFormatWriter.encode(qrCodeString, BarcodeFormat.QR_CODE, 500, 500);
+                BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+
+                qrCode.setImageBitmap(bitmap);
+
+            } catch (WriterException e) {
+                e.printStackTrace();
+                Log.d("barcode", e.getLocalizedMessage());
+            }
+        }
+
+        bottomSheetDialog.show();
 
     }
 
