@@ -307,9 +307,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void goToDetailBisnis(Bisnis.BisnisData bisnisData) {
+    public void goToDetailBisnis(Bisnis.BisnisData bisnisData, int i) {
         Intent goToDetailBisnis = new Intent(MainActivity.this, DetailBisnisActivity.class);
-        goToDetailBisnis.putExtra("BISNIS_DATA", bisnisData);
+        goToDetailBisnis.putExtra("BISNIS_POSITION", i);
         startActivity(goToDetailBisnis);
     }
 

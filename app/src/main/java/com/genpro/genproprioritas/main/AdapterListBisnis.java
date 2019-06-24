@@ -39,7 +39,7 @@ public class AdapterListBisnis extends RecyclerView.Adapter<AdapterListBisnis.Vi
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                view.goToDetailBisnis(bisnisData.get(i));
+                view.goToDetailBisnis(bisnisData.get(i), i);
             }
         });
     }

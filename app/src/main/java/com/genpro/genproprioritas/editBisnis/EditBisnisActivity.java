@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.detailBisnis.DetailBisnisActivity;
@@ -21,6 +22,11 @@ public class EditBisnisActivity extends AppCompatActivity implements EditBisnisC
     EditBisnisPresenter presenter;
     EditText edtEditBisnis1, edtEditBisnis2, edtEditBisnis3, edtEditBisnis4, edtEditBisnis5, edtEditBisnis6, edtEditBisnis7, edtEditBisnis8;
     Spinner spnEditBisnis1, spnEditBisnis2;
+    Button btnSimpanPerubahan;
+
+    //get bisnis data
+    SharedPreferences sp;
+    Bisnis.BisnisData bisnisData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,7 @@ public class EditBisnisActivity extends AppCompatActivity implements EditBisnisC
         setContentView(R.layout.activity_edit_bisnis);
 
         presenter = new EditBisnisPresenter(this);
+        sp = getSharedPreferences("userInfo", MODE_PRIVATE);
 
         //Edit Text Nya ini
         edtEditBisnis1 = findViewById(R.id.edt_bisnis_nama);
@@ -43,14 +50,23 @@ public class EditBisnisActivity extends AppCompatActivity implements EditBisnisC
         spnEditBisnis1 = findViewById(R.id.spn_bisnis_jenis);
         spnEditBisnis2 = findViewById(R.id.spn_bisnis_omset);
 
+        bisnisData = (Bisnis.BisnisData) getIntent().getSerializableExtra("BISNIS_DATA_EDIT");
         setAllBisnisData();
+
+        //simpan perubahan
+        btnSimpanPerubahan = findViewById(R.id.btn_bisnis_edit);
+        btnSimpanPerubahan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateBisnisDataClick();
+            }
+        });
 
 
     }
 
     @Override
     public void setAllBisnisData() {
-        Bisnis.BisnisData bisnisData = (Bisnis.BisnisData) getIntent().getSerializableExtra("BISNIS_DATA_EDIT");
         edtEditBisnis1.setText(bisnisData.getNmUsaha());
         edtEditBisnis2.setText(bisnisData.getTentangUsaha());
         edtEditBisnis3.setText(bisnisData.getJmlKaryawan());
@@ -89,6 +105,9 @@ public class EditBisnisActivity extends AppCompatActivity implements EditBisnisC
     public void updateBisnisDataClick() {
         //todo tugas yazid
 
+        String pushUserId = sp.getString("userId", "");
+        Log.d("userid", pushUserId);
+        String pushIdBisnis = bisnisData.getIdBisnisInfo();
         String pushNamaUsaha = edtEditBisnis1.getText().toString();
         String pushTentangUsaha = edtEditBisnis2.getText().toString();
         String pushJumlahKaryawan = edtEditBisnis3.getText().toString();
@@ -102,12 +121,29 @@ public class EditBisnisActivity extends AppCompatActivity implements EditBisnisC
         String pushSpinnerOmsetTahunan = spnEditBisnis2.getSelectedItem().toString();
 
         //todo gabung kan semua string kedalam satu array disini
-        String[] arrayDataBisnis = { };
+        String[] arrayDataBisnis = {pushUserId, pushIdBisnis,
+                pushNamaUsaha, pushSpinnerJenisBisnis, pushTentangUsaha,
+                pushJumlahKaryawan, pushJumlahCabang, pushNomorTelepon,
+                pushSpinnerOmsetTahunan, pushMerk, pushFacebook, pushInstagram};
 
         //todo suruh presenter mem-push
         presenter.updateBisnisData(arrayDataBisnis);
 
 
+
+    }
+
+    @Override
+    public void succesUpdateData() {
+        Intent backToDetail = new Intent(EditBisnisActivity.this, DetailBisnisActivity.class);
+        backToDetail.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(backToDetail);
+        finish();
+    }
+
+    @Override
+    public void somethingFailed(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 
     }
 
