@@ -717,4 +717,27 @@
         <item>OTHER</item>
     </string-array>
 
+    <string-array name="jenis_bisnis">
+        <item>Perternakan</item>
+        <item>Fashion</item>
+        <item>Travel</item>
+        <item>Kesehatan</item>
+        <item>IT</item>
+        <item>Catering, Kuliner dan WO</item>
+        <item>EPC</item>
+        <item>Agribisnis</item>
+        <item>Ekspedisi</item>
+        <item>Property</item>
+        <item>Advertising, Printing dan Percetakan</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="omset_tahunan">
+        <item>Kurang dari idr 50 juta</item>
+        <item>Idr 50 juta sampai 300 juta</item>
+        <item>Idr 300 juta sampai 2,5 Miliyar</item>
+        <item>Idr 2,5 Miliyar - 50 Miliyar</item>
+        <item>Lebih dari idr 50 Miliyar </item>
+    </string-array>
+
 </resources>

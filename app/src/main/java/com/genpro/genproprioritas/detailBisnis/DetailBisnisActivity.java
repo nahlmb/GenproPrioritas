@@ -52,7 +52,6 @@ public class DetailBisnisActivity extends AppCompatActivity {
         //back and more
         backIcon = findViewById(R.id.back_profile);
         moreIcon = findViewById(R.id.icon_more_profile);
-
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,21 +59,25 @@ public class DetailBisnisActivity extends AppCompatActivity {
             }
         });
 
+        //swipe refresh
         swLayout = findViewById(R.id.swlayout_profile);
         refreshData();
 
+        //setup
         Intent intent = getIntent();
         final Bisnis.BisnisData  bisnisData = (Bisnis.BisnisData) intent.getSerializableExtra("BISNIS_DATA");
-        showUserBisnisDetail(bisnisData);
+        if(bisnisData != null){
+            showUserBisnisDetail(bisnisData);
+        }
 
 
         btnEditBisnis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent pindahKuy = new Intent(DetailBisnisActivity.this, EditBisnisActivity.class);
-                pindahKuy.putExtra("BISNIS_DATA_EDIT", bisnisData);
-                startActivity(pindahKuy);
-                finish();
+                Intent goToEditBisnis = new Intent(DetailBisnisActivity.this, EditBisnisActivity.class);
+                goToEditBisnis.putExtra("BISNIS_DATA_EDIT", bisnisData);
+                startActivity(goToEditBisnis);
+
             }
         });
     }
