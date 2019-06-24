@@ -1,4 +1,4 @@
-package com.genpro.genproprioritas.Business;
+package com.genpro.genproprioritas.business;
 
 public interface BusinessInterface {
     interface View{

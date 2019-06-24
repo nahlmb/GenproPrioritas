@@ -6,8 +6,8 @@ android {
         applicationId "com.genpro.genproprioritas"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
-        versionName "p1.0"
+        versionCode 2
+        versionName "p2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

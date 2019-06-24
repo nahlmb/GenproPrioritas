@@ -32,7 +32,7 @@
             android:name=".gmbgenpro.GMBActivity"
             android:parentActivityName=".main.MainActivity" />
         <activity
-            android:name=".Business.BusinessActivity"
+            android:name=".business.BusinessActivity"
             android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".search.SearchActivity"

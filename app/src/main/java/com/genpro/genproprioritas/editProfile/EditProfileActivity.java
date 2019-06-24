@@ -680,8 +680,8 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         String[] dataUmum = {userId,pushUmumEmail, pushUmumNamaDepan, pushUmumNamaBelakang, pushUmumBank, pushUmumNoHp,
                 pushUmumFb, pushUmumIg, pushUmumTwitter};
 
-        String[] dataDomisili = {userId, pushDomisiliAlamat, pushDomisiliRtRw, pushDomisiliKelurahan,
-                pushDomisiliKecamatan, pushDomisiliProvinsi, pushDomisiliKabupaten};
+        String[] dataDomisili = {userId, pushDomisiliProvinsi, pushDomisiliKabupaten, pushDomisiliAlamat, pushDomisiliRtRw, pushDomisiliKelurahan,
+                pushDomisiliKecamatan};
 
         String[] dataKtp = {userId, pushKtpNo, pushKtpNama, pushKtpTempatLahir, pushKtpTanggalLahir,
                 pushKtpAgamaDiKtp, pushKtpGolonganDarah, pushKtpJenisKelamin, pushKtpStatus, pushKtpAlamat, pushKtpRtRw,

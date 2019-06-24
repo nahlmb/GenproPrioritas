@@ -19,14 +19,16 @@ public interface ProfileContract {
         void someThingFailed(String message);
         void refreshData();
         void getPicFromCamera();
+        void getPicFromGallery();
+        void showDialogTakeImage();
         void pushPhoto(File imageFile);
+        void uploadPhotoSucces(String photo);
 
     }
 
     interface Presenter{
-        void pushProfilePic();
         void getUserInfo(String userId);
-        void pushPhoto(File file);
+        void pushPhoto(String userId, File file);
     }
 
 }

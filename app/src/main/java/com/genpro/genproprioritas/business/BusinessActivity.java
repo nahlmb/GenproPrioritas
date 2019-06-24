@@ -1,6 +1,5 @@
-package com.genpro.genproprioritas.Business;
+package com.genpro.genproprioritas.business;
 
-import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

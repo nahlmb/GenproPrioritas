@@ -1,12 +1,15 @@
 package com.genpro.genproprioritas.profile;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -29,6 +32,7 @@ import com.genpro.genproprioritas.main.MainActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
@@ -43,7 +47,6 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     SharedPreferences userInformation;
     Dialog loading;
     SwipeRefreshLayout swLayout;
-
 
     //profile Utama
     ImageView profilPic;
@@ -68,6 +71,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     //take photo
     private static final int RC_CAMERA = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
+    static final int REQUEST_CHOOSE_PHOTO = 2;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 100;
     public static final String ALLOW_KEY = "ALLOWED";
     public static final String CAMERA_PREF = "camera_pref";
@@ -83,6 +87,11 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         editorUserInformation = getSharedPreferences("userInfo", MODE_PRIVATE).edit();
         userInformation = getSharedPreferences("userInfo", MODE_PRIVATE);
 
+        //Dialog
+        loading = new Dialog(this);
+        loading.setContentView(R.layout.loading_layout);
+        loading.setCancelable(false);
+        loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         //back and more
         backIcon = findViewById(R.id.back_profile);
@@ -139,12 +148,12 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         txtProfileKtp13 = findViewById(R.id.txt_profile_ktp_13);
         txtProfileKtp14 = findViewById(R.id.txt_profile_ktp_14);
 
+        presenter.getUserInfo(userInformation.getString("userId", ""));
         showAllUserInfo();
+
         //SwipeRefreshLayout
         swLayout = findViewById(R.id.swlayout_profile);
         refreshData();
-
-        presenter.getUserInfo(userInformation.getString("userId", ""));
 
         //camera premission
         checkCameraPermission();
@@ -153,11 +162,13 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
     @Override
     public void showLoading() {
+        loading.show();
 
     }
 
     @Override
     public void hideLoading() {
+        loading.hide();
 
     }
 
@@ -205,9 +216,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         }
 
         if(strNamaBelakang.equals("")){
-            txtProfileUmum2.setText("Nama belakang" + noData);
+            txtProfileUmum2.setText("Nama belakang : " + noData);
         }else {
-            txtProfileUmum2.setText("Nama belakang" +strNamaDepan);
+            txtProfileUmum2.setText("Nama belakang : " +strNamaDepan);
         }
 
         txtProfileUmum3.setText("Email : " + strEmail);
@@ -481,21 +492,60 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     public void getPicFromCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            startActivityForResult(takePictureIntent, REQUEST_CHOOSE_PHOTO);
         }
     }
 
     @Override
-    public void pushPhoto(File imageFile) {
-        presenter.pushPhoto(imageFile);
+    public void getPicFromGallery() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_CHOOSE_PHOTO);
 
+    }
+
+    @Override
+    public void showDialogTakeImage() {
+        AlertDialog.Builder choosePhoto = new AlertDialog.Builder(this);
+        choosePhoto.setTitle("Pilih Gambar");
+        choosePhoto.setNegativeButton("Kamera", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getPicFromCamera();
+            }
+        });
+        choosePhoto.setPositiveButton("Galeri", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getPicFromGallery();
+            }
+        });
+        choosePhoto.create();
+        choosePhoto.show();
+
+    }
+
+    @Override
+    public void pushPhoto(File imageFile) {
+        presenter.pushPhoto(userInformation.getString("userId", ""),imageFile);
+
+    }
+
+    @Override
+    public void uploadPhotoSucces(String photo) {
+        editorUserInformation
+                .putString("picture", "http://genprodev.lavenderprograms.com/img/mobile_apps/" + photo)
+                .commit();
+
+        recreate();
     }
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()){
             case R.id.change_profile_pic :
-                getPicFromCamera();
+                showDialogTakeImage();
                 break;
 
             case R.id.change_profile :
@@ -544,6 +594,40 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
             }
 
             pushPhoto(imageFile);
+
+        }else if (requestCode == REQUEST_CHOOSE_PHOTO && resultCode == RESULT_OK){
+
+            try {
+                Uri uri = data.getData();
+                Bitmap bitmap = (Bitmap) MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+
+                //ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                //bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+
+                File filesDir = getApplicationContext().getFilesDir();
+                File imageFile = new File(filesDir, "image" + ".jpg");
+
+                OutputStream os;
+                os = new FileOutputStream(imageFile);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                os.flush();
+                os.close();
+
+                /*try {
+                    os = new FileOutputStream(imageFile);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                    os.flush();
+                    os.close();
+
+                } catch (Exception e) {
+                    Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+                }*/
+
+                pushPhoto(imageFile);
+            } catch (IOException e) {
+                Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+                e.printStackTrace();
+            }
 
         }
     }

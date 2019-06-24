@@ -67,6 +67,40 @@ public class EditProfilePresenter implements EditProfileContract.Presenter{
 
     @Override
     public void pushDataDomisili(String[] dataDomisili) {
+        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/users/update_profile_domisili/")
+                .setPriority(Priority.HIGH)
+                .addBodyParameter("user_id", dataDomisili[0])
+                .addBodyParameter("id_propinsi_domisili", dataDomisili[1])
+                .addBodyParameter("id_kabupaten_domisili", dataDomisili[2])
+                .addBodyParameter("alamat_domisili", dataDomisili[3])
+                .addBodyParameter("rt_rw_domisili", dataDomisili[4])
+                .addBodyParameter("kelurahan_domisili", dataDomisili[5])
+                .addBodyParameter("kecamatan_domisili", dataDomisili[6])
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if(response != null){
+                            try {
+                                if(response.getString("error").equals("false")){
+                                    view.updateSucces();
+                                }else if(response.getString("error").equals("true")){
+                                    view.updateFailed(response.getString("msg"));
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                view.updateFailed(e.getLocalizedMessage());
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        view.updateFailed(anError.getLocalizedMessage());
+
+                    }
+                });
 
     }
 
