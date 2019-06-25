@@ -26,6 +26,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.genpro.genproprioritas.Error_Handler;
+import com.genpro.genproprioritas.askbod.AskBodActivity;
 import com.genpro.genproprioritas.business.BusinessActivity;
 import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.detailBisnis.DetailBisnisActivity;
@@ -394,6 +396,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             case  R.id.nav_sejarah :
                 Intent goToSejarah = new Intent(MainActivity.this, SejarahActivity.class);
                 startActivity(goToSejarah);
+                break;
+            case R.id.nav_ask_bod :
+                Intent goToAskBod = new Intent(MainActivity.this, AskBodActivity.class);
+                startActivity(goToAskBod);
+                break;
         }
 
         return false;
@@ -403,6 +410,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void recreate() {
         super.recreate();
+    }
+
     }
 
 //    public void search(MenuItem item) {
@@ -429,5 +438,3 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 //        Intent goToMembership = new Intent(MainActivity.this, MembershipActivity.class);
 //        startActivity(goToMembership);
 //    }
-
-}

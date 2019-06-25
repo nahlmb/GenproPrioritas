@@ -24,6 +24,10 @@
             android:title="Membership"
             android:icon="@drawable/ic_wallet_membership" />
         <item
+            android:id="@+id/nav_ask_bod"
+            android:title="Ask BOD"
+            android:icon="@drawable/ic_comment_question_outline" />
+        <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_image"
             android:title="Galeri"/>
@@ -40,17 +44,4 @@
             android:icon="@drawable/ic_domain"
             android:title="Sejarah dan Profile Pendiri"/>
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:title="Share"
-                android:icon="@drawable/ic_share_black_24dp"/>
-            <item
-                android:id="@+id/nav_send"
-                android:title="Send"
-                android:icon="@drawable/ic_send_black_24dp"/>
-        </menu>
-    </item>
 </menu>
