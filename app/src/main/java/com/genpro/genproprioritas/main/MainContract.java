@@ -17,11 +17,12 @@ public interface MainContract {
         void hideLoading();
         void someThingFailed(String message);
         void goToProfile();
-        void goToDetailBisnis(Bisnis.BisnisData bisnisData);
+        void goToDetailBisnis(Bisnis.BisnisData bisnisData, int i);
         void logOut();
         void showNetworkError();
         void showPopUpMore(android.view.View view);
         void refreshData();
+        void showBottomSheet();
     }
 
     interface Presenter {

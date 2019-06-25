@@ -28,6 +28,8 @@
     <string name="cek_koneksi">cek koneksi internet anda dan ulang kembali..</string>
     <string name="spinner_profile">Spinner Profile</string>
     <string name="lorem_ipsum_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="profile_qr_code">Profile QR Code</string>
+    <string name="no_qr_code">No QR Code</string>
 
 
     <!-- String for Spinner Edit profile -->
@@ -715,6 +717,29 @@
         <item>BRI</item>
         <item>BNI</item>
         <item>OTHER</item>
+    </string-array>
+
+    <string-array name="jenis_bisnis">
+        <item>Perternakan</item>
+        <item>Fashion</item>
+        <item>Travel</item>
+        <item>Kesehatan</item>
+        <item>IT</item>
+        <item>Catering, Kuliner dan WO</item>
+        <item>EPC</item>
+        <item>Agribisnis</item>
+        <item>Ekspedisi</item>
+        <item>Property</item>
+        <item>Advertising, Printing dan Percetakan</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="omset_tahunan">
+        <item>Kurang dari idr 50 juta</item>
+        <item>Idr 50 juta sampai 300 juta</item>
+        <item>Idr 300 juta sampai 2,5 Miliyar</item>
+        <item>Idr 2,5 Miliyar - 50 Miliyar</item>
+        <item>Lebih dari idr 50 Miliyar </item>
     </string-array>
 
 </resources>

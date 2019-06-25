@@ -15,7 +15,7 @@ import com.genpro.genproprioritas.editBisnis.EditBisnisActivity;
 import com.genpro.genproprioritas.main.MainActivity;
 import com.genpro.genproprioritas.model.Bisnis;
 
-public class DetailBisnisActivity extends AppCompatActivity {
+public class DetailBisnisActivity extends AppCompatActivity implements DetailBisnisContract.View {
 
     TextView txtBisnis1, txtBisnis2, txtBisnis3, txtBisnis4, txtBisnis5, txtBisnis6, txtBisnis7,
             txtBisnis8, txtBisnis9, txtBisnis10, txtBisnis11;
@@ -24,13 +24,17 @@ public class DetailBisnisActivity extends AppCompatActivity {
 
     //toolbar
     ImageView backIcon, moreIcon;
-
     SwipeRefreshLayout swLayout;
+
+    //presenter
+    DetailBisnisPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_bisnis);
+
+        presenter = new DetailBisnisPresenter(this);
 
         //insialisasi
         txtBisnis1 = findViewById(R.id.txt_bisnis_1);
@@ -52,7 +56,6 @@ public class DetailBisnisActivity extends AppCompatActivity {
         //back and more
         backIcon = findViewById(R.id.back_profile);
         moreIcon = findViewById(R.id.icon_more_profile);
-
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,26 +63,29 @@ public class DetailBisnisActivity extends AppCompatActivity {
             }
         });
 
+        //swipe refresh
         swLayout = findViewById(R.id.swlayout_profile);
         refreshData();
 
-        Intent intent = getIntent();
-        final Bisnis.BisnisData  bisnisData = (Bisnis.BisnisData) intent.getSerializableExtra("BISNIS_DATA");
-        showUserBisnisDetail(bisnisData);
+        //setup
+        int i = getIntent().getIntExtra("BISNIS_POSITION", 0);
+        presenter.getBusinnes("59",i);
 
 
-        btnEditBisnis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pindahKuy = new Intent(DetailBisnisActivity.this, EditBisnisActivity.class);
-                pindahKuy.putExtra("BISNIS_DATA_EDIT", bisnisData);
-                startActivity(pindahKuy);
-                finish();
-            }
-        });
     }
 
-    private void showUserBisnisDetail(Bisnis.BisnisData bisnisData) {
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showUserBisnisDetail(final Bisnis.BisnisData bisnisData) {
         txtBisnis1.setText(bisnisData.getNmUsaha());
         txtBisnis2.setText("Nama Lain : " + bisnisData.getNmUsahaLain());
         txtBisnis3.setText("Jenis Bisnis : " + bisnisData.getNmBisnisLain());
@@ -91,6 +97,20 @@ public class DetailBisnisActivity extends AppCompatActivity {
         txtBisnis9.setText("No Telepon Perusahaan : " + bisnisData.getNoTlp());
         txtBisnis10.setText("Facebook : " + bisnisData.getFacebook());
         txtBisnis11.setText("Instagram : " + bisnisData.getInstagram());
+
+        btnBisnis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToEdit(bisnisData);
+            }
+        });
+    }
+
+    @Override
+    public void goToEdit(Bisnis.BisnisData bisnisData) {
+        Intent goToEdit = new Intent(DetailBisnisActivity.this, EditBisnisActivity.class);
+        goToEdit.putExtra("BISNIS_DATA_EDIT", bisnisData);
+        startActivity(goToEdit);
     }
 
     public void refreshData() {
