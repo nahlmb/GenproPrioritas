@@ -31,7 +31,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.genpro.genproprioritas.bisnis.BusinessActivity;
+import com.genpro.genproprioritas.askbod.AskBodActivity;
+import com.genpro.genproprioritas.bisnis.BisnisActivity;
 import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.detailBisnis.DetailBisnisActivity;
 import com.genpro.genproprioritas.gallery.GalleryActivity;
@@ -418,7 +419,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 startActivity(goToSearch);
                 break;
             case R.id.nav_business :
-                Intent goToBusiness = new Intent(MainActivity.this, BusinessActivity.class);
+                Intent goToBusiness = new Intent(MainActivity.this, BisnisActivity.class);
                 startActivity(goToBusiness);
                 break;
             case  R.id.nav_profile :
