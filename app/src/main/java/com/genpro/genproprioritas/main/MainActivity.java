@@ -448,6 +448,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             case  R.id.nav_sejarah :
                 Intent goToSejarah = new Intent(MainActivity.this, SejarahActivity.class);
                 startActivity(goToSejarah);
+                break;
+            case R.id.nav_ask_bod :
+                Intent goToAskBod = new Intent(MainActivity.this, AskBodActivity.class);
+                startActivity(goToAskBod);
+                break;
         }
 
         return false;

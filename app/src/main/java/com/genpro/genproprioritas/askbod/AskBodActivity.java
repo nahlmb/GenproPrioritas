@@ -1,22 +1,19 @@
-package com.genpro.genproprioritas;
+package com.genpro.genproprioritas.askbod;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.genpro.genproprioritas.main.MainActivity;
+import com.genpro.genproprioritas.R;
 
-public class Error_Handler extends AppCompatActivity {
+public class AskBodActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.error_layout);
-
+        setContentView(R.layout.activity_ask_bod);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -27,11 +24,5 @@ public class Error_Handler extends AppCompatActivity {
         window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimary));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    public void goToMain(View view) {
-        Intent goToMain = new Intent(Error_Handler.this, MainActivity.class);
-        startActivity(goToMain);
-
     }
 }
