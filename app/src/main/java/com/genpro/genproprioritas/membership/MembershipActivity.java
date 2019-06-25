@@ -9,12 +9,17 @@ import android.widget.Toast;
 
 import com.genpro.genproprioritas.R;
 
-public class MembershipActivity extends AppCompatActivity {
+public class MembershipActivity extends AppCompatActivity implements MembershipInterface.View {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_membership);
+
+    }
+
+    @Override
+    public void initToolbar() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -26,6 +31,10 @@ public class MembershipActivity extends AppCompatActivity {
         window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimary));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void showMembers() {
 
     }
 }
