@@ -31,7 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.genpro.genproprioritas.business.BusinessActivity;
+import com.genpro.genproprioritas.bisnis.BusinessActivity;
 import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.detailBisnis.DetailBisnisActivity;
 import com.genpro.genproprioritas.gallery.GalleryActivity;
