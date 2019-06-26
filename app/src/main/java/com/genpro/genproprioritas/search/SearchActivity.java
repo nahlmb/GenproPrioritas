@@ -9,6 +9,7 @@ import android.webkit.WebViewClient;
 
 import com.genpro.genproprioritas.Error_Handler;
 import com.genpro.genproprioritas.R;
+import com.genpro.genproprioritas.main.MainActivity;
 
 public class SearchActivity extends AppCompatActivity implements SearchContract.View {
 
@@ -44,6 +45,11 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
                 Intent intent = new Intent(SearchActivity.this, Error_Handler.class);
             }
         });
+    }
+
+    public void goToMainMenu(View view) {
+        Intent go = new Intent(SearchActivity.this, MainActivity.class);
+        startActivity(go);
     }
 
     private class MyBrowser1 extends WebViewClient {

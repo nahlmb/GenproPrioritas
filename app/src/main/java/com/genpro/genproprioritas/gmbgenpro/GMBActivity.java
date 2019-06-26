@@ -15,6 +15,8 @@ import android.webkit.WebViewClient;
 
 import com.genpro.genproprioritas.Error_Handler;
 import com.genpro.genproprioritas.R;
+import com.genpro.genproprioritas.main.MainActivity;
+import com.genpro.genproprioritas.profile.ProfileActivity;
 import com.genpro.genproprioritas.search.SearchActivity;
 
 public class GMBActivity extends AppCompatActivity implements GMBInterface.View {
@@ -26,15 +28,10 @@ public class GMBActivity extends AppCompatActivity implements GMBInterface.View 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gmb);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimary));
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         showWebView();
     }
@@ -63,6 +60,11 @@ public class GMBActivity extends AppCompatActivity implements GMBInterface.View 
                 startActivity(intent);
             }
         });
+    }
+
+    public void goToMainMenu(View view) {
+        Intent go = new Intent(GMBActivity.this, MainActivity.class);
+        startActivity(go);
     }
 
     private class MyBrowser extends WebViewClient {

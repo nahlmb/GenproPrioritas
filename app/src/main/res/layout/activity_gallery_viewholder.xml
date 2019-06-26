@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gallery.GalleryAdapter">
+
+    <ImageView
+        android:id="@+id/img_gallery"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/p1"
+        android:scaleType="fitCenter"
+        android:layout_height="200dp" />
+
+
+</LinearLayout>

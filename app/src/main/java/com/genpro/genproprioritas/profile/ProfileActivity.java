@@ -29,6 +29,7 @@ import com.bumptech.glide.Glide;
 import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.editProfile.EditProfileActivity;
 import com.genpro.genproprioritas.main.MainActivity;
+import com.genpro.genproprioritas.search.SearchActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -660,4 +661,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
 
     }
+    public void goToMainMenu(View view) {
+        Intent go = new Intent(ProfileActivity.this, MainActivity.class);
+        startActivity(go);
+    }
+
 }

@@ -15,6 +15,8 @@ import android.webkit.WebViewClient;
 
 import com.genpro.genproprioritas.Error_Handler;
 import com.genpro.genproprioritas.R;
+import com.genpro.genproprioritas.main.MainActivity;
+import com.genpro.genproprioritas.profile.ProfileActivity;
 import com.genpro.genproprioritas.search.SearchActivity;
 
 public class KegiatanActivity extends AppCompatActivity implements KegiatanInterface.View {
@@ -54,6 +56,11 @@ public class KegiatanActivity extends AppCompatActivity implements KegiatanInter
         });
     }
 
+    public void goToMainMenu(View view) {
+        Intent go = new Intent(KegiatanActivity.this, MainActivity.class);
+        startActivity(go);
+    }
+
     private class MyBrowser1 extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -81,15 +88,12 @@ public class KegiatanActivity extends AppCompatActivity implements KegiatanInter
 
     @Override
     public void configToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimary));
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

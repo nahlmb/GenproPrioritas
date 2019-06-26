@@ -13,7 +13,9 @@ import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.insertBisnis.InsertBisnisActivity;
 import com.genpro.genproprioritas.insertBisnis.InsertBisnisContract;
 import com.genpro.genproprioritas.main.AdapterListBisnis;
+import com.genpro.genproprioritas.main.MainActivity;
 import com.genpro.genproprioritas.model.Bisnis;
+import com.genpro.genproprioritas.profile.ProfileActivity;
 
 import java.util.List;
 
@@ -102,5 +104,10 @@ public class BisnisActivity extends AppCompatActivity implements BisnisContract.
     @Override
     public void recreate() {
         super.recreate();
+    }
+
+    public void goToMainMenu(View view) {
+        Intent go = new Intent(BisnisActivity.this, MainActivity.class);
+        startActivity(go);
     }
 }
