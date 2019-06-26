@@ -30,6 +30,7 @@
     <string name="lorem_ipsum_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
     <string name="profile_qr_code">Profile QR Code</string>
     <string name="no_qr_code">No QR Code</string>
+    <string name="simpan">simpan</string>
 
 
     <!-- String for Spinner Edit profile -->

@@ -155,9 +155,6 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         swLayout = findViewById(R.id.swlayout_profile);
         refreshData();
 
-        //camera premission
-        checkCameraPermission();
-
     }
 
     @Override
@@ -545,6 +542,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()){
             case R.id.change_profile_pic :
+                //camera premission
+                checkCameraPermission();
                 showDialogTakeImage();
                 break;
 

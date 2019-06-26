@@ -1,5 +1,4 @@
 package com.genpro.genproprioritas.editProfile;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -21,10 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.profile.ProfileActivity;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;

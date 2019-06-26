@@ -5,10 +5,8 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.UploadProgressListener;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
 
 public class EditProfilePresenter implements EditProfileContract.Presenter{

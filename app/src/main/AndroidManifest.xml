@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.genpro.genproprioritas">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,53 +16,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:testOnly="false"
+        android:debuggable="true"
+        android:usesCleartextTraffic="true"
+        tools:ignore="HardcodedDebugMode">
+        <activity android:name=".insertBisnis.InsertBisnisActivity"/>
+        <activity android:name=".bisnis.BisnisActivity" />
         <activity
-            android:name=".Splash"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".sejarah.SejarahActivity" />
         <activity
-            android:name=".gallery.GalleryActivity"
-            android:parentActivityName=".main.MainActivity" />
+            android:name=".visimisi.VisimisiActivity"/>
         <activity
-            android:name=".bisnis.BisnisActivity"
-            android:parentActivityName=".main.MainActivity" />
+            android:name=".kegiatan.KegiatanActivity"/>
         <activity
-            android:name=".askbod.AskBodActivity"
-            android:parentActivityName=".main.MainActivity" />
+            android:name=".membership.MembershipActivity"/>
         <activity
-            android:name=".sejarah.SejarahActivity"
-            android:parentActivityName=".main.MainActivity" />
+            android:name=".gmbgenpro.GMBActivity"/>
         <activity
-            android:name=".visimisi.VisimisiActivity"
-            android:parentActivityName=".main.MainActivity" />
+            android:name=".search.SearchActivity"/>
         <activity
-            android:name=".kegiatan.KegiatanActivity"
-            android:parentActivityName=".main.MainActivity" />
-        <activity
-            android:name=".membership.MembershipActivity"
-            android:parentActivityName=".main.MainActivity" />
-        <activity
-            android:name=".gmbgenpro.GMBActivity"
-            android:parentActivityName=".main.MainActivity" />
-        <activity
-            android:name=".search.SearchActivity"
-            android:parentActivityName=".main.MainActivity" />
-        <activity
-            android:name=".editProfile.EditProfileActivity"
-            android:parentActivityName=".main.MainActivity" />
+            android:name=".editProfile.EditProfileActivity"/>
         <activity android:name=".editBisnis.EditBisnisActivity" />
         <activity android:name=".detailBisnis.DetailBisnisActivity" />
         <activity android:name=".register.RegisterActivity" />
-        <activity android:name=".login.LoginActivity" />
+
+        <activity android:name=".login.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
-            android:name=".profile.ProfileActivity"
-            android:parentActivityName=".main.MainActivity" />
+            android:name=".profile.ProfileActivity"/>
         <activity android:name=".main.MainActivity" />
     </application>
 
