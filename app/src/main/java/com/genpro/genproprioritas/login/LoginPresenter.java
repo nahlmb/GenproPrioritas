@@ -50,7 +50,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                     @Override
                     public void onError(ANError anError) {
                         view.hideLoading();
-
+                        
                     }
                 });
 

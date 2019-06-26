@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:gravity="center"
-            android:text="Sejarah Berdirinya Perusahaan"
+            android:text="Tentang Genpro"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -38,20 +38,39 @@
         android:layout_marginBottom="20dp"
         android:src="@drawable/genpro_ic" />
 
+    <TextView
+        android:layout_marginHorizontal="15dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apa itu Genpro?"/>
+
     <View
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="10dp"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="@color/black"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="25dp"
-        android:text="Dengan semangat dan potensi anak muda yang mempunyai cita-cita akan mengembangkan Technology Information yang dapat di jangkau oleh masyarakat di semua kalangan, kami memulainya dengan membuat beberapa produk berbasis Online Technology, seperti Online Shop, Market Place, Corporate Website, dll."
+        android:layout_marginTop="10dp"
+        android:text="Genpro adalah komunitas pengusaha profesional yang memiliki tujuan sama dalam membangun peradaban dunia. Jaringan profesional di semua jenis usaha dan berjejaring untuk saling bersinergi menguatkan satu sama lain."
         android:textSize="17sp"
         android:textAlignment="center" />
+
+    <TextView
+        android:layout_marginHorizontal="15dp"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apa makna Genpro?"/>
 
     <View
         android:layout_width="match_parent"
@@ -65,7 +84,10 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
         android:layout_marginVertical="10dp"
-        android:text="Hingga pada akhirnya kami resmi menggunakan bendera PT Digital Fatih Indonesia (DFI) pada bulan Desember 2015. Sesuai dengan Perijinan dan Legalisasi yang dibuat, DFI bergerak dalam bidang usaha IT Development baik Software maupun Hardware."
+        android:text="GenPro singkatan dari Global Entrepreuner Profesional GenPro sendiri berasal dari 2 kata yakni Gen dan Pro.
+Gen : Gen, Genus, Generasi
+Pro : Produktif, Proaktif, Profesional
+GenPro memiliki makna : Generasi Pengusaha Muslim yang Produktif, Proaktif dan Profesional."
         android:textSize="17sp"
         android:textAlignment="center" />
 

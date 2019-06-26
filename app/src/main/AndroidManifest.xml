@@ -16,7 +16,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".bisnis.BisnisActivity"></activity>
+        <activity
+            android:name=".Splash"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".gallery.GalleryActivity"
+            android:parentActivityName=".main.MainActivity" />
+        <activity
+            android:name=".bisnis.BisnisActivity"
+            android:parentActivityName=".main.MainActivity" />
+        <activity
+            android:name=".askbod.AskBodActivity"
+            android:parentActivityName=".main.MainActivity" />
         <activity
             android:name=".sejarah.SejarahActivity"
             android:parentActivityName=".main.MainActivity" />
@@ -33,9 +50,6 @@
             android:name=".gmbgenpro.GMBActivity"
             android:parentActivityName=".main.MainActivity" />
         <activity
-            android:name=".bisnis.BusinessActivity"
-            android:parentActivityName=".main.MainActivity" />
-        <activity
             android:name=".search.SearchActivity"
             android:parentActivityName=".main.MainActivity" />
         <activity
@@ -44,17 +58,11 @@
         <activity android:name=".editBisnis.EditBisnisActivity" />
         <activity android:name=".detailBisnis.DetailBisnisActivity" />
         <activity android:name=".register.RegisterActivity" />
-        <activity android:name=".login.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".login.LoginActivity" />
         <activity
             android:name=".profile.ProfileActivity"
             android:parentActivityName=".main.MainActivity" />
-        <activity android:name=".main.MainActivity"></activity>
+        <activity android:name=".main.MainActivity" />
     </application>
 
 </manifest>

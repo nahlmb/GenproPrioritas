@@ -15,12 +15,11 @@ public class MembershipActivity extends AppCompatActivity implements MembershipI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_membership);
-
+        initToolbar();
     }
 
     @Override
     public void initToolbar() {
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
