@@ -53,7 +53,7 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/main_first_card"
+                                android:src="@drawable/ic_main_first_card"
                                 android:scaleType="centerCrop"/>
 
                             <android.support.v7.widget.AppCompatImageView

@@ -27,7 +27,7 @@ public class AdapterListBisnis extends RecyclerView.Adapter<AdapterListBisnis.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_list_berita, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_list_bisnis_black, viewGroup, false);
         return new ViewHolder(view);
     }
 
