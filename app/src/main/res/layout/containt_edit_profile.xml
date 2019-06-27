@@ -5,21 +5,6 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:popupTheme="@style/Theme.AppCompat.Light">
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -37,7 +22,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="86dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/edit_profile_umum"
@@ -59,6 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Email"
+                    android:inputType="textEmailAddress"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -83,6 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nama Depan"
+                    android:inputType="textPersonName"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -108,6 +95,7 @@
                     android:layout_height="wrap_content"
                     android:text="Nama Belakang"
                     android:textColor="@color/black"
+                    android:inputType="textPersonName"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
 
@@ -148,6 +136,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nomor Handphone"
+                    android:inputType="number"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -174,6 +163,7 @@
                     android:text="Facebook"
                     android:textColor="@color/black"
                     android:textSize="18sp"
+                    android:inputType="textShortMessage"
                     android:background="@color/transparant"/>
 
                 <ImageView
@@ -197,6 +187,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Instagram"
+                    android:inputType="textShortMessage"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -222,6 +213,7 @@
                     android:layout_height="wrap_content"
                     android:text="Twiter"
                     android:textColor="@color/black"
+                    android:inputType="textShortMessage"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
 
@@ -254,6 +246,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Alamat"
+                    android:inputType="textShortMessage"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -278,6 +271,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="RT/RW"
+                    android:inputType="textShortMessage"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -302,6 +296,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Kelurahan"
+                    android:inputType="textShortMessage"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -328,6 +323,7 @@
                     android:text="Kecamatan"
                     android:textColor="@color/black"
                     android:textSize="18sp"
+                    android:inputType="textShortMessage"
                     android:background="@color/transparant"/>
 
                 <ImageView
@@ -341,6 +337,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Provinsi"
+                    android:inputType="textShortMessage"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -355,6 +352,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Kabupaten"
+                    android:inputType="textShortMessage"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -387,6 +385,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="No KTP"
+                    android:inputType="number"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -411,6 +410,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="No KTP"
+                    android:inputType="textPersonName"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -435,6 +435,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Tempat Lahir"
+                    android:inputType="textShortMessage"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -459,6 +460,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Tanggal Lahir"
+                    android:inputType="none"
+                    android:editable="false"
+                    android:clickable="true"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -539,6 +543,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Alamat"
+                    android:inputType="textPostalAddress"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -563,6 +568,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="RT/RW"
+                    android:inputType="textShortMessage"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -587,6 +593,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Kelurahan"
+                    android:inputType="textShortMessage"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>
@@ -611,6 +618,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Kecamatan"
+                    android:inputType="textShortMessage"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:background="@color/transparant"/>

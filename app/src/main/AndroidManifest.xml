@@ -4,8 +4,8 @@
     package="com.genpro.genproprioritas">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -20,10 +20,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="HardcodedDebugMode">
-        <activity android:name=".gallery.GalleryActivity"></activity>
-        <activity android:name=".insertBisnis.InsertBisnisActivity" />
-        <activity android:name=".bisnis.BisnisActivity" />
-        <activity android:name=".askbod.AskBodActivity" />
+        <activity android:name=".drawer.gallery.GalleryActivity"></activity>
+        <activity android:name=".genproBisnis.insertBisnis.InsertBisnisActivity" />
+        <activity android:name=".genproBisnis.bisnis.BisnisActivity" />
+        <activity android:name=".drawer.askbod.AskBodActivity" />
         <activity
             android:name=".Splash"
             android:noHistory="true">
@@ -33,20 +33,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".sejarah.SejarahActivity" />
-        <activity android:name=".visimisi.VisimisiActivity" />
-        <activity android:name=".kegiatan.KegiatanActivity" />
+        <activity android:name=".drawer.sejarah.SejarahActivity" />
+        <activity android:name=".drawer.visimisi.VisimisiActivity" />
+        <activity android:name=".drawer.kegiatan.KegiatanActivity" />
         <activity android:name=".membership.MembershipActivity" />
-        <activity android:name=".gmbgenpro.GMBActivity" />
-        <activity android:name=".search.SearchActivity" />
-        <activity android:name=".editProfile.EditProfileActivity" />
-        <activity android:name=".editBisnis.EditBisnisActivity" />
-        <activity android:name=".detailBisnis.DetailBisnisActivity" />
-        <activity android:name=".register.RegisterActivity" />
+        <activity android:name=".drawer.gmbgenpro.GMBActivity" />
+        <activity android:name=".drawer.search.SearchActivity" />
+        <activity android:name=".logins.editProfile.EditProfileActivity" />
+        <activity android:name=".genproBisnis.editBisnis.EditBisnisActivity" />
+        <activity android:name=".genproBisnis.detailBisnis.DetailBisnisActivity" />
+        <activity android:name=".logins.register.RegisterActivity" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".logins.login.LoginActivity"
             android:exported="true"></activity>
-        <activity android:name=".profile.ProfileActivity" />
+        <activity android:name=".logins.profile.ProfileActivity" />
         <activity android:name=".main.MainActivity" />
     </application>
 

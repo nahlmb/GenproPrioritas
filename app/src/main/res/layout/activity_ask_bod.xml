@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".askbod.AskBodActivity">
+    tools:context=".drawer.askbod.AskBodActivity">
 
     <android.support.design.widget.AppBarLayout
         app:layout_constraintTop_toTopOf="parent"

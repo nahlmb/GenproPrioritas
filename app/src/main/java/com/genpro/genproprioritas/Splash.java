@@ -4,10 +4,9 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.WindowManager;
 
-import com.genpro.genproprioritas.login.LoginActivity;
+import com.genpro.genproprioritas.logins.login.LoginActivity;
 
 public class Splash extends AppCompatActivity {
     //Set waktu lama splashscreen

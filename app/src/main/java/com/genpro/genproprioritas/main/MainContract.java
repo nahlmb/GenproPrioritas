@@ -21,8 +21,10 @@ public interface MainContract {
         void logOut();
         void showNetworkError();
         void showPopUpMore(android.view.View view);
+        void showPopMoreListBisnis(android.view.View view);
         void refreshData();
         void showBottomSheet();
+        void goToBisnis();
     }
 
     interface Presenter {

@@ -26,25 +26,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.genpro.genproprioritas.askbod.AskBodActivity;
-import com.genpro.genproprioritas.bisnis.BisnisActivity;
+import com.genpro.genproprioritas.drawer.askbod.AskBodActivity;
+import com.genpro.genproprioritas.genproBisnis.bisnis.BisnisActivity;
 import com.genpro.genproprioritas.R;
-import com.genpro.genproprioritas.detailBisnis.DetailBisnisActivity;
-import com.genpro.genproprioritas.gallery.GalleryActivity;
-import com.genpro.genproprioritas.gmbgenpro.GMBActivity;
-import com.genpro.genproprioritas.kegiatan.KegiatanActivity;
-import com.genpro.genproprioritas.login.LoginActivity;
+import com.genpro.genproprioritas.genproBisnis.detailBisnis.DetailBisnisActivity;
+import com.genpro.genproprioritas.drawer.gallery.GalleryActivity;
+import com.genpro.genproprioritas.drawer.gmbgenpro.GMBActivity;
+import com.genpro.genproprioritas.drawer.kegiatan.KegiatanActivity;
+import com.genpro.genproprioritas.logins.login.LoginActivity;
 import com.genpro.genproprioritas.membership.MembershipActivity;
 import com.genpro.genproprioritas.model.Bisnis;
-import com.genpro.genproprioritas.profile.ProfileActivity;
-import com.genpro.genproprioritas.search.SearchActivity;
-import com.genpro.genproprioritas.sejarah.SejarahActivity;
-import com.genpro.genproprioritas.visimisi.VisimisiActivity;
+import com.genpro.genproprioritas.logins.profile.ProfileActivity;
+import com.genpro.genproprioritas.drawer.search.SearchActivity;
+import com.genpro.genproprioritas.drawer.sejarah.SejarahActivity;
+import com.genpro.genproprioritas.drawer.visimisi.VisimisiActivity;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -79,7 +80,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     ActionBarDrawerToggle drawerToggle;
 
     //Bisnis
+    ImageView moreListBisnis;
     RecyclerView recyclerViewBisnis;
+    LinearLayout linearBisnisWarning;
+    Button btnSelengkapnya;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +136,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         //List Bisnis
         recyclerViewBisnis = findViewById(R.id.rv_list_bisnis_main);
+        linearBisnisWarning = findViewById(R.id.linear_peringatan_belum_ada_bisnis);
+        btnSelengkapnya = findViewById(R.id.btn_selengkapnya);
+        moreListBisnis = findViewById(R.id.more_list_bisnis);
+        btnSelengkapnya.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToBisnis();
+            }
+        });
+        moreListBisnis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopMoreListBisnis(v);
+            }
+        });
 
 
         //swipe refresh
@@ -229,8 +248,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             recyclerViewBisnis.setLayoutManager(linearLayoutManager);
             recyclerViewBisnis.setNestedScrollingEnabled(true);
             adapterListBisnis.notifyDataSetChanged();
+            recyclerViewBisnis.setVisibility(View.VISIBLE);
+            linearBisnisWarning.setVisibility(View.GONE);
         }else {
             recyclerViewBisnis.setAdapter(null);
+            linearBisnisWarning.setVisibility(View.VISIBLE);
+            recyclerViewBisnis.setVisibility(View.GONE);
         }
     }
 
@@ -349,6 +372,25 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
+    public void showPopMoreListBisnis(View view) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        popupMenu.inflate(R.menu.menu_bisnis_main);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.selengkapnya_pop :
+                        goToBisnis();
+                        break;
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+
+    }
+
+    @Override
     public void refreshData() {
         swLayout.setColorSchemeResources(R.color.colorAccent,R.color.colorPrimary);
         swLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -381,7 +423,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         String qrCodeString = sharedPreferences.getString("noAnggota", "");
 
-        if(qrCodeString != null){
+        if(qrCodeString != null && qrCodeString.length()>2){
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
             try {
                 BitMatrix bitMatrix = multiFormatWriter.encode(qrCodeString, BarcodeFormat.QR_CODE, 500, 500);
@@ -397,6 +439,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
 
         bottomSheetDialog.show();
+
+    }
+
+    @Override
+    public void goToBisnis() {
+        Intent goToBisnis = new Intent(MainActivity.this, BisnisActivity.class);
+        startActivity(goToBisnis);
 
     }
 

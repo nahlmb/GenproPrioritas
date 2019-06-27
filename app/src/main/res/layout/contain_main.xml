@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -153,8 +153,8 @@
 
                             <android.support.constraint.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:paddingStart="12dp"
-                                android:paddingEnd="12dp"
+                                android:paddingStart="24dp"
+                                android:paddingEnd="24dp"
                                 android:layout_height="wrap_content">
 
                                 <TextView
@@ -168,6 +168,7 @@
                                     android:textSize="18sp"/>
 
                                 <ImageView
+                                    android:id="@+id/more_list_bisnis"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     android:layout_width="wrap_content"
@@ -178,11 +179,49 @@
 
                             </android.support.constraint.ConstraintLayout>
 
+                            <LinearLayout
+                                android:id="@+id/linear_peringatan_belum_ada_bisnis"
+                                android:layout_marginTop="16dp"
+                                android:visibility="visible"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/no_bisnis_warning"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/black"
+                                    android:paddingStart="24dp"
+                                    android:paddingEnd="24dp"/>
+
+                                <Button
+                                    android:id="@+id/btn_selengkapnya"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="36dp"
+                                    android:textColor="@color/white"
+                                    android:background="@drawable/shape_golden_r_5"
+                                    android:text="selengkapnya"
+                                    android:textSize="12sp"
+                                    android:layout_marginStart="24dp"
+                                    android:layout_marginEnd="24dp"
+                                    android:layout_marginTop="16dp"
+                                    android:paddingStart="8dp"
+                                    android:paddingEnd="8dp"
+                                    android:drawablePadding="6dp"
+                                    />
+
+                            </LinearLayout>
+
                             <android.support.v7.widget.RecyclerView
-                                android:layout_marginTop="24dp"
                                 android:id="@+id/rv_list_bisnis_main"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                                android:paddingTop="24dp"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/item_list_bisnis_black">
+                            </android.support.v7.widget.RecyclerView>
+
 
 
                         </LinearLayout>

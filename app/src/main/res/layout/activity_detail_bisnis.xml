@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".detailBisnis.DetailBisnisActivity">
+    tools:context=".genproBisnis.detailBisnis.DetailBisnisActivity">
 
     <android.support.design.widget.AppBarLayout
         app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +47,7 @@
                     />
 
                 <ImageButton
-                    android:id="@+id/icon_more_profile"
+                    android:id="@+id/icon_more_detail_bisnis"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
