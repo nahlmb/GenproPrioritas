@@ -56,7 +56,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
     <LinearLayout
         android:padding="10dp"
         android:layout_width="match_parent"

@@ -57,52 +57,53 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <!--<LinearLayout-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
-            <ImageView
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/p1"
-                android:scaleType="fitCenter"
-                android:layout_height="200dp" />
+            <!--<ImageView-->
+                <!--android:id="@+id/gallery_img1"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:scaleType="centerCrop"-->
+                <!--android:layout_height="200dp" />-->
 
-            <ImageView
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/p2"
-                android:scaleType="fitCenter"
-                android:layout_height="200dp" />
+            <!--<ImageView-->
+                <!--android:id="@+id/gallery_img2"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:background="@drawable/p2"-->
+                <!--android:scaleType="fitCenter"-->
+                <!--android:layout_height="200dp" />-->
 
-            <ImageView
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/p3"
-                android:scaleType="fitCenter"
-                android:layout_height="200dp" />
+            <!--<ImageView-->
+                <!--android:id="@+id/gallery_img3"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:background="@drawable/p3"-->
+                <!--android:scaleType="fitCenter"-->
+                <!--android:layout_height="200dp" />-->
 
-            <ImageView
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:background="@drawable/p4"
-                android:scaleType="fitCenter"
-                android:layout_height="200dp" />
+            <!--<ImageView-->
+                <!--android:id="@+id/gallery_img4"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:background="@drawable/p4"-->
+                <!--android:scaleType="fitCenter"-->
+                <!--android:layout_height="200dp" />-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
-    </ScrollView>
+    <!--</ScrollView>-->
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/rv_gallery"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
 
 </LinearLayout>

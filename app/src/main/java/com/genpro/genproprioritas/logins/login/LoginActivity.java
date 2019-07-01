@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.genpro.genproprioritas.R;
+import com.genpro.genproprioritas.logins.forgotPassword.ForgotPasswordActivity;
 import com.genpro.genproprioritas.main.MainActivity;
 import com.genpro.genproprioritas.logins.register.RegisterActivity;
 
@@ -114,5 +115,10 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         startActivity(goToMain);
         finish();
 
+    }
+
+    public void goToForgotPassword(View view) {
+        Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+        startActivity(intent);
     }
 }

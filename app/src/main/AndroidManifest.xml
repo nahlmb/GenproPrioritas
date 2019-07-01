@@ -20,7 +20,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="HardcodedDebugMode">
-        <activity android:name=".drawer.gallery.GalleryActivity"></activity>
+        <activity android:name=".logins.forgotPassword.ForgotPasswordActivity"
+            android:parentActivityName=".logins.login.LoginActivity"/>
+        <activity android:name=".drawer.gallery.GalleryActivity" />
         <activity android:name=".genproBisnis.insertBisnis.InsertBisnisActivity" />
         <activity android:name=".genproBisnis.bisnis.BisnisActivity" />
         <activity android:name=".drawer.askbod.AskBodActivity" />
@@ -45,7 +47,7 @@
         <activity android:name=".logins.register.RegisterActivity" />
         <activity
             android:name=".logins.login.LoginActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity android:name=".logins.profile.ProfileActivity" />
         <activity android:name=".main.MainActivity" />
     </application>
