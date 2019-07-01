@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import com.genpro.genproprioritas.Error_Handler;
 import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.drawer.gmbgenpro.GMBActivity;
+import com.genpro.genproprioritas.logins.login.LoginActivity;
 import com.genpro.genproprioritas.main.MainActivity;
 
 public class ForgotPasswordActivity extends AppCompatActivity implements ForgotPasswordInterface.View {
@@ -34,7 +35,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
     }
 
     public void goToMainMenu(View view) {
-        Intent intent = new Intent(ForgotPasswordActivity.this, MainActivity.class);
+        Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
@@ -126,6 +127,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimary));
+
 
 
     }
