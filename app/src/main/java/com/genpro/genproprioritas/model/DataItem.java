@@ -2,12 +2,10 @@ package com.genpro.genproprioritas.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class Member{
+public class DataItem{
 
 	@SerializedName("nama_depan")
-	private String namaDepan;
+	private Object namaDepan;
 
 	@SerializedName("user_id")
 	private String userId;
@@ -18,22 +16,32 @@ public class Member{
 	@SerializedName("nama_belakang")
 	private String namaBelakang;
 
-	private List<Member> members;
-
-	public List<Member> getMembers() {
-		return members;
+	public void setNamaDepan(Object namaDepan){
+		this.namaDepan = namaDepan;
 	}
 
-	public String getNamaDepan(){
+	public Object getNamaDepan(){
 		return namaDepan;
+	}
+
+	public void setUserId(String userId){
+		this.userId = userId;
 	}
 
 	public String getUserId(){
 		return userId;
 	}
 
+	public void setNoAnggota(String noAnggota){
+		this.noAnggota = noAnggota;
+	}
+
 	public String getNoAnggota(){
 		return noAnggota;
+	}
+
+	public void setNamaBelakang(String namaBelakang){
+		this.namaBelakang = namaBelakang;
 	}
 
 	public String getNamaBelakang(){

@@ -40,7 +40,7 @@ import com.genpro.genproprioritas.drawer.gallery.GalleryActivity;
 import com.genpro.genproprioritas.drawer.gmbgenpro.GMBActivity;
 import com.genpro.genproprioritas.drawer.kegiatan.KegiatanActivity;
 import com.genpro.genproprioritas.logins.login.LoginActivity;
-import com.genpro.genproprioritas.membership.MembershipActivity;
+import com.genpro.genproprioritas.drawer.membership.MembershipActivity;
 import com.genpro.genproprioritas.model.Bisnis;
 import com.genpro.genproprioritas.logins.profile.ProfileActivity;
 import com.genpro.genproprioritas.drawer.search.SearchActivity;
