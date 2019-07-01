@@ -1,22 +1,14 @@
-package com.genpro.genproprioritas.membership;
+package com.genpro.genproprioritas.drawer.membership;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.genpro.genproprioritas.R;
-import com.genpro.genproprioritas.main.AdapterListBisnis;
-import com.genpro.genproprioritas.main.MainActivity;
-import com.genpro.genproprioritas.model.Member;
 import com.genpro.genproprioritas.model.Membership;
 
 import java.util.List;
@@ -57,10 +49,10 @@ public class MembershipActivity extends AppCompatActivity implements MembershipC
     }
 
     @Override
-    public void showMembers(List<Member> members) {
-        Toast.makeText(this, "show members", Toast.LENGTH_SHORT).show();
-        if(members != null && members.size()>0){
-            MembershipAdapter membershipAdapter = new MembershipAdapter(this, members);
+    public void showMembers(List<Membership.DataItem> dataItems) {
+        Toast.makeText(this, "show data", Toast.LENGTH_SHORT).show();
+        if(dataItems != null && dataItems.size()>0){
+            MembershipAdapter membershipAdapter = new MembershipAdapter(this, dataItems);
             rvMembership.setAdapter(membershipAdapter);
             StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
             rvMembership.setLayoutManager(staggeredGridLayoutManager);

@@ -1,4 +1,4 @@
-package com.genpro.genproprioritas.membership;
+package com.genpro.genproprioritas.drawer.membership;
 
 import android.util.Log;
 
@@ -6,10 +6,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.ParsedRequestListener;
-import com.genpro.genproprioritas.model.Member;
 import com.genpro.genproprioritas.model.Membership;
-
-import java.util.List;
 
 public class MembershipPresenter implements MembershipContract.Presenter {
     MembershipContract.View view;
@@ -20,16 +17,15 @@ public class MembershipPresenter implements MembershipContract.Presenter {
 
     @Override
     public void getMembers() {
-        view.somethingFailed("get members..");
+        view.somethingFailed("get data..");
         AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/users/get_all_users/")
                 .setPriority(Priority.HIGH)
                 .build()
-                .getAsObject(Membership.class, new ParsedRequestListener<Member>() {
-
+                .getAsObject(Membership.class, new ParsedRequestListener<Membership>() {
 
                     @Override
-                    public void onResponse(Member response) {
-                        view.showMembers(response.getMembers());
+                    public void onResponse(Membership response) {
+                        view.showMembers(response.getData());
 
                     }
 

@@ -1,9 +1,7 @@
-package com.genpro.genproprioritas.membership;
+package com.genpro.genproprioritas.drawer.membership;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,18 +9,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.genpro.genproprioritas.R;
-import com.genpro.genproprioritas.model.Member;
 import com.genpro.genproprioritas.model.Membership;
 
 import java.util.List;
 
 public class MembershipAdapter extends RecyclerView.Adapter<MembershipAdapter.ViewHolder> {
     Context context;
-    List<Member> members;
+    List<Membership.DataItem> data;
 
-    public MembershipAdapter(Context context, List<Member> members) {
+    public MembershipAdapter(Context context, List<Membership.DataItem> data) {
         this.context = context;
-        this.members = members;
+        this.data = data;
     }
 
     @NonNull
@@ -34,21 +31,25 @@ public class MembershipAdapter extends RecyclerView.Adapter<MembershipAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.namaUser.setText(members.get(i).getNamaDepan() + " " + members.get(i).getNamaBelakang());
-        viewHolder.noAnggotaUser.setText("No Anggota : " + members.get(i).getNoAnggota());
+        if(data != null && data.size()>0){
+            viewHolder.namaUser.setText(data.get(i).getNamaDepan() + " " + data.get(i).getNamaBelakang());
+            viewHolder.noAnggotaUser.setText(data.get(i).getNoAnggota());
+        }
     }
 
     @Override
     public int getItemCount() {
-        return members.size();
+        return data.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView namaUser, noAnggotaUser;
+
         public ViewHolder(@NonNull View itemView) {
+
             super(itemView);
-            itemView.findViewById(R.id.txt_member_name);
-            itemView.findViewById(R.id.txt_no_anggota);
+            namaUser = itemView.findViewById(R.id.txt_member_name_item);
+            noAnggotaUser = itemView.findViewById(R.id.txt_no_anggota_item);
         }
 
 

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".membership.MembershipActivity"
-    android:background="@color/abu_sedang"
+    tools:context=".drawer.membership.MembershipActivity"
+    android:background="@color/abu_muda"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout

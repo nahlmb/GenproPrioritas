@@ -38,7 +38,7 @@
         <activity android:name=".drawer.sejarah.SejarahActivity" />
         <activity android:name=".drawer.visimisi.VisimisiActivity" />
         <activity android:name=".drawer.kegiatan.KegiatanActivity" />
-        <activity android:name=".membership.MembershipActivity" />
+        <activity android:name=".drawer.membership.MembershipActivity" />
         <activity android:name=".drawer.gmbgenpro.GMBActivity" />
         <activity android:name=".drawer.search.SearchActivity" />
         <activity android:name=".logins.editProfile.EditProfileActivity" />
