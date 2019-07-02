@@ -172,7 +172,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     @Override
     public void showProfileUtamaUser() {
         SharedPreferences userInformation = getSharedPreferences("userInfo", MODE_PRIVATE);
-        namaUser.setText(userInformation.getString("namaDepan", "") + userInformation.getString("namaBelakang", ""));
+        namaUser.setText(userInformation.getString("namaDepan", "") + " " + userInformation.getString("namaBelakang", ""));
         if(userInformation.getString("namaDepan", "").equals("null")){ namaUser.setText("Belum ada nama"); }
         emailUser.setText(userInformation.getString("email", ""));
 
