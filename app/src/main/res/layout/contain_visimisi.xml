@@ -33,14 +33,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:textStyle="bold"
             android:text="Visi"
             android:layout_margin="6dp"
             android:textColor="#3d3838"/>
 
         <TextView
             android:textColor="#3d3838"
-            android:textStyle="bold"
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:layout_width="wrap_content"
