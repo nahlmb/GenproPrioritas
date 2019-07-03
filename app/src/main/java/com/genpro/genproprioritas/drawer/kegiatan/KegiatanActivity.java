@@ -1,6 +1,7 @@
 package com.genpro.genproprioritas.drawer.kegiatan;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -11,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.genpro.genproprioritas.Error_Handler;
 import com.genpro.genproprioritas.R;
@@ -19,6 +21,7 @@ import com.genpro.genproprioritas.main.MainActivity;
 public class KegiatanActivity extends AppCompatActivity implements KegiatanInterface.View {
 
     WebView view;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class KegiatanActivity extends AppCompatActivity implements KegiatanInter
     @Override
     public void showWebView() {
         view = (WebView) this.findViewById(R.id.webview_kegiatan);
+        progressBar = findViewById(R.id.progress_bar);
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new KegiatanActivity.MyBrowser1());
         //ini manggil url web dari webview-nya
@@ -43,6 +47,20 @@ public class KegiatanActivity extends AppCompatActivity implements KegiatanInter
         }
 
         view.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                progressBar.setVisibility(View.VISIBLE);
+                setTitle("Loading...");
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                progressBar.setVisibility(View.GONE);
+                setTitle(view.getTitle());
+            }
 
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
