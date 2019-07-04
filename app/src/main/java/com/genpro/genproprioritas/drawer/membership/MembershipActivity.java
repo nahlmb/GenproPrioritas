@@ -50,7 +50,6 @@ public class MembershipActivity extends AppCompatActivity implements MembershipC
 
     @Override
     public void showMembers(List<Membership.DataItem> dataItems) {
-        Toast.makeText(this, "show data", Toast.LENGTH_SHORT).show();
         if(dataItems != null && dataItems.size()>0){
             MembershipAdapter membershipAdapter = new MembershipAdapter(this, dataItems);
             rvMembership.setAdapter(membershipAdapter);

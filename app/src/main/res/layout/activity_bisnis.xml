@@ -27,8 +27,8 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp">
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
 
                 <ImageView
                     android:id="@+id/back_bisnis"
@@ -36,9 +36,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_width="wrap_content"
-                    android:onClick="goToMainMenu"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_arrow_back_white_24dp"/>
+                    android:layout_height="0dp"
+                    android:src="@drawable/ic_arrow_back_white_24dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"

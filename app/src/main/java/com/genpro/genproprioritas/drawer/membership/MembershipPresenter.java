@@ -17,7 +17,6 @@ public class MembershipPresenter implements MembershipContract.Presenter {
 
     @Override
     public void getMembers() {
-        view.somethingFailed("get data..");
         AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/users/get_all_users/")
                 .setPriority(Priority.HIGH)
                 .build()

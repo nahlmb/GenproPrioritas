@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ public class InsertBisnisActivity extends AppCompatActivity implements InsertBis
     Spinner spnInsertBisnis1, spnInsertBisnis2;
     Button saveBisnisButton;
     SharedPreferences userInfoSharedpref;
+    ImageView backInsertBisnis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +43,24 @@ public class InsertBisnisActivity extends AppCompatActivity implements InsertBis
         edtInsertBisnis9 = findViewById(R.id.edt_nama_bisnis_lain_bisnis);
 
 
+
         // spinner
         spnInsertBisnis1 = findViewById(R.id.spn_bisnis_jenis_bisnis);
         spnInsertBisnis2 = findViewById(R.id.spn_bisnis_omset_bisnis);
 
         //click event
+        backInsertBisnis = findViewById(R.id.back_insert_bisnis);
         saveBisnisButton = findViewById(R.id.btn_save_new_bisnis);
         saveBisnisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 buttonBuatBisnisBaruClicked();
+            }
+        });
+        backInsertBisnis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }
