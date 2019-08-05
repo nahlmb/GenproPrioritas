@@ -7,16 +7,59 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.androidnetworking.interfaces.UploadProgressListener;
 import com.genpro.genproprioritas.model.Bisnis;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
 
 public class MainPresenter implements MainContract.Presenter {
     MainContract.View view;
 
     public MainPresenter(MainContract.View view) {
         this.view = view;
+    }
+
+    @Override
+    public void getProfileImage(String userId, File file) {
+        AndroidNetworking.upload("http://genprodev.lavenderprograms.com/apigw/users/update_profile_photo/")
+                .setPriority(Priority.HIGH)
+                .addMultipartFile("pic", file)
+                .addMultipartParameter("user_id", userId)
+                .build()
+                .setUploadProgressListener(new UploadProgressListener() {
+                    @Override
+                    public void onProgress(long bytesUploaded, long totalBytes) {
+                        view.showLoading();
+
+                    }
+                }).getAsJSONObject(new JSONObjectRequestListener() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if(response!=null){
+                    try {
+                        if(response.getString("error").equals("false")){
+                            String pic = response.getJSONObject("data").getString("picture");
+                            view.uploadPhotoSucces(pic);
+                        }else {
+                            view.someThingFailed(response.getString("msg"));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        view.someThingFailed(e.getLocalizedMessage());
+                    }
+
+                    view.hideLoading();
+                }
+            }
+
+            @Override
+            public void onError(ANError anError) {
+                view.someThingFailed(anError.getLocalizedMessage());
+            }
+        });
     }
 
     @Override

@@ -27,7 +27,11 @@
 
                 <ImageView
                     android:layout_width="98dp"
+                    android:layout_marginRight="64dp"
                     android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:src="@drawable/genpro_logo_white"
                     />

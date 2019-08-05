@@ -6,7 +6,9 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
@@ -52,9 +54,16 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View, PopupMenu.OnMenuItemClickListener, NavigationView.OnNavigationItemSelectedListener {
+
+    static final int REQUEST_TAKE_PHOTO = 1;
+    static final int REQUEST_CHOOSE_PHOTO = 2;
 
     // Swipe
     SwipeRefreshLayout swLayout;
@@ -80,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     ActionBarDrawerToggle drawerToggle;
 
     //Bisnis
-    ImageView moreListBisnis;
+    ImageView moreListBisnis, mainImg;
     RecyclerView recyclerViewBisnis;
     LinearLayout linearBisnisWarning;
     Button btnSelengkapnya;
@@ -91,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         setContentView(R.layout.activity_main);
 
         initToolbar();
+
+        mainImg = findViewById(R.id.img_account_profile);
 
         //Shared Preference
         sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
@@ -165,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 showBottomSheet();
             }
         });
-
+        showProfileImageToImageView();
     }
 
 
@@ -191,6 +202,73 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
 
         }
+
+    @Override
+    public void showProfileImage(File imageFile) {
+        presenter.getProfileImage(sharedPreferences.getString("userId", ""),imageFile);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK){
+            Bundle extras = data.getExtras();
+            final Bitmap bitmap = (Bitmap) extras.get("data");
+            //ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            //bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+
+            File filesDir = getApplicationContext().getFilesDir();
+            File imageFile = new File(filesDir, "image" + ".jpg");
+
+            OutputStream os;
+            try {
+                os = new FileOutputStream(imageFile);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                os.flush();
+                os.close();
+
+            } catch (Exception e) {
+                Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+            }
+
+            showProfileImage(imageFile);
+
+        }else if (requestCode == REQUEST_CHOOSE_PHOTO && resultCode == RESULT_OK){
+
+            try {
+                Uri uri = data.getData();
+                Bitmap bitmap = (Bitmap) MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+
+                //ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                //bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+
+                File filesDir = getApplicationContext().getFilesDir();
+                File imageFile = new File(filesDir, "image" + ".jpg");
+
+                OutputStream os;
+                os = new FileOutputStream(imageFile);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                os.flush();
+                os.close();
+
+                /*try {
+                    os = new FileOutputStream(imageFile);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                    os.flush();
+                    os.close();
+
+                } catch (Exception e) {
+                    Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+                }*/
+
+                showProfileImage(imageFile);
+            } catch (IOException e) {
+                Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+                e.printStackTrace();
+            }
+
+        }
+    }
 
     @Override
     public void saveUserInfo(String[] dataUmum, String[] dataDomisili, String[] dataKtp) {
@@ -279,7 +357,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             actionbar.setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
-
         }
 
         drawerLayout = findViewById(R.id.drawer_main);
@@ -446,6 +523,18 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void goToBisnis() {
         Intent goToBisnis = new Intent(MainActivity.this, BisnisActivity.class);
         startActivity(goToBisnis);
+
+    }
+
+    @Override
+    public void showProfileImageToImageView() {
+        if(sharedPreferences.getString("userInfo","") != null){
+            Glide.with(this).load(sharedPreferences.getString("picture", "")).into(mainImg);
+        }
+    }
+
+    @Override
+    public void uploadPhotoSucces(String photo) {
 
     }
 
