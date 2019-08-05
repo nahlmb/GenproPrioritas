@@ -1,5 +1,9 @@
 package com.genpro.genproprioritas.logins.editProfile;
 
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
@@ -8,9 +12,12 @@ import com.androidnetworking.interfaces.UploadProgressListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.File;
+import java.lang.reflect.Array;
 
-public class EditProfilePresenter implements EditProfileContract.Presenter{
+public class EditProfilePresenter implements EditProfileContract.Presenter {
     EditProfileContract.View view;
+    int SUCCESS_FULL_PUSH_CODE = 1000;
+    boolean[] booleans = {false, false, false};
 
     public EditProfilePresenter(EditProfileContract.View view) {
         this.view = view;
@@ -18,6 +25,7 @@ public class EditProfilePresenter implements EditProfileContract.Presenter{
 
     @Override
     public void pushEditProfile(String[] dataUmum, String[] dataDomisili, String[] dataKtp) {
+        view.showLoading();
         pushDataUmum(dataUmum);
         pushDataDomisili(dataDomisili);
         pushDataKtp(dataKtp);
@@ -25,6 +33,8 @@ public class EditProfilePresenter implements EditProfileContract.Presenter{
 
     @Override
     public void pushDataUmum(String[] dataUmum) {
+//        view.showLoading();
+
         AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/users/update_profile_umum/")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_id", dataUmum[0])
@@ -38,13 +48,16 @@ public class EditProfilePresenter implements EditProfileContract.Presenter{
                 .addBodyParameter("twitter", dataUmum[8])
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
+
                     @Override
                     public void onResponse(JSONObject response) {
-                        if(response != null){
+                        if (response != null) {
                             try {
-                                if(response.getString("error").equals("false")){
-                                    view.updateSucces();
-                                }else if(response.getString("error").equals("true")){
+                                if (response.getString("error").equals("false")) {
+                                    booleans[0] = true;
+                                    if(booleans[0] == true && booleans[1] == true && booleans[2] == true){view.updateSucces();}
+                                    Log.d("BOOLEANS" , java.util.Arrays.toString(booleans));
+                                } else if (response.getString("error").equals("true")) {
                                     view.updateFailed(response.getString("msg"));
                                 }
                             } catch (JSONException e) {
@@ -57,7 +70,6 @@ public class EditProfilePresenter implements EditProfileContract.Presenter{
                     @Override
                     public void onError(ANError anError) {
                         view.updateFailed(anError.getLocalizedMessage());
-
                     }
                 });
 
@@ -65,6 +77,7 @@ public class EditProfilePresenter implements EditProfileContract.Presenter{
 
     @Override
     public void pushDataDomisili(String[] dataDomisili) {
+//        view.showLoading();
         AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/users/update_profile_domisili/")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_id", dataDomisili[0])
@@ -76,13 +89,16 @@ public class EditProfilePresenter implements EditProfileContract.Presenter{
                 .addBodyParameter("kecamatan_domisili", dataDomisili[6])
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
+
                     @Override
                     public void onResponse(JSONObject response) {
-                        if(response != null){
+                        if (response != null) {
                             try {
-                                if(response.getString("error").equals("false")){
-                                    view.updateSucces();
-                                }else if(response.getString("error").equals("true")){
+                                if (response.getString("error").equals("false")) {
+                                    booleans[1] = true;
+                                    if(booleans[0] == true && booleans[1] == true && booleans[2] == true){view.updateSucces();}
+                                    Log.d("BOOLEANS" , java.util.Arrays.toString(booleans));
+                                } else if (response.getString("error").equals("true")) {
                                     view.updateFailed(response.getString("msg"));
                                 }
                             } catch (JSONException e) {
@@ -99,7 +115,6 @@ public class EditProfilePresenter implements EditProfileContract.Presenter{
 
                     }
                 });
-
     }
 
     @Override
@@ -125,17 +140,24 @@ public class EditProfilePresenter implements EditProfileContract.Presenter{
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        if(response != null){
+
+
+                        if (response != null) {
                             try {
-                                if(response.getString("error").equals("false")){
-                                    view.updateSucces();
-                                }else if(response.getString("error").equals("true")){
+                                if (response.getString("error").equals("false")) {
+//                                    view.isPushKtpSucces();
+                                    booleans[2] = true;
+                                    if(booleans[0] == true && booleans[1] == true && booleans[2] == true){view.updateSucces();}
+                                    Log.d("BOOLEANS" , java.util.Arrays.toString(booleans));
+                                } else if (response.getString("error").equals("true")) {
                                     view.updateFailed(response.getString("msg"));
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 view.updateFailed(e.getLocalizedMessage());
                             }
+
+
                         }
 
                     }
@@ -143,8 +165,8 @@ public class EditProfilePresenter implements EditProfileContract.Presenter{
                     @Override
                     public void onError(ANError anError) {
                         view.updateFailed(anError.getLocalizedMessage());
-
                     }
+
                 });
 
     }
@@ -172,4 +194,6 @@ public class EditProfilePresenter implements EditProfileContract.Presenter{
             }
         });
     }
+
 }
+

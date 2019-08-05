@@ -44,7 +44,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     //tools
     ProfilePresenter presenter;
     SharedPreferences.Editor editorUserInformation;
+
     SharedPreferences userInformation;
+    SharedPreferences newUserInformation;
     Dialog loading;
     SwipeRefreshLayout swLayout;
 
@@ -81,8 +83,6 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        presenter = new ProfilePresenter(this);
-
         //Shared pref
         editorUserInformation = getSharedPreferences("userInfo", MODE_PRIVATE).edit();
         userInformation = getSharedPreferences("userInfo", MODE_PRIVATE);
@@ -97,25 +97,12 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         backIcon = findViewById(R.id.back_profile);
         moreIcon = findViewById(R.id.icon_more_profile);
 
-        backIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        moreIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopUpMore(v);
-            }
-        });
 
         //profile utama
         profilPic = findViewById(R.id.img_profile_pic);
         namaUser = findViewById(R.id.txt_profile_nama_user);
         emailUser = findViewById(R.id.txt_profile_email_user);
-        showProfileUtamaUser();
+
 
         //profile umum
         txtProfileUmum1 = findViewById(R.id.txt_profile_umum_1);
@@ -148,12 +135,31 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         txtProfileKtp13 = findViewById(R.id.txt_profile_ktp_13);
         txtProfileKtp14 = findViewById(R.id.txt_profile_ktp_14);
 
+        presenter = new ProfilePresenter(this);
         presenter.getUserInfo(userInformation.getString("userId", ""));
-        showAllUserInfo();
+
+        newUserInformation = getSharedPreferences("userInfo", MODE_PRIVATE);
 
         //SwipeRefreshLayout
         swLayout = findViewById(R.id.swlayout_profile);
         refreshData();
+
+        backIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        moreIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopUpMore(v);
+            }
+        });
+
+        Log.d("PROFILE", "Yes is on the on create of Profile Activity");
+        showAllUserInfo();
 
     }
 
@@ -171,8 +177,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
     @Override
     public void showProfileUtamaUser() {
-        SharedPreferences userInformation = getSharedPreferences("userInfo", MODE_PRIVATE);
-        namaUser.setText(userInformation.getString("namaDepan", "") + " " + userInformation.getString("namaBelakang", ""));
+        namaUser.setText(newUserInformation.getString("namaDepan", "") + " " + userInformation.getString("namaBelakang", ""));
         if(userInformation.getString("namaDepan", "").equals("null")){ namaUser.setText("Belum ada nama"); }
         emailUser.setText(userInformation.getString("email", ""));
 
@@ -184,23 +189,23 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     @Override
     public void showAllUserInfo() {
         setProfileUmum();
+        showProfileUtamaUser();
         setProfileDomisili();
         setProfileKtp();
+        Log.d("PROFILE", "SHOW THE DATA");
     }
 
     @Override
     public void setProfileUmum() {
-        SharedPreferences userInformation = getSharedPreferences("userInfo", MODE_PRIVATE);
-
 
         //set TextView profile umum
         String strEmail, strNamaDepan,
                 strNamaBelakang, strAktifasi, strMasaAktif;
 
-        strNamaDepan = userInformation.getString("namaDepan", "");
-        strNamaBelakang = userInformation.getString("namaBelakang", "");
-        strEmail = userInformation.getString("email", "");
-        strAktifasi = userInformation.getString("aktifasi", "");
+        strNamaDepan = newUserInformation.getString("namaDepan", "");
+        strNamaBelakang = newUserInformation.getString("namaBelakang", "");
+        strEmail = newUserInformation.getString("email", "");
+        strAktifasi = newUserInformation.getString("aktifasi", "");
 
         String noData = " - ";
 
@@ -215,14 +220,14 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         if(strNamaBelakang.equals("")){
             txtProfileUmum2.setText("Nama belakang : " + noData);
         }else {
-            txtProfileUmum2.setText("Nama belakang : " +strNamaDepan);
+            txtProfileUmum2.setText("Nama belakang : " +strNamaBelakang);
         }
 
         txtProfileUmum3.setText("Email : " + strEmail);
 
-        strMasaAktif = userInformation.getString("masaAktif", "");
+        strMasaAktif = newUserInformation.getString("masaAktif", "");
         if(strAktifasi.equals("false")){
-            strAktifasi = "Status : " + "tidak aktif";
+            strAktifasi = "tidak aktif";
             txtProfileUmum4.setText("Status : " + strAktifasi);
             txtProfileUmum5.setText("Masa Aktif : " + "tidak aktif");
         }else if (strAktifasi.equals("true")){
@@ -235,17 +240,15 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
     @Override
     public void setProfileDomisili() {
-        SharedPreferences userDomisili = getSharedPreferences("userInfo", MODE_PRIVATE);
-
         //set TextView profile domisisli
         String strAlamat, strRtRw, strKelurahan, strKecamatan, strProvinsi, strKabupaten;
 
-        strAlamat = userDomisili.getString("alamatDomisili", "");
-        strRtRw = userDomisili.getString("rtRwDomisili", "");
-        strKelurahan = userDomisili.getString("kelurahanDomisili", "");
-        strKecamatan = userDomisili.getString("kecamatanDomisili", "");
-        strProvinsi = userDomisili.getString("provinsiDomisili", "");
-        strKabupaten = userDomisili.getString("kabupatenDomisili", "");
+        strAlamat = newUserInformation.getString("alamatDomisili", "");
+        strRtRw = newUserInformation.getString("rtRwDomisili", "");
+        strKelurahan = newUserInformation.getString("kelurahanDomisili", "");
+        strKecamatan = newUserInformation.getString("kecamatanDomisili", "");
+        strProvinsi = newUserInformation.getString("provinsiDomisili", "");
+        strKabupaten = newUserInformation.getString("kabupatenDomisili", "");
 
         String noData = " - ";
 
@@ -289,26 +292,24 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
     @Override
     public void setProfileKtp() {
-        SharedPreferences userKtp = getSharedPreferences("userInfo", MODE_PRIVATE);
-
         //set TextView profile ktp
         String strNoKtp, strNama, strTempatLahir, strTanggalLahir, strAgama, strGolonganDarah, strStatus,
                 strJenisKelamin, strAlamat, strRtRw, strKelurahan, strKecamatan, strProvinsi, strKabupaten;
 
-        strNoKtp = userKtp.getString("noKtp", "");
-        strNama = userKtp.getString("namaKtp", "");
-        strTempatLahir = userKtp.getString("tempatLahir", "");
-        strTanggalLahir = userKtp.getString("tanggalLahir", "");
-        strAgama = userKtp.getString("agama", "");
-        strGolonganDarah = userKtp.getString("golonganDarah", "");
-        strStatus = userKtp.getString("status", "");
-        strJenisKelamin = userKtp.getString("jenisKelamin", "");
-        strAlamat = userKtp.getString("alamat", "");
-        strRtRw = userKtp.getString("rtRwKtp", "");
-        strKelurahan = userKtp.getString("kelurahanKtp", "");
-        strKecamatan = userKtp.getString("kecamatanKtp", "");
-        strProvinsi = userKtp.getString("provinsiKtp", "");
-        strKabupaten = userKtp.getString("kabupatenKtp", "");
+        strNoKtp = newUserInformation.getString("noKtp", "");
+        strNama = newUserInformation.getString("namaKtp", "");
+        strTempatLahir = newUserInformation.getString("tempatLahir", "");
+        strTanggalLahir = newUserInformation.getString("tanggalLahir", "");
+        strAgama = newUserInformation.getString("agama", "");
+        strGolonganDarah = newUserInformation.getString("golonganDarah", "");
+        strStatus = newUserInformation.getString("status", "");
+        strJenisKelamin = newUserInformation.getString("jenisKelamin", "");
+        strAlamat = newUserInformation.getString("alamat", "");
+        strRtRw = newUserInformation.getString("rtRwKtp", "");
+        strKelurahan = newUserInformation.getString("kelurahanKtp", "");
+        strKecamatan = newUserInformation.getString("kecamatanKtp", "");
+        strProvinsi = newUserInformation.getString("provinsiKtp", "");
+        strKabupaten = newUserInformation.getString("kabupatenKtp", "");
 
         String noData = " - ";
 
@@ -457,8 +458,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         editorUserInformation.putString("kabupatenKtp", dataKtp[13]);
 
         editorUserInformation.commit();
+        Log.d("PROFILE", "THE DATA IS SAVED!");
         showAllUserInfo();
-
     }
 
     @Override
@@ -534,7 +535,6 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         editorUserInformation
                 .putString("picture", "http://genprodev.lavenderprograms.com/img/mobile_apps/" + photo)
                 .commit();
-
         recreate();
     }
 

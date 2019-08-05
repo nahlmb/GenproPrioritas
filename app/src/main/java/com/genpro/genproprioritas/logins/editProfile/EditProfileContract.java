@@ -8,13 +8,14 @@ public interface EditProfileContract {
         void setTextDataDomisili();
         void setTextDataKtp();
         void setKabupaten(String namaProvinsi, boolean domisili, boolean ktp);
-        void showLogin();
-        void hideLogin();
+        void showLoading();
+        void hideLoading();
         void updateSucces();
         void updateFailed(String message);
         void pushEditProfile();
         void pushPhoto(File imageFile);
-        void getPicFromCamera();
+
+
     }
 
     interface Presenter{

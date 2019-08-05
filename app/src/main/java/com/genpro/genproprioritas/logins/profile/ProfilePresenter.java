@@ -1,12 +1,15 @@
 package com.genpro.genproprioritas.logins.profile;
 
+import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.UploadProgressListener;
+import com.genpro.genproprioritas.logins.editProfile.EditProfileActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +36,6 @@ public class ProfilePresenter implements ProfileContract.Presenter {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-
                             if (response.getString("error").equals("false")) {
                                 //get data profile umum
                                 JSONObject profileUmum = response.getJSONObject("data").getJSONObject("umum");
@@ -88,8 +90,8 @@ public class ProfilePresenter implements ProfileContract.Presenter {
                                 String[] arrayKtp = {noKtp, namaKtp, tanggalLahir, tempatLahir, agama, golonganDarah, jenisKelamin, status,
                                         alamatKtp, rtRwKtp, kelurahanKtp, kecamatanKtp, provinsiKtp, kabupatenKtp};
 
-                                view.hideLoading();
                                 view.saveUserInfo(arrayUmum, arrayDomisili, arrayKtp);
+                                view.hideLoading();
 
                             }else if (response.getString("error").equals("true")){
                                 view.hideLoading();

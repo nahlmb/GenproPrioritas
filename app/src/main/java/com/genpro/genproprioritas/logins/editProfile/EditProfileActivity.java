@@ -1,9 +1,13 @@
 package com.genpro.genproprioritas.logins.editProfile;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -51,6 +55,8 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
 
     //Toolbar
     ImageView back;
+
+    Dialog loading;
 
     //take photo
     static final int REQUEST_TAKE_PHOTO = 1;
@@ -107,6 +113,11 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
         setTextDataUmum();
         setTextDataKtp();
         setTextDataDomisili();
+
+        loading = new Dialog(this);
+        loading.setContentView(R.layout.loading_layout);
+        loading.setCancelable(false);
+        loading.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         btnUpdateProfile = findViewById(R.id.btn_edit_profile);
         btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
@@ -640,24 +651,25 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     }
 
     @Override
-    public void showLogin() {
-
+    public void showLoading() {
+        loading.show();
     }
 
     @Override
-    public void hideLogin() {
+    public void hideLoading() {
+        loading.dismiss();
 
     }
 
     @Override
     public void updateSucces() {
         onBackPressed();
+        Toast.makeText(EditProfileActivity.this, "Sukses mengupdate profil", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void updateFailed(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
@@ -713,14 +725,6 @@ public class EditProfileActivity extends AppCompatActivity implements EditProfil
     @Override
     public void pushPhoto(File imageFile) {
         presenter.pushPhoto(imageFile);
-    }
-
-    @Override
-    public void getPicFromCamera() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-        }
     }
 
     @Override

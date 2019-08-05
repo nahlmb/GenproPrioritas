@@ -86,8 +86,8 @@ public class MainPresenter implements MainContract.Presenter {
                                 String[] arrayKtp = {noKtp, namaKtp, tanggalLahir, tempatLahir, agama, golonganDarah, jenisKelamin, status,
                                         alamatKtp, rtRwKtp, kelurahanKtp, kecamatanKtp, provinsiKtp, kabupatenKtp};
 
-                                view.hideLoading();
                                 view.saveUserInfo(arrayUmum, arrayDomisili, arrayKtp);
+                                view.hideLoading();
 
                             }else if (response.getString("error").equals("true")){
                                 view.hideLoading();
@@ -112,8 +112,6 @@ public class MainPresenter implements MainContract.Presenter {
                         Log.d("netwoking", anError.getErrorBody());
                         Log.d("netwoking", anError.getErrorDetail());
                         Log.d("netwoking", anError.getMessage());
-
-
 
                     }
                 });
