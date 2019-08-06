@@ -27,6 +27,7 @@ public interface MainContract {
         void refreshData();
         void showBottomSheet();
         void goToBisnis();
+        void showIDUser();
         void showProfileImageToImageView();
         void uploadPhotoSucces(String photo);
     }

@@ -1,6 +1,7 @@
 package com.genpro.genproprioritas.main;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -48,6 +49,7 @@ import com.genpro.genproprioritas.logins.profile.ProfileActivity;
 import com.genpro.genproprioritas.drawer.search.SearchActivity;
 import com.genpro.genproprioritas.drawer.sejarah.SejarahActivity;
 import com.genpro.genproprioritas.drawer.visimisi.VisimisiActivity;
+import com.genpro.genproprioritas.model.Membership;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     Dialog loading, error;
     Button btnBackError;
 
-    TextView namaUser, emailUser, statusUser, masaAktifUser;
+    TextView namaUser, emailUser, statusUser, masaAktifUser, IDUser;
     CardView cardProfileUser;
     MainPresenter presenter;
 
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         initToolbar();
 
         mainImg = findViewById(R.id.img_account_profile);
+        IDUser = findViewById(R.id.tv_id_genpro);
 
         //Shared Preference
         sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
@@ -177,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             }
         });
         showProfileImageToImageView();
+        showIDUser();
     }
 
 
@@ -524,6 +528,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Intent goToBisnis = new Intent(MainActivity.this, BisnisActivity.class);
         startActivity(goToBisnis);
 
+    }
+
+    @Override
+    public void showIDUser() {
+        IDUser.setText("genpro - " + sharedPreferences.getString("noAnggota",""));
     }
 
     @Override
