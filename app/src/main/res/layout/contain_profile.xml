@@ -23,7 +23,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="240dp"
+                    android:layout_height="180dp"
                     android:background="@color/black"
                     app:layout_constraintTop_toTopOf="parent"/>
 
@@ -36,9 +36,11 @@
                     android:paddingEnd="24dp">
 
                     <android.support.constraint.ConstraintLayout
-                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:layout_width="300dp"
                         android:background="@drawable/profile_bg"
-                        android:layout_height="wrap_content">
+                        android:layout_height="180dp">
 
                         <ImageView
                             app:layout_constraintTop_toTopOf="parent"
@@ -63,7 +65,7 @@
                             android:id="@+id/img_profile_pic"
                             app:layout_constraintTop_toTopOf="parent"
                             android:layout_width="match_parent"
-                            android:layout_height="304dp"
+                            android:layout_height="170dp"
                             android:background="@color/transparant"
                             android:scaleType="centerCrop"
                             android:layout_marginTop="12dp"/>
