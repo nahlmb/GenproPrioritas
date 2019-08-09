@@ -29,6 +29,8 @@ import com.bumptech.glide.Glide;
 import com.genpro.genproprioritas.R;
 import com.genpro.genproprioritas.logins.editProfile.EditProfileActivity;
 import com.genpro.genproprioritas.main.MainActivity;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -521,7 +523,6 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         });
         choosePhoto.create();
         choosePhoto.show();
-
     }
 
     @Override
@@ -539,12 +540,22 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     }
 
     @Override
+    public void cropImageAutoSelection() {
+        CropImage.activity()
+                .setAspectRatio(1,1)
+                .start(this);
+
+    }
+
+    @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()){
             case R.id.change_profile_pic :
                 //camera premission
                 checkCameraPermission();
-                showDialogTakeImage();
+                cropImageAutoSelection(); /** the new one! **/
+
+                /** showDialogTakeImage()  this method run old way to pick image**/
                 break;
 
             case R.id.change_profile :
@@ -573,6 +584,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK){
+
             Bundle extras = data.getExtras();
             final Bitmap bitmap = (Bitmap) extras.get("data");
             //ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -592,16 +604,27 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
                 Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
             }
 
+
+
             pushPhoto(imageFile);
 
         }else if (requestCode == REQUEST_CHOOSE_PHOTO && resultCode == RESULT_OK){
 
-            try {
-                Uri uri = data.getData();
-                Bitmap bitmap = (Bitmap) MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+            Uri uri = data.getData();
 
-                //ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                //bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+            //try crop
+            CropImage.activity(uri).setAspectRatio(1,1).start(this);
+
+        }
+
+        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if(resultCode == RESULT_OK ){
+                Uri imageUri = result.getUri();
+                try {
+
+
+                Bitmap bitmap = (Bitmap) MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
 
                 File filesDir = getApplicationContext().getFilesDir();
                 File imageFile = new File(filesDir, "image" + ".jpg");
@@ -612,23 +635,16 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
                 os.flush();
                 os.close();
 
-                /*try {
-                    os = new FileOutputStream(imageFile);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
-                    os.flush();
-                    os.close();
-
-                } catch (Exception e) {
-                    Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
-                }*/
-
                 pushPhoto(imageFile);
+
             } catch (IOException e) {
                 Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
                 e.printStackTrace();
             }
 
+            }
         }
+
     }
 
     @AfterPermissionGranted(RC_CAMERA)

@@ -21,6 +21,7 @@ public interface ProfileContract {
         void showDialogTakeImage();
         void pushPhoto(File imageFile);
         void uploadPhotoSucces(String photo);
+        void cropImageAutoSelection();
         
 
     }
