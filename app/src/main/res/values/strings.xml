@@ -32,6 +32,11 @@
     <string name="no_qr_code">No QR Code</string>
     <string name="simpan">simpan</string>
     <string name="no_bisnis_warning">Anda belum memiliki bisnis dan usaha yang terdaftar Masukan bisnis dan usaha anda</string>
+    <string name="genpro_no_id">genpro - no ID</string>
+    <string name="nama_">Nama :</string>
+    <string name="status_">Status :</string>
+    <string name="masa_aktif_">Masa aktif :</string>
+    <string name="selengkapnya">selengkapnya</string>
 
 
     <!-- String for Spinner Edit profile -->
