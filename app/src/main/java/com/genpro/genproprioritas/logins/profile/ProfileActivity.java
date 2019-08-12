@@ -542,9 +542,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     @Override
     public void cropImageAutoSelection() {
         CropImage.activity()
-                .setAspectRatio(1,1)
+                .setAspectRatio(2,3)
                 .start(this);
-
     }
 
     @Override
