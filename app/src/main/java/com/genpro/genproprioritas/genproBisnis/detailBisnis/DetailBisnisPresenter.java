@@ -19,7 +19,7 @@ public class DetailBisnisPresenter implements DetailBisnisContract.Presenter {
 
     @Override
     public void getBusinnes(String userId, final int i) {
-        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/bisnis_info/getbisnis_info")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/bisnis_info/getbisnis_info")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_id", userId)
                 .build()

@@ -18,7 +18,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     @Override
     public void pushRegister(String userName, String email, String password) {
         view.showLogin();
-        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/users/register")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/users/register")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_name", userName)
                 .addBodyParameter("email", email)

@@ -35,7 +35,7 @@ public class EditProfilePresenter implements EditProfileContract.Presenter {
     public void pushDataUmum(String[] dataUmum) {
 //        view.showLoading();
 
-        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/users/update_profile_umum/")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/users/update_profile_umum/")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_id", dataUmum[0])
                 .addBodyParameter("email_umum", dataUmum[1])

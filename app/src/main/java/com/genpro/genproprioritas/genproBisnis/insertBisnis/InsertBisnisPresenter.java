@@ -17,7 +17,7 @@ public class InsertBisnisPresenter implements InsertBisnisContract.Presenter {
 
     @Override
     public void pushNewBisnis(String[] dataBisnisBaru) {
-        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/bisnis_info/insert_bisnis_info")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/bisnis_info/insert_bisnis_info")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_id", dataBisnisBaru[0])
                 .addBodyParameter("nm_usaha", dataBisnisBaru[1])

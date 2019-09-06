@@ -16,7 +16,7 @@ public class BisnisPresenter implements BisnisContract.Presenter{
     @Override
     public void getUserBisnis(String userId) {
         view.showLoading();
-        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/bisnis_info/getbisnis_info")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/bisnis_info/getbisnis_info")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_id", userId)
                 .build()

@@ -17,7 +17,7 @@ public class GalleryPresenter implements GalleryContract.Contract {
 
     @Override
     public void getGallery() {
-        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/galeri/get_pictures")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/galeri/get_pictures")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsObject(ResponseGallery.class, new ParsedRequestListener<ResponseGallery>() {

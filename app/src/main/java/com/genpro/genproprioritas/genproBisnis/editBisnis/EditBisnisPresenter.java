@@ -17,7 +17,7 @@ public class EditBisnisPresenter implements EditBisnisContract.Presenter{
 
     @Override
     public void updateBisnisData(String[] dataBisnisInfo) {
-        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/bisnis_info/update_bisnis_info")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/bisnis_info/update_bisnis_info")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_id", dataBisnisInfo[0])
                 .addBodyParameter("id_bisnis_info", dataBisnisInfo[1])

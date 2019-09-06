@@ -24,7 +24,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void getProfileImage(String userId, File file) {
-        AndroidNetworking.upload("http://genprodev.lavenderprograms.com/apigw/users/update_profile_photo/")
+        AndroidNetworking.upload("http://genpro.dfiserver.com/apigw/users/update_profile_photo/")
                 .setPriority(Priority.HIGH)
                 .addMultipartFile("pic", file)
                 .addMultipartParameter("user_id", userId)
