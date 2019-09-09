@@ -20,7 +20,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void loginPush(String email, String password) {
         view.showLoading();
-        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/auth/")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/auth")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("email", email)
                 .addBodyParameter("password", password)

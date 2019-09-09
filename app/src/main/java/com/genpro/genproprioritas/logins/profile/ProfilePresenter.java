@@ -125,7 +125,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
     @Override
     public void pushPhoto(String userId, File file) {
 
-        AndroidNetworking.upload("http://genpro.dfiserver.com/apigw/users/update_profile_photo/")
+        AndroidNetworking.upload("http://genpro.dfiserver.com/apigw/users/update_profile_photo")
                 .setPriority(Priority.HIGH)
                 .addMultipartFile("pic", file)
                 .addMultipartParameter("user_id", userId)

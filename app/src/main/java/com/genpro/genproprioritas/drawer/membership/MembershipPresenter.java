@@ -17,7 +17,7 @@ public class MembershipPresenter implements MembershipContract.Presenter {
 
     @Override
     public void getMembers() {
-        AndroidNetworking.post("http://genpro.dfiserver.com/users/get_all_users/")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/users/get_all_users")
                 .setPriority(Priority.HIGH)
                 .build()
                 .getAsObject(Membership.class, new ParsedRequestListener<Membership>() {
