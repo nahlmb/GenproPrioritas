@@ -66,7 +66,7 @@ public class MainPresenter implements MainContract.Presenter {
     public void getUserInfo(String userId) {
         view.showLoading();
 
-        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/users/get_registered_user/")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/users/get_registered_user/")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_id", userId)
                 .build()
@@ -152,9 +152,9 @@ public class MainPresenter implements MainContract.Presenter {
                         view.hideLoading();
                         view.someThingFailed(anError.getLocalizedMessage());
                         Log.d("networking", anError.getLocalizedMessage());
-                        Log.d("netwoking", anError.getErrorBody());
-                        Log.d("netwoking", anError.getErrorDetail());
-                        Log.d("netwoking", anError.getMessage());
+                        Log.d("networking", anError.getErrorBody());
+                        Log.d("networking", anError.getErrorDetail());
+                        Log.d("networking", anError.getMessage());
 
                     }
                 });
@@ -163,7 +163,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void getBusinnes(String userId) {
-        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/bisnis_info/getbisnis_info")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/bisnis_info/getbisnis_info")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_id", userId)
                 .build()

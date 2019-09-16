@@ -35,7 +35,7 @@ public class EditProfilePresenter implements EditProfileContract.Presenter {
     public void pushDataUmum(String[] dataUmum) {
 //        view.showLoading();
 
-        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/users/update_profile_umum")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/users/update_profile_umum/")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_id", dataUmum[0])
                 .addBodyParameter("email_umum", dataUmum[1])
@@ -78,7 +78,7 @@ public class EditProfilePresenter implements EditProfileContract.Presenter {
     @Override
     public void pushDataDomisili(String[] dataDomisili) {
 //        view.showLoading();
-        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/users/update_profile_domisili/")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/users/update_profile_domisili/")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_id", dataDomisili[0])
                 .addBodyParameter("id_propinsi_domisili", dataDomisili[1])
@@ -119,7 +119,7 @@ public class EditProfilePresenter implements EditProfileContract.Presenter {
 
     @Override
     public void pushDataKtp(String[] dataKtp) {
-        AndroidNetworking.post("http://genprodev.lavenderprograms.com/apigw/users/update_profile_ktp/")
+        AndroidNetworking.post("http://genpro.dfiserver.com/apigw/users/update_profile_ktp/")
                 .setPriority(Priority.HIGH)
                 .addBodyParameter("user_id", dataKtp[0])
                 .addBodyParameter("no_ktp", dataKtp[1])
@@ -173,7 +173,7 @@ public class EditProfilePresenter implements EditProfileContract.Presenter {
 
     @Override
     public void pushPhoto(File file) {
-        AndroidNetworking.upload("http://genprodev.lavenderprograms.com/apigw/users/update_profile_umum/")
+        AndroidNetworking.upload("http://genpro.dfiserver.com/apigw/users/update_profile_umum/")
                 .setPriority(Priority.HIGH)
                 .addMultipartFile("pic", file)
                 .build()
