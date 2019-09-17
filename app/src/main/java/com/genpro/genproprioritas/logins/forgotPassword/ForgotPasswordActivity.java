@@ -46,7 +46,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ForgotP
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new ForgotPasswordActivity.MyBrowser());
         //ini manggil url web dari webview-nya
-        view.loadUrl("http://genprodev.lavenderprograms.com/auth/forget_password");
+        view.loadUrl("http://genpro.dfiserver.com/auth/forget_password");
 
         if (view.equals("Not Found")) {
             view.setVisibility(View.GONE);

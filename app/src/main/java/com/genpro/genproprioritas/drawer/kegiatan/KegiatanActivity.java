@@ -38,7 +38,7 @@ public class KegiatanActivity extends AppCompatActivity implements KegiatanInter
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new KegiatanActivity.MyBrowser1());
         //ini manggil url web dari webview-nya
-        view.loadUrl("http://genprodev.lavenderprograms.com/admpage/kegiatan/mobile");
+        view.loadUrl("http://genpro.dfiserver.com/admpage/kegiatan/mobile");
 
         if (view.equals("Not Found")) {
             view.setVisibility(View.GONE);
