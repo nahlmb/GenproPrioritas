@@ -84,7 +84,7 @@
                         android:padding="5dp"
                         android:text="Bisnis"
                         android:textColor="@color/white"
-                        android:background="@color/black"
+                        android:background="#450F1B"
                         android:textSize="14sp"
                         android:layout_marginTop="24dp"/>
 
@@ -99,7 +99,7 @@
                         android:padding="5dp"
                         android:text="Bisnis"
                         android:textColor="@color/white"
-                        android:background="@color/black"
+                        android:background="#450F1B"
                         android:textSize="14sp"
                         android:layout_marginTop="8dp"/>
 
@@ -114,7 +114,7 @@
                         android:padding="5dp"
                         android:text="Bisnis"
                         android:textColor="@color/white"
-                        android:background="@color/black"
+                        android:background="#450F1B"
                         android:textSize="14sp"
                         android:layout_marginTop="8dp"/>
 
@@ -125,7 +125,7 @@
                         android:layout_marginTop="24dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="@color/black"
+                        app:cardBackgroundColor="#450F1B"
                         app:cardCornerRadius="5dp">
 
                         <LinearLayout

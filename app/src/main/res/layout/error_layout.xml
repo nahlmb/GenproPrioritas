@@ -76,7 +76,7 @@
                     app:layout_constraintStart_toStartOf="@id/txt_network_error"
                     app:layout_constraintEnd_toEndOf="@id/txt_network_error"
                     app:layout_constraintTop_toBottomOf="@id/txt_network_error_detail"
-                    android:background="@color/black"
+                    android:background="@drawable/bg_profile_segment"
                     android:onClick="goToMain"
                     android:text="@string/kembali"
                     android:textColor="@color/white"

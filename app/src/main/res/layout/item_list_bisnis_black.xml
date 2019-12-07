@@ -9,7 +9,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/black"
+        app:cardBackgroundColor="#450F1B"
         app:cardCornerRadius="5dp">
 
         <android.support.constraint.ConstraintLayout
